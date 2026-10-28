@@ -6,7 +6,7 @@
     {{- with .Params.tags }} · {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "tags/%s/" ($t | urlize)) | relURL }}">{{ $t }}</a>{{ end }}{{ end }}
   </footer>
   {{- with partial "originals.html" . }}
-  <p class="reply-there">This note also lives on {{ . }}. Replies, boosts and arguments happen there.</p>
+  <p class="reply-there">Also on {{ . }}</p>
   {{- end }}
   {{- if site.Params.ShowPostNavLinks }}{{ partial "post_nav_links.html" . }}{{ end }}
 </article>

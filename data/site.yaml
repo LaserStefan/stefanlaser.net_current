@@ -46,9 +46,7 @@ home:
   publications_count: 3
 publications:
   orcid: 0000-0002-6782-3496
-  intro: >-
-    Straight from my ORCID record, so the titles are the real ones. A few things that
-    ORCID doesn't know about are added by hand.
+  intro: "From my ORCID record."
 stream:
   enabled: true
   source: mastodon

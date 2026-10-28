@@ -1,0 +1,93 @@
+# Hashtag clean-up for the notes graph. The notes themselves are not changed.
+#
+# merge:  hashtags that mean the same thing (plural, German/English, typo).
+#         The first name is the one shown.
+# ignore: hashtags that say nothing about the topic.
+# themes: groups for the colours in the graph, named after your own hashtags.
+#         A hashtag can only be in one theme. Places and events have no theme
+#         and stay neutral.
+
+merge:
+  ai: [ki]
+  semiconductor: [semiconductors, halbleiter, chip, chips]
+  datacenter: [datacenters]
+  chatgpt: [chatgpt5]
+  energy: [energie]
+  climate: [climatechange, klima]
+  sustainability: [nachhaltigkeit]
+  ecology: [ökologie]
+  airpollution: [luftverschmutzung, luft]
+  waste: [abfall, müll]
+  ewaste: [e-waste, elektroschrott]
+  discardstudies: [discard]
+  heat: [heatwave]
+  fossil: [fossilfuels]
+  tariffs: [tariff]
+  bahn: [db]
+  train: [trains, zug]
+  btw: [btw25]
+  usa: [us]
+  india: [indien]
+  taiwan: [taiwain]
+  hcmc: [saigon]
+  kualalumpur: [kl]
+  easst: [eaast]
+  stshub: [stshub2025]
+  zeit: [diezeit]
+  vietnam: [vietnamese]
+  verkehrswende: [verkehswende]
+  germany: [germans]
+  animals: [tiere]
+  sociology: [soziologie]
+  twitter: [x]
+  britain: [britian]
+
+ignore: [portfolio, link dumps, linkdump]
+
+themes:
+  sts:
+    [sts, sociology, research, academicchatter, stsing, stsleakage, stshub, easst, easst4s,
+     easst4s2024, easst2026, dgs2025, dgs2026, barad, haraway, deleuze, callon, ant,
+     newmaterialism, ethnography, anthropology, philosophy, humanities, mediastudies,
+     datastudies, valuationstudies, bewertung, university, rub, dfg, lehre, ichbinhanna,
+     publishing, googlescholar, wisskom, books, buchempfehlung, buchmesse, zine, prediction,
+     beforeruins, boyd, leguin, sf, criticalthinking, learning, history]
+  ai:
+    [ai, openai, chatgpt, claude, anthropic, aislop]
+  semiconductor:
+    [semiconductor, tsmc, intel, samsung, amd, nvidia, gpu, valuechains, globalvaluechains]
+  infrastructure:
+    [infrastructure, datacenter, cloud, data, dataviz, hosting, ict, it, permacomputing,
+     lowcarbon, cablesofresistance, wildwires]
+  energy:
+    [energy, energiewende, coal, fossil, solar, wärmepumpe, offshore, water]
+  ecology:
+    [ecology, climate, cop28, heat, sustainability, degrowth, planetaryboundaries, transition,
+     transformation, solarpunk, flyingless, pfas, planet, extraktivismus, fairtrade, consumer,
+     blackfriday]
+  airpollution:
+    [airpollution, pollution, aqi, airpurifier]
+  waste:
+    [waste, ewaste, recycling, repair, discardstudies, wastestudies, surplus, verantwortung]
+  fediverse:
+    [fediverse, mastodon, mastodonmigration, bluesky, twitter, musk, enshittification,
+     facebook, meta, whatsapp, icq, irc, myspace, substack, blogging, rss]
+  tech:
+    [tech, google, degoogling, microsoft, apple, android, linux, popos, windows, obsidian,
+     software, nativeapps, launcher, webdesign, ux, hacking, hackerspace, netz39, computer,
+     techwontsaveus, technofix, luddite, gamersnexus, ikea]
+  politics:
+    [trump, afd, cdu, spd, fdp, grünen, merz, schuldenbremse, schulden, schwarzenull,
+     sondervermögen, mmt, wahl, wahlkampf, btw, briefwahl, bundestag, democracy, antifa,
+     ukraine, russia, putin, war, military, aufrüstung, geopolitics, tariffs, tradewar, doge,
+     iran, venezuela, coup, modi, bjp, lepen, reform, capitalism, capital, communism, marx,
+     labour, ungleichheit, millionäre, mittelschicht, wohlstandfüralle, migration, wallstreet,
+     bnd, shutdown, healthcare, feminism, care, children, christian, relations, corona, covid]
+  bahn:
+    [bahn, train, trainlive, öpnv, mobilität, verkehrswende, commuter, car, scooter, traffic]
+  streetphotography:
+    [streetphotography, urbanphotography, photography, fujifilm, landscape, stadtbild, beauty,
+     pagoda]
+  animals:
+    [animals, animalrights, tierindustrie, fleisch, wildlife, urbanwildlife, vogelgrippe,
+     agrarwirtschaft, farming]
