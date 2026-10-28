@@ -12,7 +12,7 @@
     <h1 class="post-title">{{ .Title }}</h1>
     {{ with .Params.summary }}<p class="project-summary">{{ . | markdownify }}</p>{{ end }}
     {{- with .Params.project_website }}
-    <p><a class="btn btn-primary" href="{{ . }}" target="_blank" rel="noopener">{{ $.Params.project_website_label | default "Project website" }} ↗</a></p>
+    <p><a class="site-button" href="{{ . }}" target="_blank" rel="noopener">{{ $.Params.project_website_label | default "Project website" }}</a></p>
     {{- end }}
   </header>
 

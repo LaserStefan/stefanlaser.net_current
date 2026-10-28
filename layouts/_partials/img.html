@@ -1,12 +1,18 @@
 {{- /*
-  Responsive, optionally dithered image.
-  Params: src (path like /uploads/2024/x.jpg, a bundle file name, or an external URL),
-          alt, page, width (px), class, link (bool: link to the full original)
+  Image, optionally dithered with the palette from Site settings.
+  Params:
+    src    path like /uploads/2024/x.jpg, a page-bundle file name, or an external URL
+    alt    alt text
+    page   the page (for page-bundle images)
+    width  px (default: Site settings → image width)
+    fill   true = square crop of `width` (photo grids)
+    link   true = clicking swaps to the undithered colour version (falls back to opening the original)
+    class  extra CSS class
 */ -}}
 {{- $src := .src -}}
 {{- $alt := .alt | default "" -}}
 {{- $d := hugo.Data.site.design -}}
-{{- $width := .width | default $d.image_width | default 720 -}}
+{{- $width := .width | default $d.image_width | default 600 -}}
 {{- $class := .class | default "" -}}
 {{- $res := false -}}
 {{- if not (hasPrefix $src "http") -}}
@@ -15,18 +21,31 @@
   {{- if not $res }}{{ with resources.Get $p }}{{ $res = . }}{{ end }}{{ end -}}
 {{- end -}}
 {{- if and $res (in (slice "jpeg" "png" "webp" "tiff" "bmp") $res.MediaType.SubType) -}}
-  {{- $img := $res -}}
-  {{- if gt $img.Width $width }}{{ $img = $img.Resize (printf "%dx" (int $width)) }}{{ end -}}
-  {{- if $d.dither_images -}}
-    {{- $img = $img.Filter (images.Dither (dict "colors" (slice "#1c1c1c" "#ffffff") "method" "FloydSteinberg" "strength" 0.85)) -}}
-    {{- $img = $img.Process "gif" -}}
-    {{- $class = printf "%s dithered" $class -}}
+  {{- /* Size spec. The PNG conversion must happen before the dither filter, otherwise
+         Hugo re-encodes afterwards and the palette colours drift. */ -}}
+  {{- $spec := "" -}}
+  {{- if .fill }}{{ $spec = printf "%dx%d smart" (int $width) (int $width) -}}
+  {{- else if gt $res.Width $width }}{{ $spec = printf "%dx" (int $width) -}}
+  {{- else }}{{ $spec = printf "%dx" $res.Width }}{{ end -}}
+  {{- $colour := false }}{{ $png := false -}}
+  {{- if .fill -}}
+    {{- $colour = $res.Fill (printf "%s webp q74" $spec) }}{{ $png = $res.Fill (printf "%s png" $spec) -}}
   {{- else -}}
-    {{- $img = $img.Process "webp q72" -}}
+    {{- $colour = $res.Resize (printf "%s webp q74" $spec) }}{{ $png = $res.Resize (printf "%s png" $spec) -}}
   {{- end -}}
-  {{- $tag := printf `<img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async" class="%s">` $img.RelPermalink $img.Width $img.Height (htmlEscape $alt) (trim $class " ") -}}
-  {{- if .link -}}
-    <a class="img-link" href="{{ $res.RelPermalink }}" title="Open the original image">{{ $tag | safeHTML }}</a>
+  {{- $shown := $colour -}}
+  {{- if $d.dither_images -}}
+    {{- $palette := $d.dither_palette | default (slice "#1f2421" "#3f6b55" "#8fc4a3" "#f6f1e3" "#f2b134" "#e5625e") -}}
+    {{- $shown = $png.Filter (images.Dither (dict "colors" $palette "method" ($d.dither_method | default "Atkinson"))) -}}
+    {{- $class = printf "%s dithered" $class -}}
+  {{- end -}}
+  {{- $tag := printf `<img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async" class="%s"%s>`
+        $shown.RelPermalink $shown.Width $shown.Height (htmlEscape $alt) (trim $class " ")
+        (cond (and .link $d.dither_images) (printf ` data-colour="%s"` $colour.RelPermalink) "") -}}
+  {{- if and .link $d.dither_images -}}
+    <a class="img-link" href="{{ $res.RelPermalink }}" aria-label="Show this image in colour">{{ $tag | safeHTML }}</a>
+  {{- else if .link -}}
+    <a class="img-link plain" href="{{ $res.RelPermalink }}">{{ $tag | safeHTML }}</a>
   {{- else -}}
     {{ $tag | safeHTML }}
   {{- end -}}

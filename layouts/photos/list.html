@@ -1,0 +1,14 @@
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+{{- $all := partialCached "photos.html" "all" }}
+{{- $years := slice }}{{ range $all }}{{ $years = $years | append .year }}{{ end }}
+{{- range uniq $years }}
+<section class="photo-year">
+  <h2 class="year-mark">{{ . }}</h2>
+  {{ partial "photo-grid.html" (dict "items" (where $all "year" .) "size" 320) }}
+</section>
+{{- end }}
+{{- end }}

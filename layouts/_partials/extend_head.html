@@ -13,11 +13,9 @@
 {{- if not $d.serif_headings }}
 :root { --font-display: var(--font-sans); }
 {{- end }}
-{{- if not $d.dither_tint }}
-.dithered { mix-blend-mode: normal !important; background: none !important; }
-{{- end }}
 {{ with $d.extra_css }}{{ . | safeCSS }}{{ end }}
 </style>
 {{- with site.Home.OutputFormats.Get "JSONFeed" }}
 <link rel="alternate" type="application/feed+json" href="{{ .RelPermalink }}" title="{{ site.Title }}">
 {{- end }}
+<meta name="robots" content="noai, noimageai">

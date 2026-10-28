@@ -1,0 +1,9 @@
+{{- /* Params: items (from photos.html), size (px) */ -}}
+<ul class="photo-grid">
+  {{- range .items }}
+  <li>
+    {{ partial "img.html" (dict "src" .src "alt" .alt "page" .page "width" ($.size | default 320) "fill" true "link" true) }}
+    <a class="photo-caption" href="{{ .page.RelPermalink }}"><time datetime="{{ .page.Date.Format "2006-01-02" }}">{{ .page.Date | time.Format "2 Jan 2006" }}</time></a>
+  </li>
+  {{- end }}
+</ul>

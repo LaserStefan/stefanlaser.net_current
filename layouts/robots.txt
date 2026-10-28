@@ -1,0 +1,11 @@
+# Say no to bots: AI crawlers and training scrapers are not welcome here.
+{{- range slice "GPTBot" "ChatGPT-User" "OAI-SearchBot" "ClaudeBot" "Claude-User" "Claude-SearchBot" "anthropic-ai" "CCBot" "Google-Extended" "GoogleOther" "Applebot-Extended" "PerplexityBot" "Perplexity-User" "Bytespider" "Amazonbot" "meta-externalagent" "Meta-ExternalFetcher" "FacebookBot" "cohere-ai" "cohere-training-data-crawler" "Diffbot" "ImagesiftBot" "Omgilibot" "omgili" "Timpibot" "YouBot" "DuckAssistBot" "MistralAI-User" "AI2Bot" "Ai2Bot-Dolma" "PetalBot" "Scrapy" "img2dataset" }}
+User-agent: {{ . }}
+{{- end }}
+Disallow: /
+
+User-agent: *
+Disallow: /admin/
+Allow: /
+
+Sitemap: {{ "sitemap.xml" | absURL }}

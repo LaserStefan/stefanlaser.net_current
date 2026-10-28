@@ -94,11 +94,19 @@ When the pages.dev address looks right:
 If Mastodon should show a verified link to the site, the homepage already sets `rel="me"` on the
 Mastodon icon. Add `https://stefanlaser.net` to your Mastodon profile fields.
 
+## Keeping bots out
+
+`robots.txt` asks AI crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended, PerplexityBot and others) to stay away,
+and every page carries a `noai` tag. Polite crawlers respect this; to actually block the rest, turn on
+Cloudflare → your domain → *Security → Bots → Block AI bots* once the domain runs through Cloudflare (step 5).
+
 ## How it runs day to day
 
 - Write in the CMS and press **Publish**. GitHub builds the site and uploads it (2–4 minutes),
   then sends the post to the ticked platforms and writes the links back into the post.
 - The micro stream (Bluesky or Mastodon, switch in *Site settings*) refreshes every 3 hours.
+- Publications from your ORCID record are fetched on every build, so a new entry in ORCID shows up within 3 hours.
+- The photos page collects every image used in notes automatically.
 - Posts dated in the future are published by the next run after their date.
 - Old posts are never cross-posted: only posts from the last 3 days with a cross-posting block are sent.
 
@@ -106,9 +114,9 @@ Mastodon icon. Add `https://stefanlaser.net` to your Mastodon profile fields.
 
 | Where | What |
 |---|---|
-| `content/notes`, `content/posts` | Notes (no title) and blog posts |
+| `content/notes`, `content/posts` | Notes without and with a title (one stream on the site) |
 | `content/projects/<name>/index.md` | One folder per project |
-| `content/publications/items` | One file per publication, linked to projects |
+| `content/publications/items` | Publications added by hand (linked to projects); the rest comes from ORCID |
 | `data/site.yaml` | Menu, homepage text, micro stream, colours (edited in the CMS) |
 | `assets/uploads` | Images (Hugo resizes and dithers them) |
 | `static/_redirects` | Old Micro.blog addresses that moved |

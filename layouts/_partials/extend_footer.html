@@ -1,1 +1,15 @@
 {{- with hugo.Data.site.footer_text }}<div class="site-note">{{ . | markdownify }}</div>{{ end }}
+<script>
+/* Dithered images: click shows the colour version, click again goes back. */
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest("a.img-link");
+  if (!a) return;
+  var img = a.querySelector("img[data-colour]");
+  if (!img) return;
+  e.preventDefault();
+  if (!img.dataset.dither) img.dataset.dither = img.currentSrc || img.src;
+  var on = a.classList.toggle("revealed");
+  img.src = on ? img.dataset.colour : img.dataset.dither;
+  a.setAttribute("aria-label", on ? "Show this image dithered" : "Show this image in colour");
+});
+</script>

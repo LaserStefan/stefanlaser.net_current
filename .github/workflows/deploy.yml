@@ -52,7 +52,7 @@ jobs:
 
       - name: Shrink dithered images
         run: |
-          pip install --quiet pillow
+          pip install --quiet pillow pyyaml
           python3 scripts/shrink_dithered.py public
 
       - name: Deploy to Cloudflare Pages

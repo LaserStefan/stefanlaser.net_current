@@ -4,26 +4,42 @@
   {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
 
-<ol class="timeline">
-  {{- $prev := "" }}
+<div class="themes">
   {{- range .Pages.ByWeight }}
-  {{- $phase := .Params.phase | default "" }}
-  {{- if and $phase (ne $phase $prev) }}
-  <li class="timeline-shift" aria-hidden="false"><span>{{ $phase }}</span></li>
+  {{- $p := . }}
+  {{- $slug := .File.ContentBaseName }}
+  {{- $img := .Params.thumbnail }}
+  {{- $imgAlt := .Params.thumbnail_alt | default "" }}
+  {{- if not $img }}{{ with findRESubmatch `!\[([^\]]*)\]\((/uploads/[^)\s]+)\)` .RawContent 1 }}{{ $img = index (index . 0) 2 }}{{ $imgAlt = index (index . 0) 1 }}{{ end }}{{ end }}
+  {{- $featured := slice }}
+  {{- range where (where site.Pages "Section" "publications") "Kind" "page" }}
+    {{- if and .Params.featured (in (.Params.projects | default slice) $slug) }}{{ $featured = $featured | append . }}{{ end }}
   {{- end }}
-  {{- $prev = $phase }}
-  <li class="timeline-item">
-    <a class="project-entry" href="{{ .RelPermalink }}">
-      <div class="project-entry-text">
-        {{ with .Params.years }}<span class="card-meta">{{ . }}</span>{{ end }}
-        <h2>{{ .Title }}</h2>
-        <p>{{ .Params.summary | default .Summary | plainify | truncate 220 }}</p>
-      </div>
-      {{- with .Params.thumbnail }}
-      <div class="project-entry-thumb">{{ partial "img.html" (dict "src" . "alt" "" "page" $ "width" 240) }}</div>
+  <article class="theme">
+    <div class="theme-main">
+      <p class="theme-label">{{ with .Params.phase }}<span>{{ . }}</span>{{ end }}{{ with .Params.years }}<span>{{ . }}</span>{{ end }}</p>
+      <h2 class="theme-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{- with $img }}
+      <figure class="theme-img">{{ partial "img.html" (dict "src" . "alt" $imgAlt "page" $p "width" 560 "link" true) }}</figure>
       {{- end }}
-    </a>
-  </li>
+      <p class="theme-summary">{{ .Params.summary | default .Summary | plainify }}</p>
+      <a class="more" href="{{ .RelPermalink }}">more</a>
+    </div>
+    <aside class="theme-side">
+      {{- with .Params.project_website }}
+      <p class="theme-site"><a href="{{ . }}" target="_blank" rel="noopener">{{ $p.Params.project_website_label | default "Project website" }}</a></p>
+      {{- end }}
+      {{- with $featured }}
+      <p class="side-label">Publications</p>
+      <ul class="side-pubs">
+        {{- range .ByDate.Reverse }}
+        {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
+        <li><span class="side-year">{{ .Params.year }}</span>{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}{{ with .Params.venue }}<em>{{ . }}</em>{{ end }}</li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </aside>
+  </article>
   {{- end }}
-</ol>
+</div>
 {{- end }}

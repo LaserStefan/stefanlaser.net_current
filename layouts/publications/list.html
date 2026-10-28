@@ -1,12 +1,21 @@
 {{- define "main" }}
+{{- $p := hugo.Data.site.publications }}
 <header class="page-header">
   <h1>{{ .Title }}</h1>
-  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+  <div class="post-description">
+    {{ with $p.intro }}{{ . | markdownify }}{{ end }}
+    {{ with $p.orcid }} <a class="mono-link" href="https://orcid.org/{{ . }}">ORCID {{ . }}</a>{{ end }}
+  </div>
 </header>
-{{- range (where .Pages "Kind" "page").GroupByParam "year" "desc" }}
+{{- $all := partialCached "publications-all.html" "all" }}
+{{- $years := slice }}{{ range $all }}{{ $years = $years | append (.year | default "") }}{{ end }}
+{{- range (uniq $years) }}
+{{- $y := . }}
 <section class="pub-year">
-  <h2 class="pub-year-title">{{ .Key | default "Undated" }}</h2>
-  {{ partial "publication-list.html" (dict "pages" .Pages.ByDate.Reverse) }}
+  <h2 class="year-mark">{{ $y | default "Undated" }}</h2>
+  <ul class="pub-list">
+    {{- range where $all "year" $y }}{{ partial "pub-item.html" . }}{{ end }}
+  </ul>
 </section>
 {{- end }}
 {{- end }}

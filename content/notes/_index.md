@@ -1,4 +1,4 @@
 ---
 title: Notes
 ---
-Everything I post here, short and long, newest first.
+Everything I write here, short notes and longer posts, newest first.

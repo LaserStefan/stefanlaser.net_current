@@ -1,32 +1,29 @@
 nav:
-  - name: Blog
-    url: /posts/
   - name: Notes
     url: /notes/
   - name: Projects
     url: /projects/
   - name: Publications
     url: /publications/
+  - name: Photos
+    url: /photos/
   - name: CV
     url: /cv/
-  - name: Search
-    url: /search/
 hero:
   name: Stefan Laser
-  subtitle: Sociologist, science and technology studies
+  subtitle: ""
   bio: >-
-    I research data centres, waste and infrastructures, from semiconductor fairs in
-    Taipei and Hanoi to recycling plants and railways. This is where I collect projects,
-    publications and shorter notes.
+    My blog and portfolio—a hub for research experience, personal commentary and
+    street photography. I am situated at Ruhr-University Bochum, GER, studying digital
+    infrastructures, from Europe to Asia. All imgs dithered to improve site speed.
+    Say no to bots.
   image: ""
   image_alt: ""
-  buttons:
+  links:
     - label: Projects
       url: /projects/
-      primary: true
     - label: CV
       url: /cv/
-      primary: false
 social:
   - platform: mastodon
     url: https://social.tchncs.de/@stefanlaser
@@ -35,16 +32,22 @@ social:
   - platform: linkedin
     url: ""
   - platform: orcid
-    url: ""
+    url: https://orcid.org/0000-0002-6782-3496
   - platform: email
     url: ""
   - platform: rss
     url: /index.xml
 home:
-  posts_title: Blog
-  posts_count: 3
+  notes_title: Notes
+  notes_count: 3
+  photos_title: Street & field photos
+  photos_count: 4
   publications_title: Latest publications
   publications_count: 3
+publications:
+  orcid: 0000-0002-6782-3496
+  intro: >-
+    Pulled automatically from my ORCID record, plus a few items added by hand.
 stream:
   enabled: true
   source: mastodon
@@ -64,7 +67,14 @@ design:
   paper_dark: "#1b1c1e"
   serif_headings: true
   dither_images: true
-  dither_tint: true
-  image_width: 720
+  dither_method: Atkinson
+  dither_palette:
+    - "#1f2421"
+    - "#3f6b55"
+    - "#8fc4a3"
+    - "#f6f1e3"
+    - "#f2b134"
+    - "#e5625e"
+  image_width: 600
   extra_css: ""
 footer_text: ""

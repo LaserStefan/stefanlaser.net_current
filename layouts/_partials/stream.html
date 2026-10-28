@@ -14,7 +14,7 @@
     {{- with try (resources.GetRemote $url) -}}
       {{- with .Err }}{{ warnf "Bluesky stream: %s" . }}
       {{- else with .Value }}
-        {{- range (. | transform.Unmarshal).feed -}}
+        {{- range (.Content | transform.Unmarshal).feed -}}
           {{- if and $st.hide_reposts .reason }}{{ continue }}{{ end -}}
           {{- $p := .post -}}
           {{- $rkey := index (last 1 (split $p.uri "/")) 0 -}}
@@ -52,12 +52,12 @@
     {{- with try (resources.GetRemote (printf "https://%s/api/v1/accounts/lookup?acct=%s" $inst $user)) -}}
       {{- with .Err }}{{ warnf "Mastodon lookup: %s" . }}
       {{- else with .Value -}}
-        {{- $id := (. | transform.Unmarshal).id -}}
+        {{- $id := (.Content | transform.Unmarshal).id -}}
         {{- $url := printf "https://%s/api/v1/accounts/%s/statuses?limit=40&exclude_replies=%t&exclude_reblogs=%t" $inst $id (not (not $st.hide_replies)) (not (not $st.hide_reposts)) -}}
         {{- with try (resources.GetRemote $url) -}}
           {{- with .Err }}{{ warnf "Mastodon stream: %s" . }}
           {{- else with .Value -}}
-            {{- range (. | transform.Unmarshal) -}}
+            {{- range (.Content | transform.Unmarshal) -}}
               {{- $s := . -}}
               {{- $repost := "" -}}
               {{- with .reblog }}{{ $s = . }}{{ $repost = .account.display_name | default .account.acct }}{{ end -}}
@@ -84,7 +84,7 @@
   <ol class="stream-list">
     {{- range . }}
     <li class="stream-item">
-      {{- with .repost }}<p class="stream-repost">↻ {{ . }}</p>{{ end }}
+      {{- with .repost }}<p class="stream-repost">boosted from {{ . }}</p>{{ end }}
       <p class="stream-text">{{ .text | truncate 260 }}</p>
       {{- if or .quote_title .quote_text }}
       <blockquote class="stream-quote">
@@ -93,18 +93,15 @@
       </blockquote>
       {{- end }}
       {{- with .media }}<p class="stream-media">{{ . }} {{ cond (eq . 1) "image" "images" }}</p>{{ end }}
-      <p class="stream-foot">
-        <a href="{{ .url }}" rel="noopener">View post →</a>
-        <time datetime="{{ .date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .date | time.Format "Jan 2" }}</time>
-      </p>
+      <p class="stream-foot"><a href="{{ .url }}" rel="noopener"><time datetime="{{ .date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .date | time.Format "2 Jan" }}</time></a></p>
     </li>
     {{- end }}
   </ol>
   {{- else }}
   <p class="stream-empty">
-    {{- if $profile }}Posts could not be loaded right now. <a href="{{ $profile }}">See the profile →</a>
+    {{- if $profile }}Posts could not be loaded right now. <a href="{{ $profile }}">Open the profile</a>.
     {{- else }}Add your {{ $source | title }} account in the CMS under Site settings → Micro stream.{{ end -}}
   </p>
   {{- end }}
-  {{- with $profile }}<p class="stream-more"><a href="{{ . }}" rel="me noopener">Follow on {{ $source | title }} →</a></p>{{ end }}
+  {{- with $profile }}<p class="stream-more"><a href="{{ . }}" rel="me noopener">{{ cond (eq $source "bluesky") (printf "@%s" (strings.TrimPrefix "@" $st.bluesky_handle)) (printf "@%s@%s" (strings.TrimPrefix "@" $st.mastodon_user) (strings.TrimPrefix "https://" $st.mastodon_instance)) }}</a> on {{ $source | title }}</p>{{ end }}
 </section>

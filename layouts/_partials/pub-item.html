@@ -1,0 +1,7 @@
+{{- /* One publication (dict from publications-all.html) */ -}}
+<li class="pub">
+  <span class="pub-meta">{{ .year }}{{ if and .year .type }} · {{ end }}{{ .type }}</span>
+  <span class="pub-title">{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</span>
+  {{ with .authors }}<span class="pub-authors">{{ . }}</span>{{ end }}
+  {{ with .venue }}<span class="pub-venue">{{ . | markdownify }}</span>{{ end }}
+</li>

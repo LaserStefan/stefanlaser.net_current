@@ -1,3 +1,6 @@
 ---
-title: Blog
+title: Notes
+build:
+  render: never
+  list: always
 ---

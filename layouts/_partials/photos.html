@@ -1,0 +1,9 @@
+{{- /* All images used in notes and posts, newest first: slice of dict (src, alt, page). Call with partialCached. */ -}}
+{{- $out := slice -}}
+{{- range (where site.RegularPages "Section" "in" (slice "notes" "posts")).ByDate.Reverse -}}
+  {{- $p := . -}}
+  {{- range findRESubmatch `!\[([^\]]*)\]\((/uploads/[^)\s]+\.(?:jpe?g|png|webp|JPE?G|PNG|WEBP))\)` .RawContent -}}
+    {{- $out = $out | append (dict "alt" (index . 1) "src" (index . 2) "page" $p "year" ($p.Date.Format "2006")) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

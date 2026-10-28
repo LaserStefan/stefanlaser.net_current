@@ -6,7 +6,7 @@
     <section class="hero">
       <div class="hero-photo">
         {{- with $s.hero.image }}
-          {{ partial "img.html" (dict "src" . "alt" ($s.hero.image_alt | default $s.hero.name) "width" 440 "class" "hero-img") }}
+          {{ partial "img.html" (dict "src" . "alt" ($s.hero.image_alt | default $s.hero.name) "width" 440 "class" "hero-img" "link" true) }}
         {{- else }}
           <div class="hero-monogram" aria-hidden="true">{{ range (split ($s.hero.name | default site.Title) " ") }}{{ substr . 0 1 }}{{ end }}</div>
         {{- end }}
@@ -15,57 +15,64 @@
         <h1>{{ $s.hero.name | default site.Title }}</h1>
         {{ with $s.hero.subtitle }}<p class="hero-subtitle">{{ . | markdownify }}</p>{{ end }}
         {{ with $s.hero.bio }}<div class="hero-bio">{{ . | markdownify }}</div>{{ end }}
-        {{ partial "social.html" $s.social }}
-        {{- with $s.hero.buttons }}
-        <div class="hero-buttons">
-          {{- range . }}
-          <a class="btn{{ if .primary }} btn-primary{{ end }}" href="{{ .url | relURL }}">{{ .label }}</a>
+        <div class="hero-foot">
+          {{ partial "social.html" $s.social }}
+          {{- with $s.hero.links }}
+          <p class="hero-links">{{ range $i, $l := . }}{{ if $i }}<span class="sep" aria-hidden="true">/</span>{{ end }}<a href="{{ $l.url | relURL }}">{{ $l.label }}</a>{{ end }}</p>
           {{- end }}
         </div>
-        {{- end }}
       </div>
     </section>
 
-    <hr class="dither-rule">
-
-    {{- $posts := where site.RegularPages "Section" "posts" }}
-    {{- with first ($s.home.posts_count | default 3) $posts }}
+    {{- $notes := where site.RegularPages "Section" "in" (slice "notes" "posts") }}
+    {{- with first ($s.home.notes_count | default 3) $notes.ByDate.Reverse }}
+    <hr class="rule">
     <section class="home-row">
       <div class="row-head">
-        <h2>{{ $s.home.posts_title | default "Blog" }}</h2>
-        <a href="{{ "posts/" | relURL }}">View all →</a>
+        <h2>{{ $s.home.notes_title | default "Notes" }}</h2>
+        <a class="mono-link" href="{{ "notes/" | relURL }}">all {{ len $notes }}</a>
       </div>
-      <div class="cards">
-        {{- range . }}
-        <a class="card" href="{{ .RelPermalink }}">
-          <span class="card-meta">{{ .Date | time.Format ":date_medium" }}</span>
-          <span class="card-title">{{ .Title }}</span>
-          <span class="card-text">{{ .Summary | plainify | truncate 120 }}</span>
-        </a>
+      <ol class="entries">
+        {{- range $i, $p := . }}
+        <li class="entry">
+          <a href="{{ .RelPermalink }}">
+            <span class="entry-meta"><span class="entry-no">{{ printf "%02d" (add $i 1) }}</span>{{ .Date | time.Format "2 Jan 2006" }}</span>
+            {{- if .Title }}
+            <span class="entry-title">{{ .Title }}</span>
+            <span class="entry-text">{{ .Summary | plainify | truncate 110 }}</span>
+            {{- else }}
+            <span class="entry-text entry-note">{{ .Summary | plainify | truncate 170 }}</span>
+            {{- end }}
+          </a>
+        </li>
         {{- end }}
-      </div>
+      </ol>
     </section>
     {{- end }}
 
-    {{- $pubs := where site.Pages "Section" "publications" }}
-    {{- $pubs = where $pubs "Kind" "page" }}
-    {{- with first ($s.home.publications_count | default 3) $pubs.ByDate.Reverse }}
-    <hr class="dither-rule">
+    {{- $photos := partialCached "photos.html" "all" }}
+    {{- with first ($s.home.photos_count | default 6) $photos }}
+    <hr class="rule">
+    <section class="home-row">
+      <div class="row-head">
+        <h2>{{ $s.home.photos_title | default "Photos" }}</h2>
+        <a class="mono-link" href="{{ "photos/" | relURL }}">all {{ len $photos }}</a>
+      </div>
+      {{ partial "photo-grid.html" (dict "items" . "size" 260) }}
+    </section>
+    {{- end }}
+
+    {{- $pubs := partialCached "publications-all.html" "all" }}
+    {{- with first ($s.home.publications_count | default 3) $pubs }}
+    <hr class="rule">
     <section class="home-row">
       <div class="row-head">
         <h2>{{ $s.home.publications_title | default "Latest publications" }}</h2>
-        <a href="{{ "publications/" | relURL }}">View all →</a>
+        <a class="mono-link" href="{{ "publications/" | relURL }}">all {{ len $pubs }}</a>
       </div>
-      <div class="cards">
-        {{- range . }}
-        {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
-        <a class="card card-pub" href="{{ $href | default ("publications/" | relURL) }}"{{ if $href }} target="_blank" rel="noopener"{{ end }}>
-          <span class="card-meta">{{ partial "pub-meta.html" . }}</span>
-          <span class="card-title">{{ .Title }}</span>
-          <span class="card-text">{{ with .Params.venue }}{{ . }}{{ end }}</span>
-        </a>
-        {{- end }}
-      </div>
+      <ul class="pub-list pub-list-home">
+        {{- range . }}{{ partial "pub-item.html" . }}{{ end }}
+      </ul>
     </section>
     {{- end }}
   </div>

@@ -125,9 +125,9 @@ collections:
         hint: Address from the Micro.blog days. Keeps old links working; don't change it.
 
   - name: posts
-    label: Blog posts
-    label_singular: Blog post
-    description: Longer posts with a title.
+    label: Notes with a title
+    label_singular: Note with a title
+    description: Longer pieces. They appear in the same Notes stream, with their title.
     folder: content/posts
     path: "{{year}}/{{slug}}"
     create: true
@@ -164,12 +164,12 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Short summary, name: summary, widget: text, hint: Shown at the top of the project page and in the overview. }
-      - { label: Project website, name: project_website, widget: string, required: false, hint: "Full address, e.g. https://… Shown as a button above the publications." }
+      - { label: Project website, name: project_website, widget: string, required: false, hint: "Full address, e.g. https://… Shown next to the summary in the overview and at the top of the project page." }
       - { label: Button text, name: project_website_label, widget: string, required: false, hint: "Defaults to “Project website”." }
-      - { label: Phase, name: phase, widget: string, required: false, hint: "A labelled line appears in the overview wherever this changes from one project to the next, e.g. “Waste” or “Data centres and semiconductors”." }
+      - { label: Theme label, name: phase, widget: string, required: false, hint: "Small label above the title in the overview, e.g. “current”, “waste” or “data centres and semiconductors”." }
       - { label: Years, name: years, widget: string, required: false, hint: "e.g. 2022–today" }
       - { label: Position, name: weight, widget: number, value_type: int, default: 100, hint: "Lower numbers appear higher in the overview (10, 20, 30 … leaves room in between)." }
-      - { label: Image, name: thumbnail, widget: image, required: false }
+      - { label: Image, name: thumbnail, widget: image, required: false, hint: Shown in the overview frame. If empty, the first image in the text is used. }
       - { label: Image description (alt text), name: thumbnail_alt, widget: string, required: false }
       - { label: Text, name: body, widget: markdown }
       - { label: Date, name: date, widget: datetime, required: false }
@@ -179,7 +179,10 @@ collections:
   - name: publications
     label: Publications
     label_singular: Publication
-    description: Shown on the homepage, on /publications/ and under the linked projects.
+    description: >-
+      Most publications come from ORCID automatically. Add an entry here only to link a
+      publication to a project (and show it in the project frame), or for items missing in ORCID.
+      An entry here replaces the ORCID version with the same DOI or title.
     folder: content/publications/items
     path: "{{slug}}"
     create: true
@@ -205,7 +208,7 @@ collections:
       - { label: Journal / publisher / book, name: venue, widget: string, required: false }
       - { label: DOI, name: doi, widget: string, required: false, hint: "Only the DOI itself, e.g. 10.1080/17530350.2026.2654530" }
       - { label: Link, name: link, widget: string, required: false, hint: Used instead of the DOI link if filled. }
-      - { label: Highlight on project page, name: featured, widget: boolean, default: false }
+      - { label: Show next to the project in the overview, name: featured, widget: boolean, default: false }
       - label: Projects
         name: projects
         widget: relation
@@ -242,6 +245,12 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Intro, name: body, widget: markdown, required: false }
+      - name: photos_intro
+        label: Photos page (intro text)
+        file: content/photos/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: body, widget: markdown, required: false }
       - name: notes_intro
         label: Notes page (intro text)
         file: content/notes/_index.md
@@ -262,11 +271,11 @@ collections:
           - label: Menu
             name: nav
             widget: list
-            summary: "{{name}} → {{url}}"
+            summary: "{{name}}: {{url}}"
             hint: Drag to reorder.
             fields:
               - { label: Name, name: name, widget: string }
-              - { label: Link, name: url, widget: string, hint: "/posts/ for pages on this site, https://… for external links" }
+              - { label: Link, name: url, widget: string, hint: "/notes/ for pages on this site, https://… for external links" }
 
           - label: Homepage
             name: hero
@@ -277,14 +286,13 @@ collections:
               - { label: Short description (about), name: bio, widget: text, required: false }
               - { label: Photo, name: image, widget: image, required: false, hint: Portrait works best. Gets dithered too if dithering is on. }
               - { label: Photo description (alt text), name: image_alt, widget: string, required: false }
-              - label: Buttons
-                name: buttons
+              - label: Links next to the icons
+                name: links
                 widget: list
                 summary: "{{label}}"
                 fields:
                   - { label: Text, name: label, widget: string }
                   - { label: Link, name: url, widget: string }
-                  - { label: Dark (main) button, name: primary, widget: boolean, default: false }
 
           - label: Social icons
             name: social
@@ -299,15 +307,24 @@ collections:
             name: home
             widget: object
             fields:
-              - { label: Blog row title, name: posts_title, widget: string }
-              - { label: Number of blog posts, name: posts_count, widget: number, value_type: int, min: 0, max: 9 }
+              - { label: Notes row title, name: notes_title, widget: string }
+              - { label: Number of notes, name: notes_count, widget: number, value_type: int, min: 0, max: 9 }
+              - { label: Photos row title, name: photos_title, widget: string }
+              - { label: Number of photos, name: photos_count, widget: number, value_type: int, min: 0, max: 12, hint: "4 fills one row." }
               - { label: Publications row title, name: publications_title, widget: string }
               - { label: Number of publications, name: publications_count, widget: number, value_type: int, min: 0, max: 9 }
+
+          - label: Publications
+            name: publications
+            widget: object
+            fields:
+              - { label: ORCID iD, name: orcid, widget: string, required: false, hint: "e.g. 0000-0002-6782-3496. Your public ORCID works are listed automatically. Leave empty to show only the entries from the Publications collection." }
+              - { label: Intro text, name: intro, widget: text, required: false }
 
           - label: Micro stream (right column)
             name: stream
             widget: object
-            hint: Refreshed every two hours and whenever you publish.
+            hint: Refreshed every three hours and whenever you publish.
             fields:
               - { label: Show the box, name: enabled, widget: boolean, default: true }
               - label: Source
@@ -329,15 +346,28 @@ collections:
             name: design
             widget: object
             fields:
-              - { label: Accent colour, name: accent, widget: color, hint: Frame of the micro box, links, timeline. }
+              - { label: Accent colour, name: accent, widget: color, hint: Frame of the micro box, link underlines, labels. }
               - { label: Accent background, name: accent_soft, widget: color, hint: Fill of the micro box and highlighted publications. }
               - { label: Accent colour (dark mode), name: accent_dark, widget: color }
               - { label: Accent background (dark mode), name: accent_soft_dark, widget: color }
               - { label: Page background, name: paper, widget: color }
               - { label: Page background (dark mode), name: paper_dark, widget: color }
               - { label: Serif headings, name: serif_headings, widget: boolean, default: true }
-              - { label: Dither images, name: dither_images, widget: boolean, default: true, hint: "Two-tone images, about 45 KB each. Click opens the original." }
-              - { label: Tint dithered images with the accent colour, name: dither_tint, widget: boolean, default: true }
+              - { label: Dither images, name: dither_images, widget: boolean, default: true, hint: "Click on an image shows it in colour. Off = normal WebP images." }
+              - label: Dither colours
+                name: dither_palette
+                widget: list
+                field: { label: Colour, name: colour, widget: color }
+                hint: "Every image is redrawn with only these colours. 2 colours ≈ 35 KB per image, 4 ≈ 60 KB, 6 ≈ 75 KB. Use strong contrast: include one very dark and one very light colour."
+              - label: Dither pattern
+                name: dither_method
+                widget: select
+                default: Atkinson
+                options:
+                  - { label: "Atkinson (classic Mac, clean)", value: Atkinson }
+                  - { label: "Floyd–Steinberg (fine grain)", value: FloydSteinberg }
+                  - { label: "Clustered dots (print, newspaper)", value: ClusteredDot4x4 }
+                  - { label: "Diagonal dots (screen print)", value: ClusteredDotDiagonal8x8 }
               - { label: Image width in posts (px), name: image_width, widget: number, value_type: int, min: 320, max: 1200 }
               - label: Extra CSS
                 name: extra_css
