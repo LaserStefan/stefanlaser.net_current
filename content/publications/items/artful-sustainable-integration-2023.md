@@ -9,6 +9,5 @@ doi: ""
 link: "https://publication2023.bits-und-baeume.org/"
 featured: true
 projects: ["data-centres"]
-needs_review: false
-review_note: ""
+orcid_match: ""
 ---

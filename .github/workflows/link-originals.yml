@@ -1,0 +1,44 @@
+name: Link old notes to Mastodon and Bluesky
+
+# Run by hand: Actions → "Link old notes to Mastodon and Bluesky" → Run workflow.
+# First with "only show the matches" ticked, check the log, then again without it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only show the matches, don't write anything"
+        type: boolean
+        default: true
+      bluesky_handle:
+        description: "Bluesky handle (if not set in Site settings), e.g. stefanlaser.bsky.social"
+        type: string
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        working-directory: scripts/crosspost
+        run: npm ci --no-audit --no-fund
+      - name: Find the originals
+        working-directory: scripts/crosspost
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          BLUESKY_HANDLE: ${{ inputs.bluesky_handle }}
+        run: node link_originals.mjs
+      - name: Save the links
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ -n "$(git status --porcelain content)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content
+            git commit -m "Link old notes to their Mastodon/Bluesky originals"
+            git push
+          fi

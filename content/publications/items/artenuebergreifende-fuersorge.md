@@ -1,14 +1,13 @@
 ---
-title: "Artenübergreifende Fürsorge"
+title: ""
 authors: ""
 year: ""
 date: 2022-11-20
-venue: "Bielefeld: transcript"
-pub_type: "Book"
+venue: ""
+pub_type: ""
 doi: ""
 link: "https://www.transcript-verlag.de/978-3-8376-6341-9/artenuebergreifende-fuersorge/"
 featured: true
 projects: ["interspecies-care"]
-needs_review: true
-review_note: "Written collectively with students. Check authors and year."
+orcid_match: "Artenübergreifende"
 ---

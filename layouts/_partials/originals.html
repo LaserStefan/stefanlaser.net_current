@@ -1,0 +1,7 @@
+{{- /* Links to the copies of a note on Mastodon / Bluesky / LinkedIn (front matter: syndication). */ -}}
+{{- $s := .Params.syndication | default dict -}}
+{{- $links := slice -}}
+{{- range $k := slice "mastodon" "bluesky" "linkedin" }}{{ with index $s $k }}{{ $links = $links | append (dict "k" $k "url" .) }}{{ end }}{{ end -}}
+{{- with $links -}}
+<span class="originals">{{ range $i, $l := . }}{{ if $i }} · {{ end }}<a class="u-syndication" href="{{ $l.url }}" rel="syndication noopener">{{ $l.k }}</a>{{ end }}</span>
+{{- end -}}

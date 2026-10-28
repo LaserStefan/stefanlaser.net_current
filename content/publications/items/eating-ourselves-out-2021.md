@@ -9,6 +9,5 @@ doi: "10.1177/1463499620981544"
 link: ""
 featured: false
 projects: ["interspecies-care"]
-needs_review: false
-review_note: ""
+orcid_match: ""
 ---

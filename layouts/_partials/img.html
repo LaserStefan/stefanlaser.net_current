@@ -35,8 +35,20 @@
   {{- end -}}
   {{- $shown := $colour -}}
   {{- if $d.dither_images -}}
-    {{- $palette := $d.dither_palette | default (slice "#1f2421" "#3f6b55" "#8fc4a3" "#f6f1e3" "#f2b134" "#e5625e") -}}
-    {{- $shown = $png.Filter (images.Dither (dict "colors" $palette "method" ($d.dither_method | default "Atkinson"))) -}}
+    {{- $filters := slice -}}
+    {{- with $d.dither_gamma }}{{ if ne (float .) 1.0 }}{{ $filters = $filters | append (images.Gamma (float .)) }}{{ end }}{{ end -}}
+    {{- $palette := slice -}}
+    {{- if eq ($d.dither_mode | default "rotate") "rotate" -}}
+      {{- /* Low-tech Magazine style: dark ink plus ONE colour, picked per image from the list
+             (the same image always gets the same colour). */ -}}
+      {{- $colours := $d.dither_colours | default (slice "#a8d5ba" "#f6c453" "#f4a09c" "#a7c7e7" "#c9b6e4" "#e9dcc0") -}}
+      {{- $n := len $colours -}}
+      {{- $palette = slice ($d.dither_ink | default "#1f2421") (index $colours (mod (hash.FNV32a $res.Name) $n)) -}}
+    {{- else -}}
+      {{- $palette = $d.dither_palette | default (slice "#1f2421" "#3f6b55" "#8fc4a3" "#f6f1e3" "#f2b134" "#e5625e") -}}
+    {{- end -}}
+    {{- $filters = $filters | append (images.Dither (dict "colors" $palette "method" ($d.dither_method | default "Atkinson"))) -}}
+    {{- $shown = $png.Filter $filters -}}
     {{- $class = printf "%s dithered" $class -}}
   {{- end -}}
   {{- $tag := printf `<img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async" class="%s"%s>`

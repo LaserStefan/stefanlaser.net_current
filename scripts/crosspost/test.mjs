@@ -36,3 +36,27 @@ test("inline URLs for Mastodon", () => {
 test("linkedin escaping", () => {
   assert.equal(linkedinEscape("a (b) #c"), "a \\(b\\) \\#c");
 });
+
+import { matchPosts, containment, tokens } from "./link_originals.mjs";
+
+test("old notes are matched to their Mastodon copies by text and date", () => {
+  const day = 864e5, t0 = Date.UTC(2024, 5, 1);
+  const notes = [
+    { id: "a", date: t0, text: "Night markets, unfortunately, are full of meaty things. But they look fabulous. #Taiwan", paths: ["/2024/06/01/night.html"] },
+    { id: "b", date: t0 + day, text: "It's #linux time. Since Windows and Mac OS are moving in a questionable direction I tried popos.", paths: ["/2024/06/02/linux.html"] },
+    { id: "c", date: t0 + 9 * day, text: "Night markets again, full of meaty things, fabulous.", paths: [] },
+  ];
+  const posts = [
+    { url: "m1", date: t0 + 3600e3, text: "Night markets, unfortunately, are full of meaty things. But they look fabulous. #Taiwan", links: [] },
+    { url: "m2", date: t0 + day, text: "It's #linux time. Since Windows and Mac OS are moving in a questionable … https://stefanlaser.net/2024/06/02/linux.html", links: ["https://stefanlaser.net/2024/06/02/linux.html"] },
+    { url: "m3", date: t0 + 5 * day, text: "Something else entirely about waste and recycling", links: [] },
+  ];
+  const m = matchPosts(notes, posts);
+  assert.equal(m.get("a"), "m1");
+  assert.equal(m.get("b"), "m2");
+  assert.equal(m.has("c"), false); // too far away in time
+});
+
+test("short posts never match by words alone", () => {
+  assert.equal(containment(tokens("a long note about many things"), tokens("nice")), 0);
+});

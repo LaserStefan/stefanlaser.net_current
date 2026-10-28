@@ -1,12 +1,3 @@
-{{- with .Params.syndication }}
-{{- $links := slice }}
-{{- range $k, $v := . }}{{ if and $v (in (slice "bluesky" "mastodon" "linkedin") $k) }}{{ $links = $links | append (dict "k" $k "v" $v) }}{{ end }}{{ end }}
-{{- with $links }}
-<p class="syndication">
-  Discuss or share on
-  {{- range $i, $l := . }}{{ if $i }} ·{{ end }}
-  <a class="u-syndication" href="{{ $l.v }}" rel="syndication noopener">{{ partial "icon.html" $l.k }} {{ $l.k | title }}</a>
-  {{- end }}
-</p>
-{{- end }}
+{{- with partial "originals.html" . }}
+<p class="reply-there">This post also lives on {{ . }}. Replies, boosts and arguments happen there.</p>
 {{- end }}

@@ -1,18 +1,16 @@
-{{- /* ORCID works merged with the publications entered in the CMS (CMS entries win on duplicates).
-     Returns slice of dict sorted newest first. Call with partialCached. */ -}}
-{{- $manual := slice -}}
+{{- /* Every publication: ORCID works, plus CMS entries that ORCID doesn't have.
+     ORCID metadata always wins. Returns slice of dict, newest first. Call with partialCached. */ -}}
+{{- $list := slice -}}
 {{- $seen := dict -}}
 {{- range where (where site.Pages "Section" "publications") "Kind" "page" -}}
-  {{- $doi := lower (.Params.doi | default "") -}}
-  {{- $link := .Params.link | default (cond (ne $doi "") (printf "https://doi.org/%s" $doi) "") -}}
-  {{- $manual = $manual | append (dict "title" .Title "year" (string (.Params.year | default (.Date.Format "2006"))) "venue" (.Params.venue | default "") "type" (.Params.pub_type | default "") "url" $link "doi" $doi "authors" (.Params.authors | default "") "featured" (.Params.featured | default false) "source" "cms" "date" .Date) -}}
-  {{- with $doi }}{{ $seen = merge $seen (dict . true) }}{{ end -}}
-  {{- $seen = merge $seen (dict (lower .Title | replaceRE `[^a-z0-9]` "") true) -}}
+  {{- with partial "pub-resolve.html" . -}}
+    {{- $list = $list | append . -}}
+    {{- with .doi }}{{ $seen = merge $seen (dict (lower .) true) }}{{ end -}}
+    {{- $seen = merge $seen (dict (lower .title | replaceRE `[^a-z0-9]` "") true) -}}
+  {{- end -}}
 {{- end -}}
-{{- $merged := $manual -}}
 {{- range partialCached "orcid.html" "orcid" -}}
-  {{- $key := lower .title | replaceRE `[^a-z0-9]` "" -}}
-  {{- if or (and .doi (index $seen (lower .doi))) (index $seen $key) }}{{ continue }}{{ end -}}
-  {{- $merged = $merged | append . -}}
+  {{- if or (and .doi (index $seen (lower .doi))) (index $seen (lower .title | replaceRE `[^a-z0-9]` "")) }}{{ continue }}{{ end -}}
+  {{- $list = $list | append . -}}
 {{- end -}}
-{{- return sort $merged "year" "desc" -}}
+{{- return sort $list "year" "desc" -}}

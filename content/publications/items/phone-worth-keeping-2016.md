@@ -9,6 +9,5 @@ doi: ""
 link: ""
 featured: false
 projects: ["e-waste"]
-needs_review: false
-review_note: ""
+orcid_match: ""
 ---

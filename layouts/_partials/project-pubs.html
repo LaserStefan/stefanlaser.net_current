@@ -1,0 +1,11 @@
+{{- /* Resolved publications of one project (page). Params: page, featured (true = only highlighted) */ -}}
+{{- $slug := .page.File.ContentBaseName -}}
+{{- $out := slice -}}
+{{- range where (where site.Pages "Section" "publications") "Kind" "page" -}}
+  {{- if in (.Params.projects | default slice) $slug -}}
+    {{- if or (not $.featured) .Params.featured -}}
+      {{- with partial "pub-resolve.html" . }}{{ $out = $out | append . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return sort $out "year" "desc" -}}

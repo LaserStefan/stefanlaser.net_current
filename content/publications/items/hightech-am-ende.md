@@ -1,14 +1,13 @@
 ---
-title: "Hightech am Ende: Über das globale Recycling von Elektroschrott"
-authors: "Stefan Laser"
-year: "2020"
+title: ""
+authors: ""
+year: ""
 date: 2020-01-01
-venue: "Wiesbaden: Springer VS"
-pub_type: "Book"
+venue: ""
+pub_type: ""
 doi: ""
 link: "https://hightech-am-ende.de/en"
 featured: true
 projects: ["e-waste"]
-needs_review: true
-review_note: "Check subtitle, publisher and year."
+orcid_match: "Hightech am Ende"
 ---

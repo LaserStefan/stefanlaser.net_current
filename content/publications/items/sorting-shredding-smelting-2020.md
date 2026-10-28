@@ -9,6 +9,5 @@ doi: ""
 link: ""
 featured: false
 projects: ["e-waste", "valuation-studies"]
-needs_review: true
-review_note: "Add DOI and pages."
+orcid_match: ""
 ---

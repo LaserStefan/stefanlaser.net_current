@@ -94,6 +94,19 @@ When the pages.dev address looks right:
 If Mastodon should show a verified link to the site, the homepage already sets `rel="me"` on the
 Mastodon icon. Add `https://stefanlaser.net` to your Mastodon profile fields.
 
+## Linking old notes to their Mastodon and Bluesky originals
+
+New notes get their links automatically when they are cross-posted. For the old Micro.blog notes,
+run *Actions → Link old notes to Mastodon and Bluesky → Run workflow* once:
+
+1. First with "Only show the matches" ticked. The log lists every note and the post it found.
+2. If that looks right, run it again without the tick. The links are written into the notes and
+   show up under each note ("reply on mastodon · bluesky").
+
+It reads your public timelines (no password needed) and matches by date and text. Add your Bluesky
+handle in the CMS under *Site settings → Micro stream* first, or type it into the workflow form.
+Notes that can't be matched with confidence are left alone.
+
 ## Keeping bots out
 
 `robots.txt` asks AI crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended, PerplexityBot and others) to stay away,

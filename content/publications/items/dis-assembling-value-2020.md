@@ -9,6 +9,5 @@ doi: "10.3384/VS.2001-5992.2020.7.2.151-166"
 link: ""
 featured: true
 projects: ["valuation-studies", "e-waste"]
-needs_review: false
-review_note: ""
+orcid_match: ""
 ---

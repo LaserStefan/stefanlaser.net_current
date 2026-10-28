@@ -1,0 +1,24 @@
+{{- /* One CMS publication entry -> dict with the ORIGINAL metadata from ORCID when it can be
+     matched (by DOI, or by the "ORCID match" words in the title). Without a match, the entry is
+     shown with its own title, if it has one; otherwise it is skipped. Returns false when skipped. */ -}}
+{{- $doi := lower (.Params.doi | default "") | replaceRE `^(https?://(dx\.)?doi\.org/|doi:)` "" -}}
+{{- $match := lower (trim (.Params.orcid_match | default "") " ") -}}
+{{- $hit := false -}}
+{{- range partialCached "orcid.html" "orcid" -}}
+  {{- if not $hit -}}
+    {{- if and $doi (eq (lower .doi) $doi) }}{{ $hit = . -}}
+    {{- else if and $match (strings.Contains (lower .title) $match) }}{{ $hit = . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $extra := dict "featured" (.Params.featured | default false) "projects" (.Params.projects | default slice) "authors" (.Params.authors | default "") "date" .Date -}}
+{{- $r := false -}}
+{{- if $hit -}}
+  {{- $r = merge $hit $extra -}}
+  {{- if and (not $hit.url) .Params.link }}{{ $r = merge $r (dict "url" .Params.link) }}{{ end -}}
+{{- else if .Title -}}
+  {{- $link := .Params.link | default (cond (ne $doi "") (printf "https://doi.org/%s" $doi) "") -}}
+  {{- $r = merge $extra (dict "title" .Title "year" (string (.Params.year | default "")) "venue" (.Params.venue | default "") "type" (.Params.pub_type | default "") "url" $link "doi" $doi "source" "cms") -}}
+{{- else -}}
+  {{- warnf "Publication %s: no ORCID match and no title, not shown." .File.Path -}}
+{{- end -}}
+{{- return $r -}}

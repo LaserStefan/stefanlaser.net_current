@@ -47,7 +47,8 @@ home:
 publications:
   orcid: 0000-0002-6782-3496
   intro: >-
-    Pulled automatically from my ORCID record, plus a few items added by hand.
+    Straight from my ORCID record, so the titles are the real ones. A few things that
+    ORCID doesn't know about are added by hand.
 stream:
   enabled: true
   source: mastodon
@@ -67,7 +68,17 @@ design:
   paper_dark: "#1b1c1e"
   serif_headings: true
   dither_images: true
+  dither_mode: rotate
   dither_method: Atkinson
+  dither_gamma: 1.25
+  dither_ink: "#1f2421"
+  dither_colours:
+    - "#a8d5ba"
+    - "#f6c453"
+    - "#f4a09c"
+    - "#a7c7e7"
+    - "#c9b6e4"
+    - "#e9dcc0"
   dither_palette:
     - "#1f2421"
     - "#3f6b55"

@@ -180,35 +180,25 @@ collections:
     label: Publications
     label_singular: Publication
     description: >-
-      Most publications come from ORCID automatically. Add an entry here only to link a
-      publication to a project (and show it in the project frame), or for items missing in ORCID.
-      An entry here replaces the ORCID version with the same DOI or title.
+      The list itself comes from ORCID. Add an entry here to put a publication next to a project:
+      give its DOI, or a few words of its ORCID title under "ORCID match". Title, year and journal
+      are then taken from ORCID, never typed here. Fill in a title only for things that are not in ORCID.
     folder: content/publications/items
     path: "{{slug}}"
+    slug: "{{fields.orcid_match}}{{fields.doi}}{{title}}-{{uuid_short}}"
+    identifier_field: link
     create: true
     format: yaml-frontmatter
     extension: md
-    summary: "{{year}} · {{title}}"
+    summary: "{{title}}{{orcid_match}} {{doi}}"
     sortable_fields:
-      fields: [date, title, year]
+      fields: [date]
       default: { field: date, direction: descending }
     view_filters:
-      - { label: Needs review, field: needs_review, pattern: true }
-      - { label: Highlighted, field: featured, pattern: true }
+      - { label: Shown next to a project, field: featured, pattern: true }
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Authors / editors, name: authors, widget: string, required: false }
-      - { label: Year, name: year, widget: string, required: false }
-      - { label: Date (for sorting), name: date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, hint: Newest date appears first on the homepage. }
-      - label: Type
-        name: pub_type
-        widget: select
-        required: false
-        options: [Journal article, Book, Edited collection, Book chapter, Special issue, Special issue introduction, Report, Working paper, Zine, Other]
-      - { label: Journal / publisher / book, name: venue, widget: string, required: false }
-      - { label: DOI, name: doi, widget: string, required: false, hint: "Only the DOI itself, e.g. 10.1080/17530350.2026.2654530" }
-      - { label: Link, name: link, widget: string, required: false, hint: Used instead of the DOI link if filled. }
-      - { label: Show next to the project in the overview, name: featured, widget: boolean, default: false }
+      - { label: DOI, name: doi, widget: string, required: false, hint: "Only the DOI, e.g. 10.1080/17530350.2026.2654530. Best way to match the ORCID entry." }
+      - { label: ORCID match, name: orcid_match, widget: string, required: false, hint: "For items without DOI: a few words from the title exactly as in ORCID, e.g. “Hightech am Ende”." }
       - label: Projects
         name: projects
         widget: relation
@@ -218,9 +208,18 @@ collections:
         display_fields: [title]
         multiple: true
         required: false
-      - { label: Needs review, name: needs_review, widget: boolean, default: false, hint: Drafted during the migration. Untick once checked. }
-      - { label: Review note, name: review_note, widget: string, required: false }
-      - { label: Note, name: body, widget: markdown, required: false, hint: Optional short note shown below the entry. }
+      - { label: Show next to the project in the overview, name: featured, widget: boolean, default: true }
+      - { label: Link, name: link, widget: string, required: false, hint: Optional. Used when ORCID has no link. }
+      - { label: Date (for sorting), name: date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, required: false }
+      - { label: Title (only if not in ORCID), name: title, widget: string, required: false }
+      - { label: Authors (only if not in ORCID), name: authors, widget: string, required: false }
+      - { label: Year (only if not in ORCID), name: year, widget: string, required: false }
+      - label: Type (only if not in ORCID)
+        name: pub_type
+        widget: select
+        required: false
+        options: [Journal article, Book, Edited collection, Book chapter, Special issue, Special issue introduction, Report, Working paper, Zine, Other]
+      - { label: Journal / publisher (only if not in ORCID), name: venue, widget: string, required: false }
 
   - name: pages
     label: Pages
@@ -354,11 +353,25 @@ collections:
               - { label: Page background (dark mode), name: paper_dark, widget: color }
               - { label: Serif headings, name: serif_headings, widget: boolean, default: true }
               - { label: Dither images, name: dither_images, widget: boolean, default: true, hint: "Click on an image shows it in colour. Off = normal WebP images." }
-              - label: Dither colours
+              - label: Dither style
+                name: dither_mode
+                widget: select
+                default: rotate
+                options:
+                  - { label: "Two colours, one accent per image (light, ~15 KB)", value: rotate }
+                  - { label: "Full palette in every image (colourful, ~75 KB)", value: palette }
+              - { label: Ink (dark colour), name: dither_ink, widget: color, hint: "Two-colour style: the dark half of every image." }
+              - label: Accent colours (one per image)
+                name: dither_colours
+                widget: list
+                field: { label: Colour, name: colour, widget: color }
+                hint: "Two-colour style: each image gets one of these, always the same one. Light, soft colours work best against the dark ink."
+              - label: Full palette
                 name: dither_palette
                 widget: list
                 field: { label: Colour, name: colour, widget: color }
-                hint: "Every image is redrawn with only these colours. 2 colours ≈ 35 KB per image, 4 ≈ 60 KB, 6 ≈ 75 KB. Use strong contrast: include one very dark and one very light colour."
+                hint: "Only for the full-palette style. Include one very dark and one very light colour."
+              - { label: Brighten before dithering, name: dither_gamma, widget: number, value_type: float, min: 0.6, max: 2, step: 0.05, default: 1.25, hint: "1 = unchanged. Higher keeps dark photos readable." }
               - label: Dither pattern
                 name: dither_method
                 widget: select

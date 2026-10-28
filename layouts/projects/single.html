@@ -1,11 +1,7 @@
 {{- define "main" }}
-{{- $slug := .File.ContentBaseName }}
-{{- $pubs := slice }}
-{{- range where (where site.Pages "Section" "publications") "Kind" "page" }}
-  {{- if in (.Params.projects | default slice) $slug }}{{ $pubs = $pubs | append . }}{{ end }}
-{{- end }}
-{{- $featured := where $pubs "Params.featured" true }}
-
+{{- $all := partial "project-pubs.html" (dict "page" . "featured" false) }}
+{{- $featured := where $all "featured" true }}
+{{- $rest := where $all "featured" false }}
 <article class="post-single project-single">
   <header class="post-header">
     <p class="card-meta"><a href="{{ "projects/" | relURL }}">Projects</a>{{ with .Params.phase }} · {{ . }}{{ end }}{{ with .Params.years }} · {{ . }}{{ end }}</p>
@@ -19,7 +15,7 @@
   {{- with $featured }}
   <section class="featured-pubs">
     <h2>Highlighted publications</h2>
-    {{ partial "publication-list.html" (dict "pages" .ByDate.Reverse) }}
+    <ul class="pub-list">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
   </section>
   {{- end }}
 
@@ -29,11 +25,10 @@
 
   <div class="post-content md-content">{{ .Content }}</div>
 
-  {{- $rest := complement $featured $pubs }}
   {{- with $rest }}
   <section class="more-pubs">
     <h2>More publications from this project</h2>
-    {{ partial "publication-list.html" (dict "pages" .ByDate.Reverse) }}
+    <ul class="pub-list">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
   </section>
   {{- end }}
 </article>
