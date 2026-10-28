@@ -9,5 +9,3 @@
 /feed.xml /index.xml 301
 /archive/ /notes/ 301
 /archive/index.html /notes/ 301
-/posts/ /notes/ 301
-/posts/page/* /notes/ 301

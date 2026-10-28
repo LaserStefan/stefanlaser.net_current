@@ -1,0 +1,25 @@
+{{- /* Hashtags per note, cleaned with data/tags.yaml, as a JSON resource for the graph window.
+     Returns the resource; calling .RelPermalink on it publishes the file. */ -}}
+{{- $cfg := hugo.Data.tags -}}
+{{- $alias := dict -}}
+{{- range $canon, $list := $cfg.merge }}{{ range $list }}{{ $alias = merge $alias (dict (lower .) $canon) }}{{ end }}{{ end -}}
+{{- $ignore := $cfg.ignore | default slice -}}
+{{- $theme := dict -}}
+{{- range $th, $list := $cfg.themes }}{{ range $list }}{{ $theme = merge $theme (dict . $th) }}{{ end }}{{ end -}}
+{{- $notes := slice -}}
+{{- range (where site.RegularPages "Section" "in" (slice "notes" "posts")).ByDate.Reverse -}}
+  {{- $p := . -}}
+  {{- $text := $p.RawContent | replaceRE `\]\([^)]*\)` "]" | replaceRE `https?://\S+` "" -}}
+  {{- $tags := slice -}}
+  {{- range findRESubmatch `(?:^|[\s(])#(\p{L}[\p{L}\p{N}_-]*)` $text -}}
+    {{- $t := lower (strings.TrimRight "-" (index . 1)) -}}
+    {{- $t = index $alias $t | default $t -}}
+    {{- if not (in $ignore $t) }}{{ $tags = $tags | append $t }}{{ end -}}
+  {{- end -}}
+  {{- if $tags -}}
+    {{- $label := $p.Title -}}
+    {{- if not $label }}{{ $label = $p.Plain | replaceRE `\s+` " " | truncate 90 }}{{ end -}}
+    {{- $notes = $notes | append (dict "u" $p.RelPermalink "d" ($p.Date.Format "2 Jan 2006") "t" $label "g" (uniq $tags)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return resources.FromString "notes/graph.json" (jsonify (dict "themes" $theme "notes" $notes)) -}}

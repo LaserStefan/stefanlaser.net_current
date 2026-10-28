@@ -38,8 +38,8 @@ social:
   - platform: rss
     url: /index.xml
 home:
-  notes_title: Notes
-  notes_count: 3
+  blog_title: Blog
+  blog_count: 3
   photos_title: Street & field photos
   photos_count: 4
   publications_title: Latest publications

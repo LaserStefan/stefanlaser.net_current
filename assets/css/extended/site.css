@@ -232,3 +232,32 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 .orig-label { margin-left: .6em; }
 .reply-there { margin-top: 1.6rem; padding-top: .8rem; border-top: 1px dotted var(--hair); font-size: .9rem; color: var(--secondary); }
 .reply-there a { color: var(--accent); }
+
+/* ---------------- notes graph (Obsidian-ish) ---------------- */
+.graph-box { margin: 0 0 1.5rem; border: 1px solid var(--hair); }
+.graph-box > summary {
+  cursor: pointer; list-style: none; padding: 7px 12px;
+  font-family: var(--font-mono); font-size: .75rem; color: var(--secondary);
+}
+.graph-box > summary::-webkit-details-marker { display: none; }
+.graph-box > summary::before { content: "+ "; color: var(--accent); }
+.graph-box[open] > summary::before { content: "− "; }
+.graph-box[open] > summary { border-bottom: 1px solid var(--hair); }
+.graph { position: relative; }
+.graph canvas { display: block; width: 100%; height: 380px; cursor: grab; touch-action: none; background: color-mix(in srgb, var(--entry) 40%, transparent); }
+.graph-bar { position: absolute; top: 8px; right: 10px; font-family: var(--font-mono); font-size: .68rem; color: var(--secondary); z-index: 1; }
+.graph-bar button, .graph-legend button {
+  font: inherit; color: var(--secondary); background: none; border: 1px solid transparent; padding: 1px 5px; cursor: pointer;
+}
+.graph-bar button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.graph-legend { display: flex; flex-wrap: wrap; gap: 2px 10px; padding: 8px 12px; border-top: 1px dotted var(--hair); font-family: var(--font-mono); font-size: .68rem; }
+.graph-legend button { padding: 1px 0; display: inline-flex; align-items: center; gap: 5px; }
+.graph-legend button[aria-pressed="true"] { color: var(--primary); text-decoration: underline; }
+.graph-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.graph-notes { padding: 8px 12px 12px; border-top: 1px dotted var(--hair); max-height: 260px; overflow: auto; }
+.graph-notes-head { font-family: var(--font-mono); font-size: .75rem; color: var(--accent); margin: 0 0 6px; }
+.graph-notes ol { list-style: none; margin: 0; padding: 0; }
+.graph-notes li a { display: flex; gap: 10px; font-size: .88rem; padding: 3px 0; color: var(--content); }
+.graph-notes li a:hover { color: var(--accent); }
+.graph-notes li span { font-family: var(--font-mono); font-size: .7rem; color: var(--secondary); flex: 0 0 6.5em; padding-top: 2px; }
+@media (max-width: 600px) { .graph canvas { height: 300px; } }

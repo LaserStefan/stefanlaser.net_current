@@ -125,9 +125,11 @@ collections:
         hint: Address from the Micro.blog days. Keeps old links working; don't change it.
 
   - name: posts
-    label: Notes with a title
-    label_singular: Note with a title
-    description: Longer pieces. They appear in the same Notes stream, with their title.
+    label: Blog posts
+    label_singular: Blog post
+    description: >-
+      Long-form posts with a title. Shown in the Blog row on the homepage and on /posts/,
+      and also in the Notes stream. Research projects go into Projects instead.
     folder: content/posts
     path: "{{year}}/{{slug}}"
     create: true
@@ -250,6 +252,12 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Intro, name: body, widget: markdown, required: false }
+      - name: blog_intro
+        label: Blog page (intro text)
+        file: content/posts/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: body, widget: markdown, required: false }
       - name: notes_intro
         label: Notes page (intro text)
         file: content/notes/_index.md
@@ -306,8 +314,8 @@ collections:
             name: home
             widget: object
             fields:
-              - { label: Notes row title, name: notes_title, widget: string }
-              - { label: Number of notes, name: notes_count, widget: number, value_type: int, min: 0, max: 9 }
+              - { label: Blog row title, name: blog_title, widget: string }
+              - { label: Number of blog posts, name: blog_count, widget: number, value_type: int, min: 0, max: 9 }
               - { label: Photos row title, name: photos_title, widget: string }
               - { label: Number of photos, name: photos_count, widget: number, value_type: int, min: 0, max: 12, hint: "4 fills one row." }
               - { label: Publications row title, name: publications_title, widget: string }

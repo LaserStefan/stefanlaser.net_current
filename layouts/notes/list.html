@@ -3,6 +3,32 @@
   <h1>{{ .Title }}</h1>
   {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
+{{- $graph := partialCached "notes-graph-data.html" . "graph" }}
+{{- $js := resources.Get "js/graph.js" | minify | fingerprint }}
+<details class="graph-box">
+  <summary>graph</summary>
+  <div class="graph" data-graph="{{ $graph.RelPermalink }}" data-script="{{ $js.RelPermalink }}">
+    <div class="graph-bar">
+      <span class="graph-min">hashtags used
+        <button type="button" data-min="3" aria-pressed="true">3+</button>
+        <button type="button" data-min="2" aria-pressed="false">2+</button>
+        <button type="button" data-min="1" aria-pressed="false">all</button>
+      </span>
+    </div>
+    <canvas aria-label="Graph of hashtags in my notes. Lines connect hashtags used in the same note."></canvas>
+    <div class="graph-legend"></div>
+    <div class="graph-notes" hidden></div>
+  </div>
+</details>
+<script>
+document.querySelector(".graph-box").addEventListener("toggle", function (e) {
+  if (!e.target.open || e.target.dataset.loaded) return;
+  e.target.dataset.loaded = "1";
+  var s = document.createElement("script");
+  s.src = e.target.querySelector("[data-script]").dataset.script;
+  document.body.appendChild(s);
+});
+</script>
 {{- $paginator := .Paginate (where site.RegularPages "Section" "in" (slice "notes" "posts")) }}
 <ol class="note-stream">
   {{- range $paginator.Pages }}
