@@ -26,7 +26,8 @@ import {
 } from "./text.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
-const env = process.env;
+// trim stray spaces/line breaks from pasted secrets
+const env = Object.fromEntries(Object.entries(process.env).map(([k, v]) => [k, typeof v === "string" ? v.trim() : v]));
 const SITE_URL = (env.SITE_URL || "https://stefanlaser.net").replace(/\/$/, "");
 const DRY = env.DRY_RUN === "1" || env.DRY_RUN === "true";
 const MAX_AGE_DAYS = Number(env.MAX_AGE_DAYS || 3);

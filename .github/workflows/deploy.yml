@@ -57,9 +57,12 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          # strip stray spaces or line breaks that sneak in when pasting secrets
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | tr -d '[:space:]')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]')"
           npx --yes wrangler@4 pages project create "$CF_PROJECT" --production-branch=main 2>/dev/null || true
           npx --yes wrangler@4 pages deploy public --project-name="$CF_PROJECT" --branch="${GITHUB_REF_NAME}" --commit-dirty=true
 
