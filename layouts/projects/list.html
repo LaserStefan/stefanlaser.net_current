@@ -1,0 +1,29 @@
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+
+<ol class="timeline">
+  {{- $prev := "" }}
+  {{- range .Pages.ByWeight }}
+  {{- $phase := .Params.phase | default "" }}
+  {{- if and $phase (ne $phase $prev) }}
+  <li class="timeline-shift" aria-hidden="false"><span>{{ $phase }}</span></li>
+  {{- end }}
+  {{- $prev = $phase }}
+  <li class="timeline-item">
+    <a class="project-entry" href="{{ .RelPermalink }}">
+      <div class="project-entry-text">
+        {{ with .Params.years }}<span class="card-meta">{{ . }}</span>{{ end }}
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Params.summary | default .Summary | plainify | truncate 220 }}</p>
+      </div>
+      {{- with .Params.thumbnail }}
+      <div class="project-entry-thumb">{{ partial "img.html" (dict "src" . "alt" "" "page" $ "width" 240) }}</div>
+      {{- end }}
+    </a>
+  </li>
+  {{- end }}
+</ol>
+{{- end }}

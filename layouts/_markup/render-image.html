@@ -1,0 +1,7 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $out := partial "img.html" (dict "src" $u.Path "alt" .Text "page" .PageInner "link" true) -}}
+{{- if .IsBlock -}}
+<figure class="post-figure">{{ $out }}{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>
+{{- else -}}
+{{ $out }}
+{{- end -}}

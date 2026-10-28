@@ -1,0 +1,8 @@
+{{- $items := slice -}}
+{{- range first 40 (where site.RegularPages "Section" "in" (slice "posts" "notes")) -}}
+  {{- $i := dict "id" .Permalink "url" .Permalink "content_html" .Content "date_published" (.Date.Format "2006-01-02T15:04:05Z07:00") -}}
+  {{- with .Title }}{{ $i = merge $i (dict "title" .) }}{{ end -}}
+  {{- with .Params.tags }}{{ $i = merge $i (dict "tags" .) }}{{ end -}}
+  {{- $items = $items | append $i -}}
+{{- end -}}
+{{- dict "version" "https://jsonfeed.org/version/1.1" "title" site.Title "home_page_url" site.BaseURL "feed_url" ("feed.json" | absURL) "items" $items | jsonify (dict "indent" "  ") -}}

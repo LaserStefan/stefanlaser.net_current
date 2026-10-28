@@ -1,0 +1,14 @@
+{
+  "name": "stefanlaser-crosspost",
+  "private": true,
+  "type": "module",
+  "description": "Sends new posts from this Hugo site to Bluesky, Mastodon and LinkedIn.",
+  "scripts": {
+    "crosspost": "node crosspost.mjs",
+    "test": "node --test test.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.34.0",
+    "yaml": "^2.6.0"
+  }
+}

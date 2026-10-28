@@ -1,0 +1,9 @@
+{{- if gt .TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if .HasPrev }}<a class="prev" href="{{ .Prev.URL | absURL }}">« Newer</a>{{ end }}
+    <span class="page-count">{{ .PageNumber }} / {{ .TotalPages }}</span>
+    {{- if .HasNext }}<a class="next" href="{{ .Next.URL | absURL }}">Older »</a>{{ end }}
+  </nav>
+</footer>
+{{- end }}

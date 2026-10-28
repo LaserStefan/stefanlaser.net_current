@@ -1,0 +1,79 @@
+# Technical site configuration. Content and design settings you edit in the CMS live in data/site.yaml.
+baseURL: https://stefanlaser.net/
+locale: en
+title: Stefan Laser
+theme: PaperMod
+timeZone: Europe/Berlin
+enableRobotsTXT: true
+enableGitInfo: false
+
+pagination:
+  pagerSize: 20
+
+taxonomies:
+  tag: tags
+
+# New posts get Micro.blog-style URLs, so old and new links share one pattern.
+# Imported posts carry their exact old URL in the `url:` front matter field.
+permalinks:
+  page:
+    posts: /:year/:month/:day/:contentbasename.html
+    notes: /:year/:month/:day/:contentbasename.html
+    projects: /projects/:contentbasename/
+
+markup:
+  goldmark:
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      unsafe: true   # Micro.blog posts contain some raw HTML
+  highlight:
+    noClasses: false
+
+imaging:
+  jpeg:
+    quality: 72
+  webp:
+    quality: 72
+  resampleFilter: box
+
+caches:
+  getresource:
+    maxAge: 30m      # Bluesky/Mastodon stream: refetched at most every 30 minutes
+
+mediaTypes:
+  application/feed+json:
+    suffixes: [json]
+
+outputFormats:
+  JSONFeed:
+    mediaType: application/feed+json
+    baseName: feed
+    isPlainText: true
+    rel: alternate
+
+outputs:
+  home: [HTML, RSS, JSON, JSONFeed]   # JSON = search index, JSONFeed = /feed.json like Micro.blog
+
+services:
+  rss:
+    limit: 40
+
+params:
+  env: production
+  description: "Personal site of Stefan Laser: research, notes and publications."
+  author: Stefan Laser
+  defaultTheme: auto
+  mainSections: [posts, notes]
+  ShowReadingTime: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowShareButtons: false
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  disableSpecial1stPost: true
+  hideFooter: false
+  footer:
+    hideCopyright: true
+  fuseOpts:
+    keys: [title, content, summary]

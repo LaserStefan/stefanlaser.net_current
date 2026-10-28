@@ -1,0 +1,12 @@
+<ul class="pub-list">
+  {{- range .pages }}
+  {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
+  <li class="pub">
+    <span class="pub-meta">{{ partial "pub-meta.html" . }}</span>
+    <span class="pub-title">{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}</span>
+    {{ with .Params.authors }}<span class="pub-authors">{{ . }}</span>{{ end }}
+    {{ with .Params.venue }}<span class="pub-venue">{{ . | markdownify }}</span>{{ end }}
+    {{ with .Content }}<div class="pub-note">{{ . }}</div>{{ end }}
+  </li>
+  {{- end }}
+</ul>

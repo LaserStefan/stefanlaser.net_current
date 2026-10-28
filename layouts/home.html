@@ -1,0 +1,79 @@
+{{- define "main" }}
+{{- $s := hugo.Data.site }}
+<div class="home-grid">
+  <div class="home-main">
+
+    <section class="hero">
+      <div class="hero-photo">
+        {{- with $s.hero.image }}
+          {{ partial "img.html" (dict "src" . "alt" ($s.hero.image_alt | default $s.hero.name) "width" 440 "class" "hero-img") }}
+        {{- else }}
+          <div class="hero-monogram" aria-hidden="true">{{ range (split ($s.hero.name | default site.Title) " ") }}{{ substr . 0 1 }}{{ end }}</div>
+        {{- end }}
+      </div>
+      <div class="hero-text">
+        <h1>{{ $s.hero.name | default site.Title }}</h1>
+        {{ with $s.hero.subtitle }}<p class="hero-subtitle">{{ . | markdownify }}</p>{{ end }}
+        {{ with $s.hero.bio }}<div class="hero-bio">{{ . | markdownify }}</div>{{ end }}
+        {{ partial "social.html" $s.social }}
+        {{- with $s.hero.buttons }}
+        <div class="hero-buttons">
+          {{- range . }}
+          <a class="btn{{ if .primary }} btn-primary{{ end }}" href="{{ .url | relURL }}">{{ .label }}</a>
+          {{- end }}
+        </div>
+        {{- end }}
+      </div>
+    </section>
+
+    <hr class="dither-rule">
+
+    {{- $posts := where site.RegularPages "Section" "posts" }}
+    {{- with first ($s.home.posts_count | default 3) $posts }}
+    <section class="home-row">
+      <div class="row-head">
+        <h2>{{ $s.home.posts_title | default "Blog" }}</h2>
+        <a href="{{ "posts/" | relURL }}">View all →</a>
+      </div>
+      <div class="cards">
+        {{- range . }}
+        <a class="card" href="{{ .RelPermalink }}">
+          <span class="card-meta">{{ .Date | time.Format ":date_medium" }}</span>
+          <span class="card-title">{{ .Title }}</span>
+          <span class="card-text">{{ .Summary | plainify | truncate 120 }}</span>
+        </a>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
+
+    {{- $pubs := where site.Pages "Section" "publications" }}
+    {{- $pubs = where $pubs "Kind" "page" }}
+    {{- with first ($s.home.publications_count | default 3) $pubs.ByDate.Reverse }}
+    <hr class="dither-rule">
+    <section class="home-row">
+      <div class="row-head">
+        <h2>{{ $s.home.publications_title | default "Latest publications" }}</h2>
+        <a href="{{ "publications/" | relURL }}">View all →</a>
+      </div>
+      <div class="cards">
+        {{- range . }}
+        {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
+        <a class="card card-pub" href="{{ $href | default ("publications/" | relURL) }}"{{ if $href }} target="_blank" rel="noopener"{{ end }}>
+          <span class="card-meta">{{ partial "pub-meta.html" . }}</span>
+          <span class="card-title">{{ .Title }}</span>
+          <span class="card-text">{{ with .Params.venue }}{{ . }}{{ end }}</span>
+        </a>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
+  </div>
+
+  {{- if $s.stream.enabled }}
+  <aside class="home-aside">
+    {{ partial "stream.html" . }}
+  </aside>
+  {{- end }}
+</div>
+{{- end }}

@@ -1,0 +1,11 @@
+{{- define "main" }}
+<article class="post-single note-single">
+  <div class="post-content md-content">{{ .Content }}</div>
+  <footer class="note-foot">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format ":date_long" }}</time>
+    {{- with .Params.tags }} · {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "tags/%s/" ($t | urlize)) | relURL }}">{{ $t }}</a>{{ end }}{{ end }}
+  </footer>
+  {{ partial "syndication.html" . }}
+  {{- if site.Params.ShowPostNavLinks }}{{ partial "post_nav_links.html" . }}{{ end }}
+</article>
+{{- end }}

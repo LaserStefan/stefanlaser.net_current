@@ -1,0 +1,37 @@
+{{- /*
+  Responsive, optionally dithered image.
+  Params: src (path like /uploads/2024/x.jpg, a bundle file name, or an external URL),
+          alt, page, width (px), class, link (bool: link to the full original)
+*/ -}}
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $d := hugo.Data.site.design -}}
+{{- $width := .width | default $d.image_width | default 720 -}}
+{{- $class := .class | default "" -}}
+{{- $res := false -}}
+{{- if not (hasPrefix $src "http") -}}
+  {{- $p := strings.TrimPrefix "/" (strings.TrimPrefix "./" $src) -}}
+  {{- with .page }}{{ with .Resources.Get $p }}{{ $res = . }}{{ end }}{{ end -}}
+  {{- if not $res }}{{ with resources.Get $p }}{{ $res = . }}{{ end }}{{ end -}}
+{{- end -}}
+{{- if and $res (in (slice "jpeg" "png" "webp" "tiff" "bmp") $res.MediaType.SubType) -}}
+  {{- $img := $res -}}
+  {{- if gt $img.Width $width }}{{ $img = $img.Resize (printf "%dx" (int $width)) }}{{ end -}}
+  {{- if $d.dither_images -}}
+    {{- $img = $img.Filter (images.Dither (dict "colors" (slice "#1c1c1c" "#ffffff") "method" "FloydSteinberg" "strength" 0.85)) -}}
+    {{- $img = $img.Process "gif" -}}
+    {{- $class = printf "%s dithered" $class -}}
+  {{- else -}}
+    {{- $img = $img.Process "webp q72" -}}
+  {{- end -}}
+  {{- $tag := printf `<img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async" class="%s">` $img.RelPermalink $img.Width $img.Height (htmlEscape $alt) (trim $class " ") -}}
+  {{- if .link -}}
+    <a class="img-link" href="{{ $res.RelPermalink }}" title="Open the original image">{{ $tag | safeHTML }}</a>
+  {{- else -}}
+    {{ $tag | safeHTML }}
+  {{- end -}}
+{{- else if $res -}}
+  <img src="{{ $res.RelPermalink }}" alt="{{ $alt }}" loading="lazy" class="{{ $class }}">
+{{- else -}}
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" class="{{ $class }}">
+{{- end -}}

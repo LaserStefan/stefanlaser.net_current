@@ -1,0 +1,110 @@
+{{- /* Micro stream from Bluesky OR Mastodon, fetched at build time (no JavaScript for visitors). */ -}}
+{{- $st := hugo.Data.site.stream -}}
+{{- $count := $st.count | default 6 -}}
+{{- $items := slice -}}
+{{- $profile := "" -}}
+{{- $source := $st.source | default "bluesky" -}}
+
+{{- if eq $source "bluesky" -}}
+  {{- with $st.bluesky_handle -}}
+    {{- $handle := strings.TrimPrefix "@" . -}}
+    {{- $profile = printf "https://bsky.app/profile/%s" $handle -}}
+    {{- $filter := cond $st.hide_replies "posts_no_replies" "posts_with_replies" -}}
+    {{- $url := printf "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=%s&filter=%s&limit=50" $handle $filter -}}
+    {{- with try (resources.GetRemote $url) -}}
+      {{- with .Err }}{{ warnf "Bluesky stream: %s" . }}
+      {{- else with .Value }}
+        {{- range (. | transform.Unmarshal).feed -}}
+          {{- if and $st.hide_reposts .reason }}{{ continue }}{{ end -}}
+          {{- $p := .post -}}
+          {{- $rkey := index (last 1 (split $p.uri "/")) 0 -}}
+          {{- $item := dict
+              "text" $p.record.text
+              "date" (time.AsTime $p.record.createdAt)
+              "url" (printf "https://bsky.app/profile/%s/post/%s" $p.author.handle $rkey)
+              "repost" (cond (ne .reason nil) $p.author.displayName "") -}}
+          {{- with $p.embed -}}
+            {{- $t := index . "$type" -}}
+            {{- if eq $t "app.bsky.embed.external#view" -}}
+              {{- $item = merge $item (dict "quote_title" .external.title "quote_text" .external.description "quote_url" .external.uri) -}}
+            {{- else if eq $t "app.bsky.embed.record#view" -}}
+              {{- with .record -}}
+                {{- if .author -}}
+                  {{- $item = merge $item (dict "quote_title" (.author.displayName | default .author.handle) "quote_text" (.value.text | default "")) -}}
+                {{- end -}}
+              {{- end -}}
+            {{- else if eq $t "app.bsky.embed.images#view" -}}
+              {{- $item = merge $item (dict "media" (len .images)) -}}
+            {{- else if eq $t "app.bsky.embed.recordWithMedia#view" -}}
+              {{- with .record.record }}{{ if .author }}{{ $item = merge $item (dict "quote_title" (.author.displayName | default .author.handle) "quote_text" (.value.text | default "")) }}{{ end }}{{ end -}}
+            {{- end -}}
+          {{- end -}}
+          {{- $items = $items | append $item -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- if and $st.mastodon_instance $st.mastodon_user -}}
+    {{- $inst := strings.TrimPrefix "https://" $st.mastodon_instance | strings.TrimSuffix "/" -}}
+    {{- $user := strings.TrimPrefix "@" $st.mastodon_user -}}
+    {{- $profile = printf "https://%s/@%s" $inst $user -}}
+    {{- with try (resources.GetRemote (printf "https://%s/api/v1/accounts/lookup?acct=%s" $inst $user)) -}}
+      {{- with .Err }}{{ warnf "Mastodon lookup: %s" . }}
+      {{- else with .Value -}}
+        {{- $id := (. | transform.Unmarshal).id -}}
+        {{- $url := printf "https://%s/api/v1/accounts/%s/statuses?limit=40&exclude_replies=%t&exclude_reblogs=%t" $inst $id (not (not $st.hide_replies)) (not (not $st.hide_reposts)) -}}
+        {{- with try (resources.GetRemote $url) -}}
+          {{- with .Err }}{{ warnf "Mastodon stream: %s" . }}
+          {{- else with .Value -}}
+            {{- range (. | transform.Unmarshal) -}}
+              {{- $s := . -}}
+              {{- $repost := "" -}}
+              {{- with .reblog }}{{ $s = . }}{{ $repost = .account.display_name | default .account.acct }}{{ end -}}
+              {{- $text := $s.content | replaceRE `</p>\s*<p>` "\n\n" | replaceRE `<br\s*/?>` "\n" | plainify | htmlUnescape -}}
+              {{- with $s.spoiler_text }}{{ $text = printf "CW: %s" . }}{{ end -}}
+              {{- $item := dict "text" $text "date" (time.AsTime .created_at) "url" .url "repost" $repost -}}
+              {{- with $s.card }}{{ $item = merge $item (dict "quote_title" .title "quote_text" (.provider_name | default "") "quote_url" .url) }}{{ end -}}
+              {{- with $s.media_attachments }}{{ $item = merge $item (dict "media" (len .)) }}{{ end -}}
+              {{- $items = $items | append $item -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end }}
+
+<section class="stream-box" aria-labelledby="stream-title">
+  <h2 id="stream-title" class="stream-title">
+    {{ partial "icon.html" $source }}
+    <span>{{ $st.title | default "Micro thoughts" }}</span>
+  </h2>
+  {{- with first $count $items }}
+  <ol class="stream-list">
+    {{- range . }}
+    <li class="stream-item">
+      {{- with .repost }}<p class="stream-repost">↻ {{ . }}</p>{{ end }}
+      <p class="stream-text">{{ .text | truncate 260 }}</p>
+      {{- if or .quote_title .quote_text }}
+      <blockquote class="stream-quote">
+        {{ with .quote_title }}<strong>{{ . | truncate 80 }}</strong>{{ end }}
+        {{ with .quote_text }}<span>{{ . | plainify | truncate 120 }}</span>{{ end }}
+      </blockquote>
+      {{- end }}
+      {{- with .media }}<p class="stream-media">{{ . }} {{ cond (eq . 1) "image" "images" }}</p>{{ end }}
+      <p class="stream-foot">
+        <a href="{{ .url }}" rel="noopener">View post →</a>
+        <time datetime="{{ .date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .date | time.Format "Jan 2" }}</time>
+      </p>
+    </li>
+    {{- end }}
+  </ol>
+  {{- else }}
+  <p class="stream-empty">
+    {{- if $profile }}Posts could not be loaded right now. <a href="{{ $profile }}">See the profile →</a>
+    {{- else }}Add your {{ $source | title }} account in the CMS under Site settings → Micro stream.{{ end -}}
+  </p>
+  {{- end }}
+  {{- with $profile }}<p class="stream-more"><a href="{{ . }}" rel="me noopener">Follow on {{ $source | title }} →</a></p>{{ end }}
+</section>

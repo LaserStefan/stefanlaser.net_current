@@ -1,0 +1,4 @@
+{{- $parts := slice -}}
+{{- with .Params.year }}{{ $parts = $parts | append (string .) }}{{ end -}}
+{{- with .Params.pub_type }}{{ $parts = $parts | append . }}{{ end -}}
+{{- delimit $parts " · " -}}

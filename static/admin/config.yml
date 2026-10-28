@@ -1,0 +1,351 @@
+# Sveltia CMS configuration for stefanlaser.net
+# Docs: https://github.com/sveltia/sveltia-cms
+#
+# ONE THING TO FILL IN after setting up the login helper (see SETUP.md, step 3):
+#   backend.base_url  ->  the address of your sveltia-cms-auth Cloudflare Worker
+
+backend:
+  name: github
+  repo: LaserStefan/stefanlaser.net_Cloudflare
+  branch: main
+  base_url: https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+site_url: https://stefanlaser.net
+display_url: https://stefanlaser.net
+
+# Uploads go to assets/uploads so Hugo can resize and dither them.
+media_folder: assets/uploads
+public_folder: /uploads
+
+# Shrink photos in the browser before upload (low-carbon: no 6 MB phone pictures in the repo).
+media_libraries:
+  default:
+    config:
+      max_file_size: 20000000
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 2000
+          height: 2000
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# ---------------------------------------------------------------------------
+collections:
+  - name: notes
+    label: Notes
+    label_singular: Note
+    description: Short posts without a title, like on Micro.blog.
+    folder: content/notes
+    path: "{{year}}/{{month}}/{{day}}/{{hour}}{{minute}}"
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    identifier_field: date
+    summary: "{{date | date('YYYY-MM-DD')}} · {{body | truncate(80)}}"
+    sortable_fields:
+      fields: [date]
+      default: { field: date, direction: descending }
+    fields:
+      - { label: Text, name: body, widget: markdown, buttons: [bold, italic, link, quote, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: Date, name: date, widget: datetime, picker_utc: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, hint: Drafts are not published or cross-posted. }
+      - &crosspost
+        label: Cross-posting
+        name: crosspost
+        widget: object
+        collapsed: true
+        required: false
+        hint: >-
+          Runs once, right after the post is live on the site. Old posts are never sent.
+          Untick a platform to skip it for this post.
+        fields:
+          - { label: Bluesky, name: bluesky, widget: boolean, default: true }
+          - { label: Mastodon, name: mastodon, widget: boolean, default: true }
+          - { label: LinkedIn, name: linkedin, widget: boolean, default: true }
+          - label: Short text for social media
+            name: text
+            widget: text
+            required: false
+            maxlength: 300
+            hint: >-
+              Optional. Replaces the automatic text (title + start of the post). Max 300
+              characters, the Bluesky limit. A link to the post is added automatically.
+          - label: Bluesky thread
+            name: thread
+            widget: list
+            required: false
+            field: { label: Post, name: post, widget: text, maxlength: 300 }
+            hint: >-
+              Optional. Each entry becomes one post in a Bluesky reply chain (max 300 characters each).
+              If filled, it replaces the short text on Bluesky.
+          - { label: Use the thread on Mastodon too, name: thread_mastodon, widget: boolean, default: true }
+          - label: Where the link goes
+            name: link_position
+            widget: select
+            default: end
+            options:
+              - { label: "In the last post", value: end }
+              - { label: "In the first post", value: start }
+              - { label: "No link", value: none }
+          - label: Image for social media
+            name: image
+            widget: image
+            required: false
+            hint: Optional. Otherwise the first images of the post are attached (up to 4).
+          - { label: Image description (alt text), name: image_alt, widget: string, required: false }
+      - &syndication
+        label: Posted to (filled in automatically)
+        name: syndication
+        widget: object
+        collapsed: true
+        required: false
+        hint: Links to the copies on social media. Written by the cross-posting job; leave as is.
+        fields:
+          - { label: Bluesky, name: bluesky, widget: string, required: false }
+          - { label: Mastodon, name: mastodon, widget: string, required: false }
+          - { label: LinkedIn, name: linkedin, widget: string, required: false }
+      - &old_url
+        label: Old address
+        name: url
+        widget: string
+        required: false
+        readonly: true
+        hint: Address from the Micro.blog days. Keeps old links working; don't change it.
+
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    description: Longer posts with a title.
+    folder: content/posts
+    path: "{{year}}/{{slug}}"
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    summary: "{{date | date('YYYY-MM-DD')}} · {{title}}"
+    sortable_fields:
+      fields: [date, title]
+      default: { field: date, direction: descending }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, picker_utc: false }
+      - { label: Summary, name: summary, widget: text, required: false, hint: "Optional teaser for cards and feeds. Otherwise the text up to <!--more--> or the first lines are used." }
+      - { label: Text, name: body, widget: markdown }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - *crosspost
+      - *syndication
+      - *old_url
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    description: Research projects for the portfolio. Order them with "Position".
+    folder: content/projects
+    path: "{{slug}}/index"
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    summary: "{{weight}} · {{title}} ({{phase}})"
+    sortable_fields:
+      fields: [weight, title]
+      default: { field: weight, direction: ascending }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Short summary, name: summary, widget: text, hint: Shown at the top of the project page and in the overview. }
+      - { label: Project website, name: project_website, widget: string, required: false, hint: "Full address, e.g. https://… Shown as a button above the publications." }
+      - { label: Button text, name: project_website_label, widget: string, required: false, hint: "Defaults to “Project website”." }
+      - { label: Phase, name: phase, widget: string, required: false, hint: "A labelled line appears in the overview wherever this changes from one project to the next, e.g. “Waste” or “Data centres and semiconductors”." }
+      - { label: Years, name: years, widget: string, required: false, hint: "e.g. 2022–today" }
+      - { label: Position, name: weight, widget: number, value_type: int, default: 100, hint: "Lower numbers appear higher in the overview (10, 20, 30 … leaves room in between)." }
+      - { label: Image, name: thumbnail, widget: image, required: false }
+      - { label: Image description (alt text), name: thumbnail_alt, widget: string, required: false }
+      - { label: Text, name: body, widget: markdown }
+      - { label: Date, name: date, widget: datetime, required: false }
+      - { label: Old address, name: old_url, widget: string, required: false, readonly: true }
+      - { label: Tags, name: tags, widget: list, required: false }
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    description: Shown on the homepage, on /publications/ and under the linked projects.
+    folder: content/publications/items
+    path: "{{slug}}"
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    summary: "{{year}} · {{title}}"
+    sortable_fields:
+      fields: [date, title, year]
+      default: { field: date, direction: descending }
+    view_filters:
+      - { label: Needs review, field: needs_review, pattern: true }
+      - { label: Highlighted, field: featured, pattern: true }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Authors / editors, name: authors, widget: string, required: false }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Date (for sorting), name: date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, hint: Newest date appears first on the homepage. }
+      - label: Type
+        name: pub_type
+        widget: select
+        required: false
+        options: [Journal article, Book, Edited collection, Book chapter, Special issue, Special issue introduction, Report, Working paper, Zine, Other]
+      - { label: Journal / publisher / book, name: venue, widget: string, required: false }
+      - { label: DOI, name: doi, widget: string, required: false, hint: "Only the DOI itself, e.g. 10.1080/17530350.2026.2654530" }
+      - { label: Link, name: link, widget: string, required: false, hint: Used instead of the DOI link if filled. }
+      - { label: Highlight on project page, name: featured, widget: boolean, default: false }
+      - label: Projects
+        name: projects
+        widget: relation
+        collection: projects
+        value_field: "{{slug}}"
+        search_fields: [title]
+        display_fields: [title]
+        multiple: true
+        required: false
+      - { label: Needs review, name: needs_review, widget: boolean, default: false, hint: Drafted during the migration. Untick once checked. }
+      - { label: Review note, name: review_note, widget: string, required: false }
+      - { label: Note, name: body, widget: markdown, required: false, hint: Optional short note shown below the entry. }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: cv
+        label: CV
+        file: content/cv.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - *old_url
+          - { label: Text, name: body, widget: markdown }
+      - name: socials
+        label: Socials
+        file: content/socials.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - *old_url
+          - { label: Text, name: body, widget: markdown }
+      - name: projects_intro
+        label: Projects overview (intro text)
+        file: content/projects/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: body, widget: markdown, required: false }
+      - name: notes_intro
+        label: Notes page (intro text)
+        file: content/notes/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: body, widget: markdown, required: false }
+
+  - name: settings
+    label: Site settings
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: Menu, homepage, micro stream and design
+        file: data/site.yaml
+        format: yaml
+        fields:
+          - label: Menu
+            name: nav
+            widget: list
+            summary: "{{name}} → {{url}}"
+            hint: Drag to reorder.
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Link, name: url, widget: string, hint: "/posts/ for pages on this site, https://… for external links" }
+
+          - label: Homepage
+            name: hero
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string, required: false }
+              - { label: Short description (about), name: bio, widget: text, required: false }
+              - { label: Photo, name: image, widget: image, required: false, hint: Portrait works best. Gets dithered too if dithering is on. }
+              - { label: Photo description (alt text), name: image_alt, widget: string, required: false }
+              - label: Buttons
+                name: buttons
+                widget: list
+                summary: "{{label}}"
+                fields:
+                  - { label: Text, name: label, widget: string }
+                  - { label: Link, name: url, widget: string }
+                  - { label: Dark (main) button, name: primary, widget: boolean, default: false }
+
+          - label: Social icons
+            name: social
+            widget: list
+            summary: "{{platform}}: {{url}}"
+            hint: Icons below the description. Empty links are hidden.
+            fields:
+              - { label: Platform, name: platform, widget: select, options: [bluesky, mastodon, linkedin, orcid, github, email, rss, other] }
+              - { label: Link, name: url, widget: string, required: false }
+
+          - label: Homepage sections
+            name: home
+            widget: object
+            fields:
+              - { label: Blog row title, name: posts_title, widget: string }
+              - { label: Number of blog posts, name: posts_count, widget: number, value_type: int, min: 0, max: 9 }
+              - { label: Publications row title, name: publications_title, widget: string }
+              - { label: Number of publications, name: publications_count, widget: number, value_type: int, min: 0, max: 9 }
+
+          - label: Micro stream (right column)
+            name: stream
+            widget: object
+            hint: Refreshed every two hours and whenever you publish.
+            fields:
+              - { label: Show the box, name: enabled, widget: boolean, default: true }
+              - label: Source
+                name: source
+                widget: select
+                default: mastodon
+                options:
+                  - { label: Bluesky, value: bluesky }
+                  - { label: Mastodon, value: mastodon }
+              - { label: Box title, name: title, widget: string }
+              - { label: Number of posts, name: count, widget: number, value_type: int, min: 1, max: 15 }
+              - { label: Bluesky handle, name: bluesky_handle, widget: string, required: false, hint: "e.g. stefanlaser.net or stefanlaser.bsky.social" }
+              - { label: Mastodon server, name: mastodon_instance, widget: string, required: false, hint: "e.g. social.tchncs.de" }
+              - { label: Mastodon username, name: mastodon_user, widget: string, required: false, hint: "without the server, e.g. stefanlaser" }
+              - { label: Hide replies, name: hide_replies, widget: boolean, default: true }
+              - { label: Hide reposts / boosts, name: hide_reposts, widget: boolean, default: true }
+
+          - label: Design
+            name: design
+            widget: object
+            fields:
+              - { label: Accent colour, name: accent, widget: color, hint: Frame of the micro box, links, timeline. }
+              - { label: Accent background, name: accent_soft, widget: color, hint: Fill of the micro box and highlighted publications. }
+              - { label: Accent colour (dark mode), name: accent_dark, widget: color }
+              - { label: Accent background (dark mode), name: accent_soft_dark, widget: color }
+              - { label: Page background, name: paper, widget: color }
+              - { label: Page background (dark mode), name: paper_dark, widget: color }
+              - { label: Serif headings, name: serif_headings, widget: boolean, default: true }
+              - { label: Dither images, name: dither_images, widget: boolean, default: true, hint: "Two-tone images, about 45 KB each. Click opens the original." }
+              - { label: Tint dithered images with the accent colour, name: dither_tint, widget: boolean, default: true }
+              - { label: Image width in posts (px), name: image_width, widget: number, value_type: int, min: 320, max: 1200 }
+              - label: Extra CSS
+                name: extra_css
+                widget: code
+                default_language: css
+                allow_language_selection: false
+                output_code_only: true
+                required: false
+                hint: For small tweaks only. A typo here can break the layout, so test on the preview branch first.
+
+          - { label: Footer text, name: footer_text, widget: string, required: false }

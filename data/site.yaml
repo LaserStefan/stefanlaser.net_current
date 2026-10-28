@@ -1,0 +1,70 @@
+nav:
+  - name: Blog
+    url: /posts/
+  - name: Notes
+    url: /notes/
+  - name: Projects
+    url: /projects/
+  - name: Publications
+    url: /publications/
+  - name: CV
+    url: /cv/
+  - name: Search
+    url: /search/
+hero:
+  name: Stefan Laser
+  subtitle: Sociologist, science and technology studies
+  bio: >-
+    I research data centres, waste and infrastructures, from semiconductor fairs in
+    Taipei and Hanoi to recycling plants and railways. This is where I collect projects,
+    publications and shorter notes.
+  image: ""
+  image_alt: ""
+  buttons:
+    - label: Projects
+      url: /projects/
+      primary: true
+    - label: CV
+      url: /cv/
+      primary: false
+social:
+  - platform: mastodon
+    url: https://social.tchncs.de/@stefanlaser
+  - platform: bluesky
+    url: ""
+  - platform: linkedin
+    url: ""
+  - platform: orcid
+    url: ""
+  - platform: email
+    url: ""
+  - platform: rss
+    url: /index.xml
+home:
+  posts_title: Blog
+  posts_count: 3
+  publications_title: Latest publications
+  publications_count: 3
+stream:
+  enabled: true
+  source: mastodon
+  title: Micro thoughts
+  count: 6
+  bluesky_handle: ""
+  mastodon_instance: social.tchncs.de
+  mastodon_user: stefanlaser
+  hide_replies: true
+  hide_reposts: true
+design:
+  accent: "#5e8b72"
+  accent_soft: "#eef4f0"
+  accent_dark: "#8fbfa3"
+  accent_soft_dark: "#1d2722"
+  paper: "#f7f6f2"
+  paper_dark: "#1b1c1e"
+  serif_headings: true
+  dither_images: true
+  dither_tint: true
+  image_width: 720
+  extra_css: ""
+footer_text: ""

@@ -1,0 +1,12 @@
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+{{- range (where .Pages "Kind" "page").GroupByParam "year" "desc" }}
+<section class="pub-year">
+  <h2 class="pub-year-title">{{ .Key | default "Undated" }}</h2>
+  {{ partial "publication-list.html" (dict "pages" .Pages.ByDate.Reverse) }}
+</section>
+{{- end }}
+{{- end }}

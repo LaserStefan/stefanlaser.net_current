@@ -1,0 +1,23 @@
+{{- $d := hugo.Data.site.design -}}
+<style>
+:root {
+  --accent: {{ $d.accent | default "#5e8b72" | safeCSS }};
+  --accent-soft: {{ $d.accent_soft | default "#eef4f0" | safeCSS }};
+  --paper: {{ $d.paper | default "#f7f6f2" | safeCSS }};
+}
+:root[data-theme="dark"] {
+  --accent: {{ $d.accent_dark | default "#8fbfa3" | safeCSS }};
+  --accent-soft: {{ $d.accent_soft_dark | default "#1d2722" | safeCSS }};
+  --paper: {{ $d.paper_dark | default "#1b1c1e" | safeCSS }};
+}
+{{- if not $d.serif_headings }}
+:root { --font-display: var(--font-sans); }
+{{- end }}
+{{- if not $d.dither_tint }}
+.dithered { mix-blend-mode: normal !important; background: none !important; }
+{{- end }}
+{{ with $d.extra_css }}{{ . | safeCSS }}{{ end }}
+</style>
+{{- with site.Home.OutputFormats.Get "JSONFeed" }}
+<link rel="alternate" type="application/feed+json" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+{{- end }}
