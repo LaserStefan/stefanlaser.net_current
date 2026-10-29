@@ -1,14 +1,18 @@
 ---
-title: "Playing with the Format of Predictions"
-date: 2026-06-23T10:15:42+02:00
-summary: "The Elon Musks of the world abuse #sf, #AI companies push eerie next-word predictors into our lives, and prediction markets accelerate corruption."
-project_website: ""
-project_website_label: ""
-phase: "Predictions"
-years: ""
+title: Thinking through the Format of Predictions
+summary: 'The Elon Musks of the world abuse #sf, #AI companies push eerie next-word predictors into our lives, and prediction markets accelerate corruption.'
+project_website: https://www.matteringpress.org/books/predictions-volume-1
+project_website_label: ''
+phase: Predictions
+years: ''
 weight: 10
-old_url: "/2026/06/23/the-elon-musks-of-the.html"
-tags: ["Portfolio", "Research"]
+thumbnail: ''
+thumbnail_alt: ''
+date: 2026-06-23T10:15:42+02:00
+old_url: /2026/06/23/the-elon-musks-of-the.html
+tags:
+  - Portfolio
+  - Research
 ---
 
 So..., how about reclaiming the format of predictions? As critical thinkers? Can it work?
