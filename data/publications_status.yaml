@@ -1,0 +1,8 @@
+# Written by scripts/sync_publications.py on every build. Do not edit.
+cv_publications: 60
+orcid_groups: 50
+orcid_work_summaries: 52
+orcid_public_works: 50
+matched_to_cv: 49
+only_in_orcid: 1
+checked: '2026-10-29'
