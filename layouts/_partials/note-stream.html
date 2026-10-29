@@ -1,0 +1,15 @@
+{{- /* Stream of notes and posts. Param: a paginator. */ -}}
+<ol class="note-stream">
+  {{- range .Pages }}
+  <li class="note">
+    {{- if .Title }}
+    <h2 class="note-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="post-content md-content">{{ .Summary }}</div>
+    {{- else }}
+    <div class="post-content md-content">{{ .Content }}</div>
+    {{- end }}
+    <p class="note-foot"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format ":date_medium" }}</time></a>{{ with .Params.tags }} · {{ delimit . ", " }}{{ end }}{{ with partial "originals.html" . }} <span class="orig-label">also on</span> {{ . }}{{ end }}</p>
+  </li>
+  {{- end }}
+</ol>
+{{ partial "pagination.html" . }}

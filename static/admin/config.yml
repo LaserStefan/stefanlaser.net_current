@@ -62,6 +62,8 @@ collections:
       - { label: Text, name: body, widget: markdown, buttons: [bold, italic, link, quote, bulleted-list, numbered-list], editor_components: [image] }
       - { label: Date, name: date, widget: datetime, picker_utc: false }
       - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Research note, name: research, widget: boolean, default: false, required: false, hint: "Also shown in the Blog row on the homepage and under Research notes. Notes tagged Research count too." }
+      - { label: Title in the Blog row, name: card_title, widget: string, required: false, hint: "Optional, only for research notes. Otherwise the first sentence is used." }
       - { label: Draft, name: draft, widget: boolean, default: false, hint: Drafts are not published or cross-posted. }
       - &crosspost
         label: Cross-posting
@@ -286,6 +288,12 @@ collections:
       - name: notes_intro
         label: Notes page (intro text)
         file: content/notes/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: body, widget: markdown, required: false }
+      - name: research_intro
+        label: Research notes page (intro text)
+        file: content/research-notes/_index.md
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Intro, name: body, widget: markdown, required: false }

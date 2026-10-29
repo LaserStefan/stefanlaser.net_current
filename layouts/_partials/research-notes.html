@@ -1,0 +1,4 @@
+{{- /* All research notes (see is-research.html), newest first. Call with partialCached. */ -}}
+{{- $out := slice -}}
+{{- range where site.RegularPages "Section" "notes" }}{{ if partial "is-research.html" . }}{{ $out = $out | append . }}{{ end }}{{ end -}}
+{{- return $out -}}

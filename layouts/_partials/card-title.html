@@ -1,0 +1,11 @@
+{{- /* Title and teaser for cards. Notes without a title: card_title, or the first sentence
+     becomes the title and the rest the teaser. Returns dict (title, text). */ -}}
+{{- $title := .Title -}}
+{{- $text := .Summary | plainify | htmlUnescape -}}
+{{- if not $title -}}
+  {{- $plain := .Plain | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- $parts := split $plain ". " -}}
+  {{- $title = .Params.card_title | default (index $parts 0 | truncate 90) -}}
+  {{- if .Params.card_title }}{{ $text = $plain }}{{ else }}{{ $text = delimit (after 1 $parts) ". " }}{{ end -}}
+{{- end -}}
+{{- return dict "title" $title "text" $text -}}

@@ -3,15 +3,6 @@
   <h1>{{ .Title }}</h1>
   {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
-{{- $paginator := .Paginate .Pages.ByDate.Reverse }}
-<ol class="note-stream">
-  {{- range $paginator.Pages }}
-  <li class="note">
-    <h2 class="note-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <div class="post-content md-content">{{ .Summary | plainify | truncate 280 }}</div>
-    <p class="note-foot"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time></a>{{ with partial "originals.html" . }} <span class="orig-label">also on</span> {{ . }}{{ end }}</p>
-  </li>
-  {{- end }}
-</ol>
-{{ partial "pagination.html" $paginator }}
+{{ partial "notes-tabs.html" "blog" }}
+{{ partial "note-stream.html" (.Paginate .Pages.ByDate.Reverse) }}
 {{- end }}

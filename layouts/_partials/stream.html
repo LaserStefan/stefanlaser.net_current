@@ -12,6 +12,7 @@
   <h2 id="stream-title" class="stream-title">
     {{ if not $tabs }}{{ with index $feeds 0 }}{{ partial "icon.html" .source }}{{ end }}{{ end }}
     <span>{{ $st.title | default "Micro thoughts" }}</span>
+    <a class="stream-archive" href="{{ "notes/" | relURL }}">Archive</a>
   </h2>
   {{- if $tabs }}
   {{- range $i, $f := $feeds }}<input class="stream-switch" type="radio" name="stream-tab" id="stream-tab-{{ $f.source }}"{{ if eq $i 0 }} checked{{ end }}>{{ end }}

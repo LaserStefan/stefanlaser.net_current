@@ -1,0 +1,4 @@
+{{- /* true for a note that counts as a research note: tag "Research" or research: true */ -}}
+{{- $r := .Params.research | default false -}}
+{{- range .Params.tags }}{{ if eq (lower .) "research" }}{{ $r = true }}{{ end }}{{ end -}}
+{{- return $r -}}

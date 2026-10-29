@@ -1,6 +1,4 @@
 nav:
-  - name: Notes
-    url: /notes/
   - name: Projects
     url: /projects/
   - name: Publications
@@ -30,7 +28,7 @@ social:
   - platform: rss
     url: /index.xml
 home:
-  blog_title: Blog
+  blog_title: Blog posts and research notes
   blog_count: 4
   photos_title: Street & field photos
   photos_count: 6

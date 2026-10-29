@@ -24,21 +24,22 @@
       </div>
     </section>
 
-    {{- $blog := where site.RegularPages "Section" "posts" }}
-    {{- with first ($s.home.blog_count | default 3) $blog.ByDate.Reverse }}
+    {{- $blog := (where site.RegularPages "Section" "posts") | append (partialCached "research-notes.html" "all") }}
+    {{- with first ($s.home.blog_count | default 3) (sort $blog "Date" "desc") }}
     <hr class="rule">
     <section class="home-row">
       <div class="row-head">
         <h2>{{ $s.home.blog_title | default "Blog" }}</h2>
-        <a class="mono-link" href="{{ "posts/" | relURL }}">all {{ len $blog }}</a>
+        <a class="mono-link" href="{{ "notes/" | relURL }}">all notes</a>
       </div>
       <ol class="entries">
         {{- range $i, $p := . }}
         <li class="entry">
           <a href="{{ .RelPermalink }}">
             <span class="entry-meta"><span class="entry-no">{{ printf "%02d" (add $i 1) }}</span>{{ .Date | time.Format "2 Jan 2006" }}</span>
-            <span class="entry-title">{{ .Title }}</span>
-            <span class="entry-text">{{ .Summary | plainify | truncate 120 }}</span>
+            {{- $c := partial "card-title.html" . }}
+            <span class="entry-title">{{ $c.title }}</span>
+            {{ with $c.text }}<span class="entry-text">{{ . | truncate 120 }}</span>{{ end }}
           </a>
         </li>
         {{- end }}

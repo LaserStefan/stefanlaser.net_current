@@ -1,0 +1,7 @@
+{{- /* Switch between all notes, blog posts and research notes. Param: the key of the current view. */ -}}
+{{- $cur := . -}}
+<nav class="view-tabs" aria-label="Show">
+  {{- range slice (dict "k" "all" "l" "All" "u" "notes/") (dict "k" "blog" "l" "Blog posts" "u" "posts/") (dict "k" "research" "l" "Research notes" "u" "research-notes/") }}
+  <a href="{{ .u | relURL }}"{{ if eq .k $cur }} aria-current="page"{{ end }}>{{ .l }}</a>
+  {{- end }}
+</nav>

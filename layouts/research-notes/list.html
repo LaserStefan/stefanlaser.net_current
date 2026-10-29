@@ -1,0 +1,9 @@
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+{{ partial "notes-tabs.html" "research" }}
+{{- $notes := partialCached "research-notes.html" "all" }}
+{{ partial "note-stream.html" (.Paginate (sort $notes "Date" "desc")) }}
+{{- end }}
