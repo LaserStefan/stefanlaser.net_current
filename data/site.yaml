@@ -35,17 +35,17 @@ social:
     url: /index.xml
 home:
   blog_title: Blog
-  blog_count: 3
+  blog_count: 4
   photos_title: Street & field photos
-  photos_count: 4
+  photos_count: 6
   publications_title: Latest publications
-  publications_count: 3
+  publications_count: 6
 publications:
   orcid: 0000-0002-6782-3496
-  intro: From my CV and ORCID record.
+  intro: Public record of publications.
 stream:
   enabled: true
-  source: mastodon
+  source: bluesky
   title: Microblogging
   count: 6
   bluesky_handle: stefanlaser.bsky.social
@@ -60,6 +60,7 @@ design:
   accent_soft_dark: '#1d2722'
   paper: '#f7f6f2'
   paper_dark: '#1b1c1e'
+  favicon: ''
   serif_headings: true
   dither_images: true
   dither_mode: rotate
