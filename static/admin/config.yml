@@ -224,7 +224,8 @@ collections:
       - { label: Only in ORCID, field: source, pattern: "^orcid$" }
       - { label: Added by hand, field: source, pattern: "^manual$" }
     fields:
-      - { label: Title, name: title, widget: string }
+      - { label: Title, name: title, widget: string, hint: "Filled from the CV and replaced on every update. To change it for good, use “Own title” below." }
+      - { label: Own title, name: custom_title, widget: string, required: false, hint: "Optional. Replaces the title everywhere and is kept when the list is updated from the CV." }
       - { label: Year, name: year, widget: string, required: false }
       - label: Type
         name: pub_type

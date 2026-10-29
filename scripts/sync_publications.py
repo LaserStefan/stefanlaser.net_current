@@ -93,6 +93,28 @@ def cv_entry(line, kind, order):
     return {"citation": line, "pub_type": kind, "sort": order, "source": "cv"}
 
 
+VENUE = re.compile(
+    r"^(In[:\s]|Reihe\b|Online first|https?://|\[|\(Open Access)"   # chapter, series, links, translations
+    r"|^[A-ZÄÖÜ][\w./& -]{1,40}: [A-Za-zÄÖÜ]"                         # Place: Publisher
+    r"|\d+\s*\(\d|\b\d+\s*[-–‐]\s*\d+\b")                        # volume(issue), pages
+
+
+def with_subtitle(c, t, short):
+    """Title: subtitle. The subtitle is the sentence after the title, unless that is already the venue."""
+    if not t:
+        return short
+    rest = c[t.end(1):].lstrip(" .")
+    m = re.match(r"(.+?)\.(?:\s+|$)", rest)
+    if not m:
+        return short
+    seg, after = m.group(1).strip(), rest[m.end():].strip()
+    after = re.sub(r"https?://\S+|\(Open Access\)|\[Read online\]\([^)]*\)|Online first", "", after).strip(" .")
+    open_quote = any(q in seg for q in "‚„") and not any(q in seg for q in "‘“")
+    if not after or VENUE.search(seg) or len(seg) > 160 or open_quote:
+        return short
+    return f"{short}{' ' if short.endswith(('?', '!')) else ': '}{seg}"
+
+
 def finish(e):
     c = e["citation"]
     year = re.search(r"\((?:[^()]*?)((?:19|20)\d\d)\)", c) or re.search(r"\b((?:19|20)\d\d)\b", c)
@@ -103,7 +125,9 @@ def finish(e):
     t = re.search(r"\)\s*[:.]\s*(.+?)(?:\.\s+(?=[A-ZÄÖÜ„\[“'‚])|\.$|\.\s*\[|$)", c)
     title = (t.group(1) if t else c).strip()
     title = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", title)
-    e["title"] = title.strip(" .")
+    e["short_title"] = title.strip(" .")  # used for the file name, so links from projects stay stable
+    full = with_subtitle(c, t, e["short_title"])
+    e["title"] = re.sub(r"\s*\[[^\]]*\]?\s*$", "", full).strip(" .") or e["short_title"]  # no English translation in the title
     links = re.findall(r"\]\((https?://[^)\s]+)\)", c) + re.findall(r"(?<![(\[])(https?://[^\s)\]]+)", c)
     e["link"] = links[-1].rstrip(".,") if links else ""
     doi = re.search(r"(?:doi\.org/|doi:\s*)(10\.\d{4,9}/[^\s)\]]+)", c, re.I)
@@ -235,7 +259,7 @@ def merge(cv, orcid):
 
 # ---------------------------------------------------------------------------
 def file_name(e):
-    base = f"{e['year'] or 'nd'}-{slugify(e['title']) or 'untitled'}"
+    base = f"{e['year'] or 'nd'}-{slugify(e.get('short_title') or e['title']) or 'untitled'}"
     if e["source"] == "orcid":
         base = f"orcid-{e['put_code']}"
     return base
@@ -294,6 +318,12 @@ def main(offline=False):
         if src == "orcid" and f.stem not in wanted and not offline:
             f.unlink(); changed += 1
     for name, fm in wanted.items():
+        p = OUT / f"{name}.md"
+        if p.exists():  # a title set by hand in the CMS ("Own title") survives every update
+            old = yaml.safe_load(p.read_text().split("---", 2)[1]) or {}
+            if old.get("custom_title"):
+                fm["custom_title"] = old["custom_title"]
+                fm["title"] = old["custom_title"]
         text = "---\n" + yaml.safe_dump(fm, allow_unicode=True, sort_keys=False, width=10_000) + "---\n"
         p = OUT / f"{name}.md"
         if not p.exists() or p.read_text() != text:

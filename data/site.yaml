@@ -41,7 +41,7 @@ stream:
   enabled: true
   source: bluesky
   title: Microblogging
-  count: 10
+  count: 8
   bluesky_handle: stefanlaser.bsky.social
   mastodon_instance: social.tchncs.de
   mastodon_user: stefanlaser
