@@ -6,7 +6,7 @@
 
 backend:
   name: github
-  repo: LaserStefan/stefanlaser.net_Cloudflare
+  repo: LaserStefan/stefanlaser.net_current
   branch: main
   base_url: https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev
   commit_messages:

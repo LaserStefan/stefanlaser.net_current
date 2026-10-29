@@ -28,7 +28,7 @@ The workflow publishes every build to GitHub Pages, and to Cloudflare Pages as l
    (*Settings → General → Danger Zone → Change visibility*).
 2. *Settings → Pages → Build and deployment → Source:* **GitHub Actions**.
 3. *Actions → Build, deploy and cross-post → Run workflow*. Afterwards the site is at
-   https://laserstefan.github.io/stefanlaser.net_Cloudflare/ (in a sub-folder until the domain is set).
+   https://laserstefan.github.io/stefanlaser.net_current/ (in a sub-folder until the domain is set).
 4. Cloudflare's CMS login helper: add `laserstefan.github.io` to the worker's `ALLOWED_DOMAINS`
    to use the CMS at the github.io address.
 
