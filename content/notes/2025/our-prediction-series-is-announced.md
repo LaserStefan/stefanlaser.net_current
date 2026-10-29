@@ -1,6 +1,9 @@
 ---
 date: 2025-09-24T08:21:31+02:00
 url: "/2025/09/24/our-prediction-series-is-announced.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115257828646453979
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lzksccat6g2t
 ---
 
 Our #prediction series is announced, Mattering Press 2025 👋.

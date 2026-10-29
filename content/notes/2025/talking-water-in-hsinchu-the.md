@@ -1,6 +1,9 @@
 ---
 date: 2025-12-11T11:29:53+02:00
 url: "/2025/12/11/talking-water-in-hsinchu-the.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115700233770577280
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7pbazfyew25
 ---
 
 Talking #water in Hsinchu: the biggest reservoir and cleanest stream here in the mid-north of #Taiwan is connected with the Science Park. It serves the #semiconductor industry. A bit is for agriculture.

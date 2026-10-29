@@ -1,6 +1,9 @@
 ---
 date: 2024-01-16T17:39:23+02:00
 url: "/2024/01/16/in-the-shadows.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111766377124132681
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kj4bryia2u2u
 ---
 
 In the shadows.

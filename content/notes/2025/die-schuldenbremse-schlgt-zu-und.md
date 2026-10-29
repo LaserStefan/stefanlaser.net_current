@@ -1,6 +1,9 @@
 ---
 date: 2025-03-20T18:03:41+02:00
 url: "/2025/03/20/die-schuldenbremse-schlgt-zu-und.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114195604188940134
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lkt36jzfyy2c
 ---
 
 Die #Schuldenbremse schlägt zu, und es werden weitere Schläge im Land folgen. So schnell kann ein #Sondervermögen nicht aufholen.

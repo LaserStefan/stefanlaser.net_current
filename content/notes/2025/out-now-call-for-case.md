@@ -1,6 +1,9 @@
 ---
 date: 2025-11-13T10:01:23+02:00
 url: "/2025/11/13/out-now-call-for-case.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115541354618889659
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m5ipgzgwiu2t
 ---
 
 Out now, Call for Case Participation (CfCP?) and CfP for "Before Ruins" in Bochum.

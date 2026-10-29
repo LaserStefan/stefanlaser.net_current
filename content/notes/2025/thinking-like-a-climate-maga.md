@@ -1,6 +1,9 @@
 ---
 date: 2025-01-13T19:55:45+02:00
 url: "/2025/01/13/thinking-like-a-climate-maga.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113822331835010546
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lfncnwjj5n24
 ---
 
 Thinking like a #climate, [#MAGA style](https://www.theguardian.com/environment/2025/jan/13/trump-greenland-panama-canal-climate-crisis)

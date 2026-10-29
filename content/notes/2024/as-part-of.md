@@ -1,6 +1,9 @@
 ---
 date: 2024-03-22T18:17:56+02:00
 url: "/2024/03/22/as-part-of.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112140246215991137
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3koccs4dfed2b
 ---
 
 As part of #stsleakage, we enjoyed the Robotron selection in #Dresden. Look at these beauties.

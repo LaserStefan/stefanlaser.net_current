@@ -1,6 +1,9 @@
 ---
 date: 2025-01-03T04:15:52+02:00
 url: "/2025/01/03/its-that-time-of-the.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113762013442791504
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lesjidgho62r
 ---
 
 It's that time of the year again in #Hanoi, #Vietnam, when the capital is planetary top of the flops, air-wise. 

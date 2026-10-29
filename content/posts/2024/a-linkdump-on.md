@@ -2,7 +2,10 @@
 title: "A linkdump on hot climate events, web scams, and Vietnam greeting the dragon"
 date: 2024-02-07T15:44:22+02:00
 url: "/2024/02/07/a-linkdump-on.html"
-tags: ["Link Dumps"]
+tags: [ "Link Dumps" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111890495255833610
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kktfmffflq2b
 ---
 
 Starting off with an odd one: Big Oil apparently funded climate science since the early 1950s. And it was Keeling himself at the centre. Think Keeling curves and long-term CO2 measurements. But it sounds like a different time. Less evil still, so that Keeling could use this funding for the good. Part of this story is that differences between air pollution and CO2 emissions were much less clear.

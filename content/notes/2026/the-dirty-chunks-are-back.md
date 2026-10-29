@@ -1,6 +1,9 @@
 ---
 date: 2026-05-11T09:41:22+02:00
 url: "/2026/05/11/the-dirty-chunks-are-back.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116554812450198006
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mlkrkd7hwu2n
 ---
 
 The dirty chunks are back, baby: "Global coal imports in May are expected to be more than 464,000 tonnes, the third highest monthly coal imports on record." FT.com

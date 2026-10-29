@@ -1,6 +1,9 @@
 ---
 date: 2023-12-18T14:32:22+02:00
 url: "/2023/12/18/my-dear-friends.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111601434254485812
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kgszsn4j7c27
 ---
 
 My dear friends from RUSTlab commented on my lecture. A delight!

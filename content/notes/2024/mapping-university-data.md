@@ -1,6 +1,9 @@
 ---
 date: 2024-11-12T17:58:36+02:00
 url: "/2024/11/12/mapping-university-data.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113470808292447472
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lar77myes72k
 ---
 
 Mapping university #data #infrastructure. Last week, we hosted a workshop with our interlocutors. This snapshot is from an analysis session, digging into details and tensions.

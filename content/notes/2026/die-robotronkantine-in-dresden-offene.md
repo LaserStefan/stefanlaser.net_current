@@ -1,6 +1,9 @@
 ---
 date: 2026-06-27T17:56:52+02:00
 url: "/2026/06/27/die-robotronkantine-in-dresden-offene.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116822895496404243
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mpbtalne6o2a
 ---
 
 Die Robotron-Kantine in #Dresden: offene Räume start Abriss. Einst Informationstechnologie, dann Klub, dann lange nuischt. Die heutige Kunstausstellung offenbart, wie die ostdeutsche Gesellschaft immer schon Alternativen gedacht hat 

@@ -1,6 +1,9 @@
 ---
 date: 2024-09-05T16:29:14+02:00
 url: "/2024/09/05/this-read-hit.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113085419164369312
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l3g2itkrzn2n
 ---
 
 This read hit me right in the guts, what a group: the Four Thieves Vinegar Collective. Love love love the 404 piece and #hacking #healthcare.

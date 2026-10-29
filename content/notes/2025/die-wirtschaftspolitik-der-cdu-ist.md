@@ -1,6 +1,9 @@
 ---
 date: 2025-01-16T10:47:41+02:00
 url: "/2025/01/16/die-wirtschaftspolitik-der-cdu-ist.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113837163820475833
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lftvgucqyy2m
 ---
 
 Die Wirtschaftspolitik der #CDU ist auch nur Wirtshauspolitik. Wer kann diesen deutschen Flow an Nachrichten aushalten, und dann diese langsam kletternden Werte der #AfD? Wo sind die Bewegungen?

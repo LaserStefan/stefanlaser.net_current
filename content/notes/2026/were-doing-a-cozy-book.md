@@ -1,6 +1,9 @@
 ---
 date: 2026-09-10T11:35:04+02:00
 url: "/2026/09/10/were-doing-a-cozy-book.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/117246061673608929
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mv5qs2b64p2l
 ---
 
 We're doing a cozy book launch at #EASST2026, today, 1pm, library. Join us for for a cheers, and get ready for the open call for Vol. 3 of Predictions!

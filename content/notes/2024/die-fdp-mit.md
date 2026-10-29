@@ -1,6 +1,9 @@
 ---
 date: 2024-11-16T09:00:02+02:00
 url: "/2024/11/16/die-fdp-mit.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113491339302423270
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lb2cxxbskb2w
 ---
 
 Die #FDP mit einer billigen Show, die ihr jetzt kosten könnte.

@@ -1,6 +1,9 @@
 ---
 date: 2026-06-11T16:15:21+02:00
 url: "/2026/06/11/listen-to-indepth-investigation-into.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116731893166005693
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mnzfzbfee32p
 ---
 
 Listen to in-depth investigation into the growing industry of green technologies and the environmental, social, and political consequences of the mining it requires. – Join us today, 6pm, at the German Mining Museum. Or virtually.

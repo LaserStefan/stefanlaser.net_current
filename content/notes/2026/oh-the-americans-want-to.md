@@ -1,6 +1,9 @@
 ---
 date: 2026-04-04T08:10:51+02:00
 url: "/2026/04/04/oh-the-americans-want-to.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116344951515292691
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3minlalm2ij2r
 ---
 
 Oh the Americans want to increase their war budget by a few bucks, just a mere increase of ~40 percent. Germany also proudly moved to the top 5 of #military spenders worldwide. But money's scarce y'all. 

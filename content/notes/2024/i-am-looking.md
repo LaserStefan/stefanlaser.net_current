@@ -1,6 +1,9 @@
 ---
 date: 2024-09-27T15:52:09+02:00
 url: "/2024/09/27/i-am-looking.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113209844844097150
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l55cp6lfnd2v
 ---
 
 I am looking at historical documents of our brutalist university, as gathered recently by excellent students. A vanished body of water. 

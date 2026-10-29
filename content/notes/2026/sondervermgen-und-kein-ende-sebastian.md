@@ -1,6 +1,9 @@
 ---
 date: 2026-05-27T15:37:49+02:00
 url: "/2026/05/27/sondervermgen-und-kein-ende-sebastian.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116646810570195539
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mmtmw6ttpi2r
 ---
 
 28 Sondervermögen und kein Ende. Sebastian Huhnholz erklärt im [Mittelweg 36-Podcast](https://open.spotify.com/episode/5evETqUhZpReUWNquNdZma?si=UwVAv8DxRRGsp6ZF1iIMUQ), wie die #Schuldenbremse zum Final Boss wurde. 

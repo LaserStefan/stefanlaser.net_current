@@ -1,6 +1,9 @@
 ---
 date: 2024-01-13T07:26:45+02:00
 url: "/2024/01/13/premium-living-ciputra.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111746982255056890
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kito67www623
 ---
 
 Premium living.

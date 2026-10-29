@@ -1,6 +1,9 @@
 ---
 date: 2024-09-10T14:30:15+02:00
 url: "/2024/09/10/train-ring-photography.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113113263295051943
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l3sg6wtohz2d
 ---
 
 Train ring #photography, #Japan.

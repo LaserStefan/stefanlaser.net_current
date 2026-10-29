@@ -1,6 +1,9 @@
 ---
 date: 2025-08-01T10:30:35+02:00
 url: "/2025/08/01/so-much-for-the-right.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114952577122322925
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lvdafzu3ew2d
 ---
 
 So much for the right to #repair, #Apple.

@@ -1,6 +1,9 @@
 ---
 date: 2023-11-24T14:51:09+02:00
 url: "/2023/11/24/subsurface-surfing-with.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111465613436959068
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kewpol6gws2n
 ---
 
 Subsurface surfing. With the help of the maintenance staff, we went underground, following the maintenance track that connects all buildings on our Ruhr campus. 

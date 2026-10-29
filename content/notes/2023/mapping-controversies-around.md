@@ -1,6 +1,9 @@
 ---
 date: 2023-12-21T08:34:49+02:00
 url: "/2023/12/21/mapping-controversies-around.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111617016743162948
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kgzxarcnzl2p
 ---
 
 Mapping controversies around #semiconductor production in #Vietnam. Live project; a fantastic collaboration with the team of Hanoi Ad Hoc. More about this during a workshop in March.

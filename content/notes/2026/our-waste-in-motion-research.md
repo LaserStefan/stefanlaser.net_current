@@ -1,7 +1,10 @@
 ---
 date: 2026-06-12T18:48:24+02:00
 url: "/2026/06/12/our-waste-in-motion-research.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116738158323876386
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mo472kzynx22
 ---
 
 Our #waste in motion research workshop in Bochum is finished, and I'm ready for the weekend after organizing this humble gathering. 1 digital humanities workshop, 2 post-mining excursions, 3 international guests, and relentless fun and appreciation. 

@@ -1,6 +1,9 @@
 ---
 date: 2024-07-15T15:34:06+02:00
 url: "/2024/07/15/check-the-new.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112790762979245984
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kxd76rolgv2p
 ---
 
 Check the new EASST Review published just in time for the big #sts conference. Our editorial is quite a political one.

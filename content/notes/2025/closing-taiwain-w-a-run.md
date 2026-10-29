@@ -1,6 +1,9 @@
 ---
 date: 2025-12-23T09:56:45+02:00
 url: "/2025/12/23/closing-taiwain-w-a-run.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115767820812395840
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3manbqagvnd2o
 ---
 
 Closing #Taiwain w/ a run in the mountains, Jazz and food. 👏 #photography

@@ -1,6 +1,9 @@
 ---
 date: 2024-06-05T10:49:10+02:00
 url: "/2024/06/05/modi-lost-the.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112563149460327964
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ku64m33jd224
 ---
 
 #Modi lost the absolute majority, the #BJP needs a coalition. #India.

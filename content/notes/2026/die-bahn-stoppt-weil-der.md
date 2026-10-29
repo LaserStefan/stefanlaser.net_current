@@ -1,6 +1,9 @@
 ---
 date: 2026-06-24T09:55:58+02:00
 url: "/2026/06/24/die-bahn-stoppt-weil-der.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116804011270075433
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mozgus6pzp2c
 ---
 
 Die #Bahn stoppt, weil der Zugfunk ausfällt. Zuletzt hat ein Vortrag beim CCC genau davor gewarnt. 

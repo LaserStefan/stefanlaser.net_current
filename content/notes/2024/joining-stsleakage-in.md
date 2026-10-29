@@ -1,6 +1,8 @@
 ---
 date: 2024-03-19T08:50:27+02:00
 url: "/2024/03/19/joining-stsleakage-in.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112121025672761304
 ---
 
 Joining #STSLeakage in Dresden, here is some #streetphotography to get us going. To arrive. 

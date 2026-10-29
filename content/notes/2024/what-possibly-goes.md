@@ -1,6 +1,9 @@
 ---
 date: 2024-09-04T16:42:16+02:00
 url: "/2024/09/04/what-possibly-goes.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113079808499992469
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l3dkrgjsvx2u
 ---
 
 What possibly goes wrong.

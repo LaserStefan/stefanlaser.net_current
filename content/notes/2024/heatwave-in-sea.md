@@ -1,6 +1,9 @@
 ---
 date: 2024-04-26T09:22:08+02:00
 url: "/2024/04/26/heatwave-in-sea.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112336314818321385
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kqzf3mnvp22u
 ---
 
 #HeatWave in #SEA.  

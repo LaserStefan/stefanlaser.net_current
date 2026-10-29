@@ -1,6 +1,9 @@
 ---
 date: 2023-11-28T20:45:21+02:00
 url: "/2023/11/28/min-delay-im.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111489655095288693
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kfbfdeas5e2j
 ---
 
 >100 min. delay, I'm in the Deutsche Bahn game, again. 

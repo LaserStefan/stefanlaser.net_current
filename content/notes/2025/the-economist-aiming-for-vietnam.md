@@ -1,6 +1,9 @@
 ---
 date: 2025-05-23T13:15:21+02:00
 url: "/2025/05/23/the-economist-aiming-for-vietnam.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114556859415282986
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lptiwhbf2s2u
 ---
 
 The Economist aiming for #Vietnam and the general secretary.

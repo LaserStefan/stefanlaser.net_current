@@ -1,6 +1,9 @@
 ---
 date: 2026-05-30T13:10:21+02:00
 url: "/2026/05/30/farmers-in-hung-yen-vietnam.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116663218329974890
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mn2w3nlbz627
 ---
 
 Farmers in Hung Yen #Vietnam received land as compensation for family members killed in the American war. 

@@ -1,6 +1,9 @@
 ---
 date: 2024-01-07T17:10:09+02:00
 url: "/2024/01/07/cleaning-lady-ive.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111715302310319620
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kiflxtxtlm2e
 ---
 
 Cleaning lady.

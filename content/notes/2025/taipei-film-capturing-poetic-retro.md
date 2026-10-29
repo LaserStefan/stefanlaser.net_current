@@ -1,6 +1,9 @@
 ---
 date: 2025-12-06T12:02:07+02:00
 url: "/2025/12/06/taipei-film-capturing-poetic-retro.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115672053048644937
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7cqs46b5d2q
 ---
 
 #Taipei film, capturing poetic retro vibes 🕹️

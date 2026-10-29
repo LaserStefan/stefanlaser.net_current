@@ -1,6 +1,9 @@
 ---
 date: 2026-04-20T20:29:05+02:00
 url: "/2026/04/20/es-wchst-also-alles-gemeinsam.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116438451685310356
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mjx3xkz2lq23
 ---
 
 "Es wächst also alles gemeinsam und gleichzeitig. Holz, Öl und Kohle stehen nicht in Konkurrenz zueinander."

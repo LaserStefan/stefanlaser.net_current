@@ -1,6 +1,9 @@
 ---
 date: 2024-05-12T08:43:13+02:00
 url: "/2024/05/12/you-want-to.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112426758936206476
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ksbkexfvly26
 ---
 
 > You want to watch the trailer for an upcoming movie on YouTube but you first have to sit through an ad. Then you sit through a preview for the trailer itself. Etc. pp.

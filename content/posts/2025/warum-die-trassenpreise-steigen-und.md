@@ -2,6 +2,9 @@
 title: "Warum die Trassenpreise steigen, und was das mit Obsoleszenz im System der #Bahn zu tun hat. Oder: Buchungstechnisch modernisiert, strukturell blockiert"
 date: 2025-07-04T10:37:37+02:00
 url: "/2025/07/04/warum-die-trassenpreise-steigen-und.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114794054504155239
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lt4tobrhkj2j
 ---
 
 Die #DB ist mal wieder in den News, ein riesen Anstieg der Ticketpreise droht, eine scheinbare Naturkraft rollt heran, formale Schuldenregeln. 

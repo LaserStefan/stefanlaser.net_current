@@ -1,6 +1,9 @@
 ---
 date: 2026-04-29T13:22:56+02:00
 url: "/2026/04/29/why-tho-db-i-am.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116487735353091779
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mkmyd4oejf2t
 ---
 
 Why tho, #DB? I am sitting in a German #train, virtually missing an important meeting, because we have more than 3hrs delay. We're currently resting our not-well oiled machines in Hameln, waiting for the rats to catch us.

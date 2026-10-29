@@ -1,6 +1,9 @@
 ---
 date: 2024-06-17T06:12:41+02:00
 url: "/2024/06/17/more-climatechange-can.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112630009911982479
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kv3sqopjis2o
 ---
 
 More #climatechange can mean more #fossilfuels, see the case of #Vietnam:

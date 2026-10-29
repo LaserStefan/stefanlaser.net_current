@@ -1,6 +1,9 @@
 ---
 date: 2024-06-04T10:45:58+02:00
 url: "/2024/06/04/hepa-filter-oldnew.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112557478506566886
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ku3lzauq7c26
 ---
 
 HEPA filter, old/new.

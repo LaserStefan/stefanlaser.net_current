@@ -1,6 +1,9 @@
 ---
 date: 2025-11-18T10:27:47+02:00
 url: "/2025/11/18/delightful-dana-boyd-lee-vinsel.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115569761704970549
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m5vd54x2f62u
 ---
 
 Delightful 💩: dana boyd, Lee Vinsel & Cory Doctorow on #Enshittification

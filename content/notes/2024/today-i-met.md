@@ -1,6 +1,9 @@
 ---
 date: 2024-01-05T10:32:45+02:00
 url: "/2024/01/05/today-i-met.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111702414165807737
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ki7ut3cfen2t
 ---
 
 Today, I met folks in a 27 story Hanoi building. This is a bit of b/w #streetphotography to arrive. 

@@ -1,6 +1,9 @@
 ---
 date: 2024-07-11T13:19:01+02:00
 url: "/2024/07/11/this-samsung-protest.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112767582004664918
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kwyvrbwitx2v
 ---
 
 This Samsung protest (a remarkable one) reminds me of my recent travels to #SouthKorea. I came across a protest against an upcoming LG expansion. Lively publics

@@ -1,6 +1,9 @@
 ---
 date: 2024-11-19T11:55:35+02:00
 url: "/2024/11/19/devaluation-and-society.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113509020656044545
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lbc6ak37nk2a
 ---
 
 Devaluation and society are closely entangled – my chapter contribution to the [Routledge International Handbook of Valuation and Society](https://www.routledge.com/The-Routledge-International-Handbook-of-Valuation-and-Society/Kruger-Peetz-Schaefer/p/book/9781032115627). 

@@ -1,6 +1,9 @@
 ---
 date: 2024-09-14T14:46:07+02:00
 url: "/2024/09/14/tofu-woman-meets.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113135975470318525
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l44ixf4xpz22
 ---
 
 Tofu woman meets coffee dude while the barber goes hiking. And the photo store guy is ready for etching. 

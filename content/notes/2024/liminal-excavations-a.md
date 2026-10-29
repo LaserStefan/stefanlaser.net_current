@@ -1,7 +1,10 @@
 ---
 date: 2024-06-27T08:33:25+02:00
 url: "/2024/06/27/liminal-excavations-a.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112687186483921890
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kvv7blhi2d2h
 ---
 
 Liminal Excavations

@@ -1,6 +1,9 @@
 ---
 date: 2025-12-10T08:22:27+02:00
 url: "/2025/12/10/entering-tsmc-headquarters-we-got.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115693837978506697
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7mgemcruz2g
 ---
 
 ✅ entering #TSMC headquarters. We got a green #semiconductor manufacturing tour through fabs. Sustainability as a roadshow.

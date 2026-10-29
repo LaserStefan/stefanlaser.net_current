@@ -1,6 +1,9 @@
 ---
 date: 2026-01-29T10:12:02+02:00
 url: "/2026/01/29/deploying-and-prompting-claude-by.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115977384041560977
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mdkdsbh3n42z
 ---
 
 Deploying and prompting #Claude by #Anthropic means ripping apart literal books. Strange, strange world

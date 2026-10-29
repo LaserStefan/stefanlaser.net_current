@@ -1,7 +1,9 @@
 ---
 date: 2024-03-05T16:36:20+02:00
 url: "/2024/03/05/we-produced-controversy.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112043582549394748
 ---
 
 We produced controversy maps on the chip rush in #Vietnam. 

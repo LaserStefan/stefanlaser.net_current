@@ -1,6 +1,9 @@
 ---
 date: 2025-03-05T09:47:17+02:00
 url: "/2025/03/05/talking-airpollution-in-vietnam-if.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114108717323248028
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ljmigxphw62i
 ---
 
 Talking #airpollution in #Vietnam:

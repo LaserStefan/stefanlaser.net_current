@@ -1,6 +1,9 @@
 ---
 date: 2024-01-03T10:21:14+02:00
 url: "/2024/01/03/while-working-on.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111691043971714260
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ki2tagsnal22
 ---
 
 While working on a comment re: chips in Asia-Pacific, this image from a "semiconductor summit" haunts me.

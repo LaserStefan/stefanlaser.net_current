@@ -1,6 +1,9 @@
 ---
 date: 2024-02-05T15:21:28+02:00
 url: "/2024/02/05/new-year-celebrations.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111879081280831132
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kkodg45tns2y
 ---
 
 New year celebrations.

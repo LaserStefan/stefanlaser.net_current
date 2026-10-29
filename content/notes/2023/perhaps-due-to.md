@@ -1,6 +1,9 @@
 ---
 date: 2023-12-05T09:26:02+02:00
 url: "/2023/12/05/perhaps-due-to.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111526619808732402
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kfrsmywr7k2b
 ---
 
 > Perhaps due to widespread concerns around the issue of women aging out of factory work, Samsung itself offers its workers training courses that could help them become professional makeup artists, hairdressers, and manicurists.

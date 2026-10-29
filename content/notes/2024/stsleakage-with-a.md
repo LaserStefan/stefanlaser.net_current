@@ -1,6 +1,9 @@
 ---
 date: 2024-03-20T19:12:49+02:00
 url: "/2024/03/21/stsleakage-with-a.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112129134316195000
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ko5euz3ss42x
 ---
 
 #stsleakage with a keynote by Amade M'charek, emphasizing what academia can be, what it can achieve: carefully presenting and listening. A brutal case, neglect. Paying attention to the seas, migration, colonial pasts and presents, protest, humans missing and buried, songs, silence

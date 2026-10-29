@@ -1,6 +1,9 @@
 ---
 date: 2024-11-27T06:27:40+02:00
 url: "/2024/11/27/this-is-perhaps.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113553025544642819
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lbvplmhrn62p
 ---
 
 > This is perhaps the greatest takeaway of the book, that the prospect of 'stranded assets,' or fossil fuel projects rendered unprofitable before the end of their expected economic lives, are the primary force holding the world back from beating #climatechange. 

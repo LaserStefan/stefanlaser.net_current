@@ -1,6 +1,9 @@
 ---
 date: 2024-02-18T07:17:46+02:00
 url: "/2024/02/18/chinatown-kl-w.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111950789267592365
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3klo6ho5aog2u
 ---
 
 Chinatown KL w/ hip book store in an old cinema.

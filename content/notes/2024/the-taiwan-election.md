@@ -1,7 +1,10 @@
 ---
 date: 2024-01-13T16:01:51+02:00
 url: "/2024/01/13/the-taiwan-election.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111749006216345067
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kiukwlsupg2o
 ---
 
 The #Taiwan election finishes with a call for stability, in a way.

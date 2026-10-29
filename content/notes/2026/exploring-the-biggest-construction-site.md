@@ -1,6 +1,9 @@
 ---
 date: 2026-07-02T10:50:51+02:00
 url: "/2026/07/02/exploring-the-biggest-construction-site.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116849526724011545
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mpnnow26x22p
 ---
 
 Exploring the biggest construction site in Europe: ESMC Dresden, a Taiwanese-German #chip joint venture. 

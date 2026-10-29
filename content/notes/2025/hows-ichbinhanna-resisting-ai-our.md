@@ -1,6 +1,9 @@
 ---
 date: 2025-10-28T10:01:34+02:00
 url: "/2025/10/28/hows-ichbinhanna-resisting-ai-our.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115450741332080665
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m4ahqwmpkw2i
 ---
 
 How's #IchBinHanna resisting #AI? "Our working conditions are student learning conditions", thus:

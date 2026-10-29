@@ -1,6 +1,9 @@
 ---
 date: 2023-12-02T11:40:54+02:00
 url: "/2023/12/02/dubai-is-as.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111510164175629872
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kfkirv4vl42j
 ---
 
 #Dubai is as an offensively clean city. Not only for #COP28. It's officials are putting matters into place.

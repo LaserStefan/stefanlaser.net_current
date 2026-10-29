@@ -1,6 +1,9 @@
 ---
 date: 2026-04-08T13:52:54+02:00
 url: "/2026/04/08/sowjetische-sf-fremd-und-vertraut.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116368947130193486
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3miyaapf2bj27
 ---
 
 Sowjetische #sf, "fremd und vertraut". #KI 

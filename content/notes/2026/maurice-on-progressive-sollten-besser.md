@@ -1,6 +1,9 @@
 ---
 date: 2026-03-18T19:33:37+02:00
 url: "/2026/03/18/maurice-on-progressive-sollten-besser.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116251376238801790
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mhdzhhlo5623
 ---
 
 Maurice on 🔥: 

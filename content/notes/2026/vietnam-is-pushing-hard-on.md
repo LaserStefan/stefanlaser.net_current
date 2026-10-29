@@ -1,6 +1,9 @@
 ---
 date: 2026-01-21T11:14:34+02:00
 url: "/2026/01/21/vietnam-is-pushing-hard-on.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115932331037288619
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mcwdkhxrpf2o
 ---
 
 #Vietnam is pushing hard on the #semiconductor front, the first fab in view. 32 nm only, and few details on how it shall be built. But it remains a theme reshuffling funds, also supported by growth in #datacenter investment.

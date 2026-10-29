@@ -1,6 +1,9 @@
 ---
 date: 2025-08-18T11:23:24+02:00
 url: "/2025/08/18/the-hottest-shit-in-offshore.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115049039310170269
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lwo37wzv5m2e
 ---
 
 The hottest shit in #offshore construction technology, that's at least what Google tells me. 

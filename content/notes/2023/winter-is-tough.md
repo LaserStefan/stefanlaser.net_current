@@ -1,6 +1,9 @@
 ---
 date: 2023-12-27T14:30:09+02:00
 url: "/2023/12/27/winter-is-tough.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111652386607347548
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3khjnv47fwl2i
 ---
 
 Winter is tough in Asia, our Air Quality Index regularly cracks the 300 mark. Top 3 world-wide for #Hanoi. How do you even grasp the consequences? 

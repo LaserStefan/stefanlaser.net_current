@@ -1,6 +1,9 @@
 ---
 date: 2026-07-23T15:39:10+02:00
 url: "/2026/07/23/stranded-assets-names-the-prime.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116969568059152523
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mrcxmoi7pc25
 ---
 
 "Stranded assets" names the prime fear of financialised capitalism. The contrast: high utilisation rates. New troubles arise. Or, as phrased by the FT, 

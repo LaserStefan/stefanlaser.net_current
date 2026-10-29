@@ -1,6 +1,9 @@
 ---
 date: 2024-01-09T08:19:43+02:00
 url: "/2024/01/09/on-the-fence.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111724541672171791
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kijpbghi6u25
 ---
 
 On the fence.

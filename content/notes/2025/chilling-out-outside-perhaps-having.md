@@ -1,6 +1,9 @@
 ---
 date: 2025-05-11T15:55:43+02:00
 url: "/2025/05/11/chilling-out-outside-perhaps-having.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114489544340145848
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lovmd6e3d72y
 ---
 
 Chilling out outside, perhaps having a solo Karaoke session, rockin it, living the AQI 50 life.

@@ -1,6 +1,9 @@
 ---
 date: 2024-04-24T09:04:13+02:00
 url: "/2024/04/24/tsmc-in-arizona.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112324919660142786
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kqud5pa6ws2j
 ---
 
 #tsmc in Arizona: a concrete monster hungry for water, in the middle of the desert, driving a culture shock. A debacle? That's quite a story by Rest of the World. 

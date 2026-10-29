@@ -1,6 +1,9 @@
 ---
 date: 2025-04-22T16:37:04+02:00
 url: "/2025/04/22/wenn-ich-trumen-knnte-ist.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114382122175137663
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lnfvr562wt2p
 ---
 
 > Wenn ich träumen könnte, ist eine Welt, in der wir AGI haben, eine Welt des Überflusses. 

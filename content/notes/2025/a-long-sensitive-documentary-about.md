@@ -1,6 +1,9 @@
 ---
 date: 2025-08-22T21:52:39+02:00
 url: "/2025/08/22/a-long-sensitive-documentary-about.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115074162328299639
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lwzaajlmp32x
 ---
 
 A long, sensitive documentary about #GPU blackmarkets in #China by #GamersNexus. Including unreal de-/soldering skills.

@@ -1,6 +1,9 @@
 ---
 date: 2024-12-05T03:37:13+02:00
 url: "/2024/12/05/now-that-the.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113597653881439098
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lcjjsa5jva2m
 ---
 
 > Now that the seal is broken on scraping #Bluesky posts into datasets for machine learning, people are trolling users and one-upping each other by making increasingly massive datasets of non-anonymized, full-text Bluesky posts 

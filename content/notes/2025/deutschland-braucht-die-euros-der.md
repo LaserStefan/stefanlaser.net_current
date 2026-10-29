@@ -1,6 +1,9 @@
 ---
 date: 2025-02-13T10:03:35+02:00
 url: "/2025/02/13/deutschland-braucht-die-euros-der.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113995535103640752
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3li27zotl4y2m
 ---
 
 Deutschland braucht die Euros der Bürgerinnen für den Bau von Bahnstrecken genauso wie Starbucks seine Starbucks-Geschenkkarten für die Herstellung von Milchkaffees braucht – nämlich gar nicht.

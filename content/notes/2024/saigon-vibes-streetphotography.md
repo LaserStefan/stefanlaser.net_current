@@ -1,6 +1,9 @@
 ---
 date: 2024-05-20T03:57:57+02:00
 url: "/2024/05/20/saigon-vibes-streetphotography.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112470936308720484
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ksv66itqr62z
 ---
 
 #Saigon vibes. #streetphotography

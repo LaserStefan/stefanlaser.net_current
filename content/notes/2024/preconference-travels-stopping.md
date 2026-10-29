@@ -1,6 +1,9 @@
 ---
 date: 2024-07-13T21:37:12+02:00
 url: "/2024/07/14/preconference-travels-stopping.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112780866118423325
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kx6skclm4n2h
 ---
 
 Pre-conference travels. Stopping in #Utrecht before heading to Amsterdam and the #easst4s train. #sts

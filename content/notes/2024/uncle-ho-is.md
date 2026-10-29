@@ -1,6 +1,9 @@
 ---
 date: 2024-01-06T17:57:30+02:00
 url: "/2024/01/06/uncle-ho-is.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111709824914892440
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kid64znwsv2e
 ---
 
 Uncle Ho is watching you. Dimly

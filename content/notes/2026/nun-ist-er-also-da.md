@@ -1,6 +1,9 @@
 ---
 date: 2026-09-05T11:03:59+02:00
 url: "/2026/09/05/nun-ist-er-also-da.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/117217627632768679
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mur4ts5led2s
 ---
 
 Nun ist er also da, der letzte Wahlkampftag mit der letzten Demo in #Magdeburg. 

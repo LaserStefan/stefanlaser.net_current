@@ -1,6 +1,9 @@
 ---
 date: 2025-10-16T09:37:48+02:00
 url: "/2025/10/16/epic-semiconductors-i-am-part.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115382707525190674
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m3cawowe7u2e
 ---
 
 Epic #semiconductors. I am part of a German-Taiwanese research collab: "Exploring Silicon Urbanism: Bilateral Workshops and Fieldtrips in Dresden and Hsinchu." With trips to clean rooms and affected communities. 

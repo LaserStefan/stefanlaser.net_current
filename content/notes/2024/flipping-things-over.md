@@ -1,6 +1,9 @@
 ---
 date: 2024-02-01T09:18:19+02:00
 url: "/2024/02/01/flipping-things-over.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111855003551779603
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kkdnamh6ol2v
 ---
 
 Flipping things over sounds reasonable.

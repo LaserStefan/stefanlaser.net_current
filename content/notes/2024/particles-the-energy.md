@@ -1,6 +1,9 @@
 ---
 date: 2024-02-01T09:12:06+02:00
 url: "/2024/02/01/particles-the-energy.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111854980343782843
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kkdmw4sred22
 ---
 
 Particles.

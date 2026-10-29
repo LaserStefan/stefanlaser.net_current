@@ -1,6 +1,9 @@
 ---
 date: 2025-04-04T20:44:17+02:00
 url: "/2025/04/04/this-kind-of-heavyhanded-approach.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114281169617054221
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3llz356spzq22
 ---
 
 > This kind of heavy-handed approach could undo years of careful work rebuilding U.S.-Vietnam trust after decades of war.

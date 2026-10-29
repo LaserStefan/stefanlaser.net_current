@@ -1,6 +1,9 @@
 ---
 date: 2025-09-24T08:14:19+02:00
 url: "/2025/09/24/soziologie-time-auf-zum-dgs.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115257800939948474
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lzkrvqqr5h2n
 ---
 
 #Soziologie time, auf zum #DGS2025 Kongress! Ich hoffe, die Schiene hält, dann wird im waste-Panel aufgeräumt 🙌

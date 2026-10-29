@@ -1,6 +1,9 @@
 ---
 date: 2024-05-22T08:03:58+02:00
 url: "/2024/05/22/whats-a-hot.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112483227677062247
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kt2mtuzwrm2z
 ---
 
 What's a hot and useful technique in network #dataviz?

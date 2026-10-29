@@ -1,6 +1,9 @@
 ---
 date: 2025-02-19T09:42:53+02:00
 url: "/2025/02/19/rice-field-action-in-vietnam.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114029427495481155
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lijbo7brf427
 ---
 
 Rice field action in #Vietnam. Adoring the lush green. It's grey and rainy and freaking windy, but at least the air pollution is blown away.

@@ -1,6 +1,9 @@
 ---
 date: 2025-10-09T13:41:36+02:00
 url: "/2025/10/09/its-been-three-months-since.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115344031578750297
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m2r3d3iaps2d
 ---
 
 It's been three months since we left #Vietnam. I miss my dear vegan Phở from Kiez Hanoi. The stolls, ride, life.

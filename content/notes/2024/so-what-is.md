@@ -1,6 +1,9 @@
 ---
 date: 2024-08-29T05:33:24+02:00
 url: "/2024/08/29/so-what-is.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113043204378403482
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l2tclt33xs2t
 ---
 
 So, what is Karan #Barad up to these days? Considering that their theories are gaining traction again, I wonder if there is any recent work? 

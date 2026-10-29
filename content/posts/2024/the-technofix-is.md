@@ -2,7 +2,10 @@
 title: "The #technofix is under scrutiny in #sts. But for a somewhat surprising reason: because of its conceptual weakness. So here is the #infrastructure fix. And thoughts from #LeakageSTS in Dresden"
 date: 2024-04-03T08:22:12+02:00
 url: "/2024/04/03/the-technofix-is.html"
-tags: ["Research", "Link Dumps"]
+tags: [ "Research", "Link Dumps" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112205847794088429
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kp7h24rusl2y
 ---
 
 This is a hot take that Lee Vinsel has been trying to drive home for a couple of weeks already. "Hot", as in, a lively idea, something he grapples with. I find the idea puzzling and compelling. So here are a few thoughts, experiences, and links to follow.

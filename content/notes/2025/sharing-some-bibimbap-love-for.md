@@ -1,6 +1,9 @@
 ---
 date: 2025-01-23T10:06:35+02:00
 url: "/2025/01/23/sharing-some-bibimbap-love-for.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113876638496030153
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lgfgfri3kg2e
 ---
 
 Sharing some Bibimbap love for y'all. This is what we need 

@@ -1,6 +1,9 @@
 ---
 date: 2025-01-07T12:36:58+02:00
 url: "/2025/01/07/im-honored-to-be-visiting.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113786632819270657
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lf5hdzsiq62m
 ---
 
 I'm honored to be Visiting Scholar at Fulbright University Ho Chi Minh City aka Saigon, #Vietnam. And it starts with an awesome talk on modern Vietnamese social thought by Kevin Pham (also known from the highly recommended [Nam Phong Dialogs pod](https://yennvu.com/2022/01/28/nam-phong-dialogues/podcast)). 🙏

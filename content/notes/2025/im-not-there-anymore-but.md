@@ -1,6 +1,9 @@
 ---
 date: 2025-08-08T09:01:27+02:00
 url: "/2025/08/08/im-not-there-anymore-but.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114991857129340387
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lvuomhqw7p2o
 ---
 
 I'm not there anymore, but it's brutal to read about power cuts & the #heatwave in #Hanoi. 

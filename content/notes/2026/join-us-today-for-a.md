@@ -1,6 +1,9 @@
 ---
 date: 2026-04-30T09:55:04+02:00
 url: "/2026/04/30/join-us-today-for-a.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116492588726144585
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mkp5cia33g2t
 ---
 
 Join us TODAY for a *fly* book launch. "Staying with the Planet" is a sci-fi story about ecological troubles of our modern universities. 

@@ -1,6 +1,9 @@
 ---
 date: 2025-05-11T13:47:54+02:00
 url: "/2025/05/11/vietnam-amid-an-unsustainable-rush.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114489038458433867
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lovf4ykom32a
 ---
 
 #Vietnam amid an unsustainable rush.

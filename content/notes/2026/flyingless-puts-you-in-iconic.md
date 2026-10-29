@@ -1,6 +1,9 @@
 ---
 date: 2026-09-12T15:34:28+02:00
 url: "/2026/09/12/flyingless-puts-you-in-iconic.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/117258328338057204
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mvd74ff6u62i
 ---
 
 #FlyingLess puts you in iconic #trains, like this Polish-German InterCity. That's a decent way to end the #EAAST conference. Including, of course,

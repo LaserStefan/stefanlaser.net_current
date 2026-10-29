@@ -2,7 +2,9 @@
 title: "A situated lexicon of #virtuality: We have written a volume on an underappreciated term"
 date: 2024-10-09T16:30:00+02:00
 url: "/2024/10/09/a-situated-lexicon.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113278034330690476
 ---
 
 It was a lot of fun (and work) to get this ready as a co-editor. It was also a risky adventure, a different way of representing knowledge. Get the open access version very soon (download incoming). 

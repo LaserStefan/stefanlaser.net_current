@@ -1,6 +1,9 @@
 ---
 date: 2024-09-17T10:34:24+02:00
 url: "/2024/09/17/we-just-finished.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113151971790679669
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l4dmbjdm322z
 ---
 
 We just finished a wonderful trip to #Japan, but wonder why #Osaka scores so well in liveability rankings. 

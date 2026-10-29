@@ -1,6 +1,9 @@
 ---
 date: 2025-02-25T11:08:25+02:00
 url: "/2025/02/25/today-i-messed-around-w.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114063737918346299
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3liyjatgsi72n
 ---
 
 Today I messed around w/ chips in #Vietnam, from #geopolitics all the way to electronics workers becoming beauty parlour managers. Offering exploratory, critical frames. 

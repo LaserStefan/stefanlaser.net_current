@@ -1,6 +1,9 @@
 ---
 date: 2024-12-28T09:12:25+02:00
 url: "/2024/12/28/shenzhen-china-during-our-trip.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113729208107877245
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ledxcpzl222m
 ---
 
 #Shenzhen, #China. During our trip to Hong Kong, I also had to dip into the world's capital of electronics (and #e-waste). 

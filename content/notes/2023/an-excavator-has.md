@@ -1,6 +1,9 @@
 ---
 date: 2023-11-22T17:46:19+02:00
 url: "/2023/11/22/an-excavator-has.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111454978960012402
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kerykkn5ed27
 ---
 
 An excavator has struck. 

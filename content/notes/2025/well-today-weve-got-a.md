@@ -1,6 +1,9 @@
 ---
 date: 2025-02-12T16:47:18+02:00
 url: "/2025/02/12/well-today-weve-got-a.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113991460412239143
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lhyg4qu3sa2w
 ---
 
 Well, today we've got a better air quality in #HCMC #Vietnam than in Germany. 

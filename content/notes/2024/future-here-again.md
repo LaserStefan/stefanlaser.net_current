@@ -1,6 +1,9 @@
 ---
 date: 2024-04-29T14:19:04+02:00
 url: "/2024/04/29/future-here-again.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112354469486461521
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3krbh3goe7c23
 ---
 
 Future here, again. 👋

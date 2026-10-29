@@ -1,6 +1,9 @@
 ---
 date: 2024-02-14T16:33:42+02:00
 url: "/2024/02/14/food-for-thought.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111930326016056162
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3klf3nemqpk2q
 ---
 
 Food for thought. Lame but 🤷🏻‍♂️.

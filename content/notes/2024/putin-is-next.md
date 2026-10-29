@@ -1,6 +1,9 @@
 ---
 date: 2024-06-20T07:38:08+02:00
 url: "/2024/06/20/putin-is-next.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112647332835013021
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kvdiwagm4t2k
 ---
 
 #Putin is next door. Spicy for many reasons.

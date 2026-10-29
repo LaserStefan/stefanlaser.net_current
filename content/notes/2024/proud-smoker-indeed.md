@@ -1,6 +1,9 @@
 ---
 date: 2024-01-25T14:06:00+02:00
 url: "/2024/01/25/proud-smoker-indeed.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111816498666917742
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kjsk2nkls22b
 ---
 
 Proud smoker. Indeed, the men love to smoke.

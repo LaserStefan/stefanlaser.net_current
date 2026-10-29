@@ -1,6 +1,9 @@
 ---
 date: 2025-12-08T06:00:41+02:00
 url: "/2025/12/08/epic-insights-on-the-semiconductor.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115681955568937387
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7h5jds4cq26
 ---
 
 Epic insights on the #semiconductor industry in #Taiwan. We're on the second day of our workshop, with a heavy focus on walks.

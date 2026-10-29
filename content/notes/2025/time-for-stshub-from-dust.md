@@ -1,6 +1,9 @@
 ---
 date: 2025-03-11T12:01:22+02:00
 url: "/2025/03/11/time-for-stshub-from-dust.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114143218809920243
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lk3sqi2wsw2r
 ---
 
 Time for #stshub. 

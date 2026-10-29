@@ -1,6 +1,9 @@
 ---
 date: 2024-09-26T12:45:04+02:00
 url: "/2024/09/26/stop-what-youre.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113203446554266539
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l52hrixnzn24
 ---
 
 Stop what you're doing and start the electric #zine maker. [alienmelon.itch.io/electric-...](https://alienmelon.itch.io/electric-zine-maker)

@@ -1,6 +1,9 @@
 ---
 date: 2024-03-28T15:46:48+02:00
 url: "/2024/03/28/open-access-pdf.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112173626519152701
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kor55kn5ir2l
 ---
 
 Open Access PDF: Unser Buch über artenübergreifende Fürsorge ist freigeschaltet. Es handelt von der Fleischindustrie und den #Corona Lehren anhand einer Analyse öffentlicher Medien.

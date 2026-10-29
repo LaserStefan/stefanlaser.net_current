@@ -1,6 +1,8 @@
 ---
 date: 2024-06-03T10:23:15+02:00
 url: "/2024/06/03/whats-the-backend.html"
+syndication:
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3ktz27tojz22w
 ---
 
 What's the backend of #Solarpunk? 

@@ -1,6 +1,9 @@
 ---
 date: 2026-04-23T15:13:30+02:00
 url: "/2026/04/23/ber-arten-des-lesens-von.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116454202513542488
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mk63s6wmyh2y
 ---
 
 Über "Arten des Lesens", von extraktiv über kritisch hin zu generös und situiert – eine Ressource für die #Lehre. Die "ways of reading" von Murphy waren lange in meinen Bookmarks, nun habe ich sie für Seminare an der #RUB übersetzt. 

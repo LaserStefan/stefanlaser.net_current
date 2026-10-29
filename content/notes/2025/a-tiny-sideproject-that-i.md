@@ -1,6 +1,9 @@
 ---
 date: 2025-11-06T21:45:56+02:00
 url: "/2025/11/06/a-tiny-sideproject-that-i.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115504473737317222
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m4yddmf3ow2m
 ---
 
 A tiny side-project that I can hopefully pull through: reverse engineering an audio box for kids that works with proprietary "tokens." Like a cassette player but rigid af. Use and dispose. #hackerspace #netz39

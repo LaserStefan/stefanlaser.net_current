@@ -1,6 +1,9 @@
 ---
 date: 2024-01-21T15:58:32+02:00
 url: "/2024/01/21/talking-blogs-i.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111794291996157314
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kjioi7ucza2x
 ---
 
 Talking blogs.

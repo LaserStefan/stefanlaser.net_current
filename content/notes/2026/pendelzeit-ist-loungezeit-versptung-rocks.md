@@ -1,6 +1,9 @@
 ---
 date: 2026-05-21T08:42:27+02:00
 url: "/2026/05/21/pendelzeit-ist-loungezeit-versptung-rocks.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116611203785072728
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mmdsw47tb32c
 ---
 
 Pendelzeit ist Lounge-Zeit, Verspätung rocks (actually nice, ngl). #DB 

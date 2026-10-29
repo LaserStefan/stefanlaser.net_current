@@ -1,6 +1,9 @@
 ---
 date: 2026-03-25T15:01:54+02:00
 url: "/2026/03/25/and-were-on-welcome-address.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116289946586160755
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mhv5li2yrt2z
 ---
 
 And we're on! Welcome address done, and Anne Pasek kicks us off with a keynote on a world after the #AI bubble. @aepa@Aepasek@scholar.social 🏆

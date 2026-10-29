@@ -1,6 +1,9 @@
 ---
 date: 2026-01-03T09:37:45+02:00
 url: "/2026/01/03/it-appears-that-the-time.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115830022646332777
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mbivnzcj4q2w
 ---
 
 It appears that the time has come to deny your future self entry to the great #USA with a little social media post. #Venezuela 

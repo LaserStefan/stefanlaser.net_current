@@ -1,6 +1,9 @@
 ---
 date: 2025-10-21T08:51:55+02:00
 url: "/2025/10/21/i-like-to-play-around.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115410837042211939
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m3oqoihzbg2b
 ---
 
 I like to play around as an anonymous commenter in online newspaper columns. If you point out the biases of #AI systems, the comment gets deleted because it is considered too polemical. 

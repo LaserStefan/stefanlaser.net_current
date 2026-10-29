@@ -1,6 +1,9 @@
 ---
 date: 2026-08-28T16:06:41+02:00
 url: "/2026/08/28/von-den-wissen-die-wenigsten.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/117173521663165437
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mu5jwnprky2o
 ---
 
 Von den 40% wissen die Wenigsten, was die Partei plant – „Es beginnt hier“ auf Plakaten reicht. 

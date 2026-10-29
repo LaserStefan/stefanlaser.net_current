@@ -1,6 +1,9 @@
 ---
 date: 2025-10-20T15:46:16+02:00
 url: "/2025/10/20/paris-marx-visits-mls-podcast.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115406804433294211
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m3mxepu4g42a
 ---
 
 Paris Marx visits Mél's podcast.🍿

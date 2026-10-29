@@ -1,6 +1,9 @@
 ---
 date: 2025-01-14T14:52:55+02:00
 url: "/2025/01/14/proofs-incoming-dynamiken-digitaler-bewertung.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113826804546251595
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lfpc7yevwo2z
 ---
 
 Proofs incoming. "Dynamiken digitaler Bewertung: Über Gestaltungsspielräume in Infrastrukturen, von KI bis Queering", Sommer 2025.

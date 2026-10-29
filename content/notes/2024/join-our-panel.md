@@ -1,6 +1,9 @@
 ---
 date: 2024-07-18T08:36:08+02:00
 url: "/2024/07/18/join-our-panel.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112806105803850030
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kxjz7u4enm27
 ---
 
 Join our panel on Planetary Data Infrastructure right now at #easst4s2024. A two session ride. 👇HG-KC07

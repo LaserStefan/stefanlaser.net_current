@@ -1,6 +1,9 @@
 ---
 date: 2024-09-19T11:53:04+02:00
 url: "/2024/09/19/recovering-from-storm.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113163606116134752
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l4irmareis26
 ---
 
 Recovering from storm #Yagi means dealing with flooding and trees gone wild. But it also means facing economic losses. This might disrupt #ClimateChange policies in #Vietnam. Maybe.

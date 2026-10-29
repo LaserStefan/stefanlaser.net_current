@@ -1,6 +1,9 @@
 ---
 date: 2025-07-25T10:02:27+02:00
 url: "/2025/07/25/intel-has-cancelled-its-plans.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114912827706178216
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lurlk3kpaw2m
 ---
 
 #Intel has cancelled its plans to build #chip fabs in Europe, plus cuts in the US. For Magdeburg in east Germany, once the biggest new site to be build, this is no small matter. 

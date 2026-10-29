@@ -1,6 +1,9 @@
 ---
 date: 2024-11-11T15:39:13+02:00
 url: "/2024/11/11/investing-in-alternative.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113464597636635015
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3laogxawhiv27
 ---
 
 Investing in alternative social media like the #Fediverse (and to a lesser degree, #Bluesky), has been my digital strategy. Making news and taking part is essential in this place. 

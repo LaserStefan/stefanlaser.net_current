@@ -1,6 +1,9 @@
 ---
 date: 2024-05-08T08:51:38+02:00
 url: "/2024/05/08/exotic-animal-mobile.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112404142807387081
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3krxiybhxel27
 ---
 
 "Exotic animal," mobile application.

@@ -2,7 +2,10 @@
 title: "A link dump featuring: Public decay"
 date: 2024-01-18T16:45:19+02:00
 url: "/2024/01/17/a-link-dump.html"
-tags: ["Link Dumps"]
+tags: [ "Link Dumps" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111777488684017184
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kjb7owby7x2e
 ---
 
 Picture me as A Person Who Stares At Infrastructures, focusing on anything to do with repair, a lot of tech, low-carbon experiments, and a bias towards Asia-Pacific.

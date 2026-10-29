@@ -1,6 +1,9 @@
 ---
 date: 2024-01-19T11:56:28+02:00
 url: "/2024/01/19/conducting-and-an.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111782015949575529
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kjd7zrmio62k
 ---
 
 Conducting.

@@ -1,6 +1,9 @@
 ---
 date: 2023-11-22T08:34:09+02:00
 url: "/2023/11/22/through-cory-doctorows.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111452805605405485
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3keqzo5pfwd2d
 ---
 
 Through Cory Doctorow's recent linkdump I learned about the charming non-standard standardisation story of the #fediverse. It was a lucky punch, very unlikely to happen. But here we are with a capable, open, acommercial system.

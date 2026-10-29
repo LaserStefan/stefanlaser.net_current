@@ -1,6 +1,9 @@
 ---
 date: 2024-03-13T04:23:00+02:00
 url: "/2024/03/13/learning-to-pronounce.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112086234706804640
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3knkdae7sbs2y
 ---
 
 Learning to pronounce: the struggle with tiếng Việt.

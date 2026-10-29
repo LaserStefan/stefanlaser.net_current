@@ -1,6 +1,9 @@
 ---
 date: 2026-06-26T14:25:52+02:00
 url: "/2026/06/26/back-with-the-taiwanese-colleagues.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116816398716582095
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mp6ww2gogf2m
 ---
 
 Back with the Taiwanese colleagues to explore the #semiconductor industry, now in #Dresden. We started with vanished #chip histories, moved to promised silicon futures and will now venture out – a lovely explorative ["walkshop."](https://www.ioer.de/en/projects/silicon-urbanism)

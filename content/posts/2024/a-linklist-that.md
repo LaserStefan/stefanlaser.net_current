@@ -2,7 +2,10 @@
 title: "A linklist that spreads air purification dedication through a viral story, two neat podcasts, and once again looks at pleasant ways to enjoy the web"
 date: 2024-02-28T16:24:45+02:00
 url: "/2024/02/28/a-linklist-that.html"
-tags: ["Link Dumps"]
+tags: [ "Link Dumps" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112009562977591307
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kmibocwut22o
 ---
 
 You have probably come across this post, but in case you have not, get ready for a thorough analysis that is not only for pollution or tech nerds. (But it's certainly ALSO for those people.) 

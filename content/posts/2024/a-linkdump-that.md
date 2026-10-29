@@ -2,7 +2,10 @@
 title: "A linkdump that explores the lovely new web, the Vietnamese chip news cycle, and ambivalent ecological developments"
 date: 2024-01-30T11:58:59+02:00
 url: "/2024/01/30/a-linkdump-that.html"
-tags: ["Link Dumps"]
+tags: [ "Link Dumps" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111844310843638488
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kk6vc5t7hd2d
 ---
 
 "Where have all the websites gone?" is the question posed by blogger Jason. And he sends us a link with a marvellous list. Let's go down this path.

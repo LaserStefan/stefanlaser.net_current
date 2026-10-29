@@ -1,6 +1,9 @@
 ---
 date: 2024-07-06T09:05:15+02:00
 url: "/2024/07/06/i-get-the.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112738272402266154
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kwlvarclye26
 ---
 
 I get the critique of the left re: #labour in #Britian.

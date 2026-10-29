@@ -1,6 +1,9 @@
 ---
 date: 2026-07-23T09:09:27+02:00
 url: "/2026/07/23/germany-to-buy-direct-stakes.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116968035612912137
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mrcbsghyyl2x
 ---
 
 #Germany to buy direct stakes in #military tech startups. Offering ever more support for companies, the most questionable ones, while pressuring workers and holding back infrastructure investments. 

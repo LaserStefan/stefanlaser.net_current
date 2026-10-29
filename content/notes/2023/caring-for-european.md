@@ -1,6 +1,9 @@
 ---
 date: 2023-12-21T09:32:00+02:00
 url: "/2023/12/21/caring-for-european.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111618429027606386
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kh2lcy7us22k
 ---
 
 Caring for European Science & Technology Studies: EASST review 42(2) is out! #STS reports, postdoc life, decolonisation, extractivism, pollution, and a tribute to Evelyn Fox Keller.

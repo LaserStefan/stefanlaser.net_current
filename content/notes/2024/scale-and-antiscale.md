@@ -1,6 +1,9 @@
 ---
 date: 2024-07-16T19:58:52+02:00
 url: "/2024/07/17/scale-and-antiscale.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112797465809319691
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kxg6gtvj7c23
 ---
 
 Scale and anti-scale.

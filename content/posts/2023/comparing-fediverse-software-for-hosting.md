@@ -2,7 +2,10 @@
 title: "Comparing Fediverse software for hosting: Ease of use, efficiency, waste"
 date: 2023-12-18T05:17:00+02:00
 url: "/2023/12/18/comparing-fediverse-software-for-hosting.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111599017368456228
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kgrxhm4vb22x
 ---
 
 Here's a blog post on #hosting a microblogging instance on the #Fediverse with ecological concerns in mind. It's a longer one. And unfinished, since it's messy tinkering in progress, not least due to my #Vietnam routing. 👇

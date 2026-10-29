@@ -1,6 +1,9 @@
 ---
 date: 2024-01-27T15:29:53+02:00
 url: "/2024/01/27/twisted-tt-lunar.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/111828153057298340
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kjxpok4jps2w
 ---
 
 Twisted.

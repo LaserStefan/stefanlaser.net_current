@@ -1,6 +1,9 @@
 ---
 date: 2025-02-12T16:12:20+02:00
 url: "/2025/02/12/was-das-neue-surplus-magazin.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113991322811645812
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lhye64om3d2w
 ---
 
 Was das neue #Surplus Magazin zur #Energiewende druckt: 

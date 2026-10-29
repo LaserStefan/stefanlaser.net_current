@@ -1,6 +1,9 @@
 ---
 date: 2025-12-08T08:30:33+02:00
 url: "/2025/12/08/taboo-in-the-clean-room.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115682548245834473
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7hfwhyybn2d
 ---
 
 Taboo in the clean room: workers in #semiconductor fabs, e.g. TSMC in #Taiwan, face high mental pressure. They cannot eat pizza – it's too similar to the form of an IC waver. 😬

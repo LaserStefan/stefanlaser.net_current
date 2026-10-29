@@ -1,6 +1,9 @@
 ---
 date: 2025-10-09T11:42:50+02:00
 url: "/2025/10/09/our-bochum-crowd-finished-yet.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115343563121724260
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m2qunyizb72b
 ---
 
 Our Bochum+ crowd finished yet another sweet RUSTlab annual retreat. We focused on writing and reviewing texts, sprinkled some organising magic on top—and donkey meditation! 🫏

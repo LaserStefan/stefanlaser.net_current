@@ -2,7 +2,10 @@
 title: "Publication formats: Maybe you need do decide what side you're on, GenAI or Zine?"
 date: 2024-10-10T14:52:09+02:00
 url: "/2024/10/10/publication-formats-and.html"
-tags: ["Portfolio", "Research"]
+tags: [ "Portfolio", "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113283218274652241
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l65vfiybmh24
 ---
 
 As part of digital infrastructure research, we are exploring alternative forms to publish academic work. Currently and in different iterations: zines (from “magazine”). It really makes a difference to think about knowledge production in an open, playful format. Just make things.

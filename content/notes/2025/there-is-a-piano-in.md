@@ -1,6 +1,9 @@
 ---
 date: 2025-07-29T21:09:51+02:00
 url: "/2025/07/29/there-is-a-piano-in.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114938098827701368
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lv4so6kzua2s
 ---
 
 There is a piano in there.*

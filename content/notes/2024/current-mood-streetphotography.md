@@ -1,6 +1,9 @@
 ---
 date: 2024-02-29T09:13:23+02:00
 url: "/2024/02/29/current-mood-streetphotography.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112013535579291389
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kmk2535jpc2f
 ---
 
 Current mood.

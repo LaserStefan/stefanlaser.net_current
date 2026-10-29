@@ -1,7 +1,10 @@
 ---
 date: 2024-04-03T06:47:36+02:00
 url: "/2024/04/03/the-chip-rush.html"
-tags: ["Research"]
+tags: [ "Research" ]
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112205473971447558
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kp7bq3ugu32a
 ---
 
 The chip rush of #Vietnam is in trouble.

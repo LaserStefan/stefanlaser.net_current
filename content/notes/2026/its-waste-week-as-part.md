@@ -1,6 +1,9 @@
 ---
 date: 2026-06-10T13:45:29+02:00
 url: "/2026/06/10/its-waste-week-as-part.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/116725642459887557
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3mnwn6y3fp32w
 ---
 
 It's waste week. As part of the campus mining walk I did during our DFG waste network meeting, we had a super lucky surprise meetup with a Fraunhofer project: next to the uni #datacenter, they are drilling into an abandoned mine to store heat from the nearby technical center (and data center), and the exploration was happening while we were they. We got a tour!!! 

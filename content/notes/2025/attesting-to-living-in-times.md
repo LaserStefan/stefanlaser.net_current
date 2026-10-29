@@ -1,6 +1,9 @@
 ---
 date: 2025-06-17T18:02:26+02:00
 url: "/2025/06/17/attesting-to-living-in-times.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114699561325066772
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lrsuts524s2u
 ---
 
 > Attesting to living in times of nearing ends, 'Before Ruins' is when we are able and required to act, to notice and recognize.

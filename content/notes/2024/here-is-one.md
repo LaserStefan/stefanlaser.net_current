@@ -1,6 +1,9 @@
 ---
 date: 2024-09-09T15:44:10+02:00
 url: "/2024/09/09/here-is-one.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/113107891946925476
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3l3pzufc3pc26
 ---
 
 Here is one of the official warning messages we received in #Hanoi, and parts of the aftermath. #Vietnam #Yagi

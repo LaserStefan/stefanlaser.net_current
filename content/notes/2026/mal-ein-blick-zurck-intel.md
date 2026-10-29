@@ -1,6 +1,9 @@
 ---
 date: 2026-09-07T10:12:41+02:00
 url: "/2026/09/07/mal-ein-blick-zurck-intel.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/117228750110616272
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3muw2rmj7vb23
 ---
 
 Mal ein Blick zurück: Intel, das war erst der Anfang, womöglich war der Abzug ein Kipppunkt – nach der Treuhand, Hartz und Inflationskrisen hätte die Transformation in #Sachsen-Anhalt mal anders laufen können.

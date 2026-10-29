@@ -1,6 +1,9 @@
 ---
 date: 2025-04-03T08:26:52+02:00
 url: "/2025/04/03/vietnam-hugged-trump-now-theyre.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114272608564665249
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3llvbi4hj6u27
 ---
 
 #Vietnam hugged #Trump. Now they're hit with a 46 by number 47. Likely, this is due to (recent stories about) Chinese firms shifting things south.

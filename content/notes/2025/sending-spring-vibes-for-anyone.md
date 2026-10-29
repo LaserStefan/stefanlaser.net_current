@@ -1,6 +1,9 @@
 ---
 date: 2025-03-21T11:44:19+02:00
 url: "/2025/03/21/sending-spring-vibes-for-anyone.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114199774876840949
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lkuwh6qit52k
 ---
 
 Sending spring vibes for anyone who needs it (all of us?). Live from the Ruhr University campus, our lab blooms in the background, sort of.

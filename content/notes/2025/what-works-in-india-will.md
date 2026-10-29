@@ -1,6 +1,9 @@
 ---
 date: 2025-08-07T14:43:59+02:00
 url: "/2025/08/07/what-works-in-india-will.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114987556876774572
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3lvsrixymgc2s
 ---
 
 > What works in #India will scale better everywhere else. Naturally, the country is a battleground for #AI search. 

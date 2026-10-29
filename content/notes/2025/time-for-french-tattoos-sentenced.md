@@ -1,6 +1,9 @@
 ---
 date: 2025-03-31T12:19:30+02:00
 url: "/2025/03/31/time-for-french-tattoos-sentenced.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114256536576007917
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3llo53fy3ky2d
 ---
 
 Time for French tattoos! 

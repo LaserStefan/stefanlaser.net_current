@@ -1,6 +1,9 @@
 ---
 date: 2024-07-04T06:59:42+02:00
 url: "/2024/07/04/coal-plants-are.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112726454061045169
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kwgncfzors2c
 ---
 
 > “Coal plants are being reinvigorated because of the AI boom. This should be alarming to anyone who cares about the environment.

@@ -1,6 +1,9 @@
 ---
 date: 2025-12-08T08:03:36+02:00
 url: "/2025/12/08/from-street-food-to-temples.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/115682440651339353
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3m7heg667qj2q
 ---
 
 From (1) street food to (2) temples to (3) a waiting spot for Uber Eat drivers to (4) elevated (thus protected) electronic infrastructure. Old town life in a rapidly changing place.

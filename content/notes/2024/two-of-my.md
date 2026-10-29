@@ -1,6 +1,9 @@
 ---
 date: 2024-06-11T08:49:25+02:00
 url: "/2024/06/11/two-of-my.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/112596653758889155
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3kumyq4bywz2w
 ---
 
 Two of my Canadian #sts friends just popped up in my #podcast feed. 

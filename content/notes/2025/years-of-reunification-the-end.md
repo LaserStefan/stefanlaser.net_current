@@ -1,6 +1,9 @@
 ---
 date: 2025-05-06T16:50:14+02:00
 url: "/2025/05/06/years-of-reunification-the-end.html"
+syndication:
+  mastodon: https://social.tchncs.de/@stefanlaser/114461444558974951
+  bluesky: https://bsky.app/profile/stefanlaser.bsky.social/post/3loj4yuobvi2t
 ---
 
 50 years of reunification, the end of the second Indochina war, #Vietnam had a blast with a mammoth celebration. The nationalism is troubled but it goes strong. An entire day of a parade in Saigon and on TV, and we had a tank in the newspaper 🤷
