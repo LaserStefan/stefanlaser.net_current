@@ -41,10 +41,6 @@ caches:
   getresource:
     maxAge: 30m      # Bluesky/Mastodon stream: refetched at most every 30 minutes
 
-mediaTypes:
-  application/feed+json:
-    suffixes: [json]
-
 outputFormats:
   FeedXML:          # the old Micro.blog feed address /feed.xml keeps working
     mediaType: application/rss+xml
@@ -52,7 +48,7 @@ outputFormats:
     isPlainText: false
     noUgly: true
   JSONFeed:
-    mediaType: application/feed+json
+    mediaType: application/json
     baseName: feed
     isPlainText: true
     rel: alternate

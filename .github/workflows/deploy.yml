@@ -71,9 +71,6 @@ jobs:
           hugo --gc --minify ${{ github.ref_name != 'main' && format('--baseURL https://{0}.{1}.pages.dev/', github.ref_name, env.CF_PROJECT) || '' }} 2>&1 | tee build.log
           # surface problems with the micro stream as visible notes on the run
           grep -iE "stream|lookup" build.log | sed 's/^/::warning title=Micro stream::/' || true
-          for u in "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=stefanlaser.bsky.social&limit=1" "https://social.tchncs.de/api/v1/accounts/lookup?acct=stefanlaser"; do
-            echo "::notice title=Stream check::$(curl -s -o /dev/null -w '%{http_code} %{content_type}' "$u") $u"
-          done
 
       - name: Shrink dithered images
         run: python3 scripts/shrink_dithered.py public
