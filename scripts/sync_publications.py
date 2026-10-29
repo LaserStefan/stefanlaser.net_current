@@ -138,20 +138,43 @@ def fetch_orcid():
     return works
 
 
+STOP = {"the", "and", "and", "for", "with", "from", "into", "der", "die", "das", "des", "und", "ein", "eine",
+        "von", "zur", "zum", "special", "issue", "vol", "volume", "introduction"}
+
+
+def words(s):
+    s = unicodedata.normalize("NFKD", s.lower()).encode("ascii", "ignore").decode()
+    s = re.sub(r"(i)s(e|ed|ing|ation)\b", r"\1z\2", s)  # globalised -> globalized
+    return [w for w in re.findall(r"[a-z0-9]+", s) if len(w) > 2 and w not in STOP]
+
+
+def score(work, entry):
+    """How well an ORCID work matches a CV citation (0..1)."""
+    if work["doi"] and work["doi"].lower() in entry["citation"].lower():
+        return 1.0
+    if work["year"] and entry["year"] and work["year"] != entry["year"]:
+        return 0.0
+    w = words(work["title"])
+    if not w:
+        return 0.0
+    c = set(words(entry["citation"]))
+    share = sum(1 for x in w if x in c) / len(w)
+    main = words(re.split(r"[:.?!]", work["title"])[0])  # the part before the subtitle
+    if main and len("".join(main)) >= 8 and all(x in c for x in main):
+        share = max(share, 0.75)
+    return share
+
+
 def merge(cv, orcid):
     """Attach ORCID DOIs to CV entries; return the ORCID works the CV doesn't have."""
     extra = []
     for w in orcid:
-        nt = norm(w["title"])[:45]
-        hit = None
+        best, hit = 0.0, None
         for e in cv:
-            if w["doi"] and w["doi"].lower() in e["citation"].lower():
-                hit = e
-                break
-            if len(nt) >= 15 and nt in norm(e["citation"]):
-                hit = e
-                break
-        if hit:
+            sc = score(w, e)
+            if sc > best:
+                best, hit = sc, e
+        if hit and best >= 0.6:
             if w["doi"] and not hit["doi"]:
                 hit["doi"] = w["doi"]
                 if not hit["link"]:
