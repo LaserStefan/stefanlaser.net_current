@@ -1,6 +1,6 @@
 ---
 title: Valuation studies
-summary: I am part of the DFG research network on Valuation Studies, named On the path to the valuation society? I have contributed to the field of valuation research with multiple pieces. With Emma Greeson and Olli Pyyhtinen, I've co-edited a Special Issue on 'Dis/Assembling Value'. And with colleagues from Kassel, I have produced edited volumes and papers.
+summary: I have contributed to the field of valuation research with multiple pieces. With Emma Greeson and Olli Pyyhtinen, I've co-edited a Special Issue on 'Dis/Assembling Value'. With colleagues from Kassel, I have produced edited volumes and papers. For 5 years, I was part of the DFG research network on Valuation Studies, named "On the path to the valuation society?"
 project_website: ''
 project_website_label: ''
 phase: Valuation studies
@@ -8,11 +8,11 @@ years: ''
 weight: 70
 featured_publications:
   - pub: 2020-dis-assembling-value
-    title: ''
+    title: 'Dis/Assembling Value: Lessons from Waste Valuation Practices'
     link: ''
     note: ''
   - pub: 2024-dynamiken-digitaler-bewertung
-    title: ''
+    title: 'Dynamiken digitaler Bewertung: Über Gestaltungsspielräume in Infrastrukturen – von KI bis Queering'
     link: ''
     note: ''
   - pub: 2018-digitale-bewertungspraktiken
@@ -20,7 +20,7 @@ featured_publications:
     link: ''
     note: ''
   - pub: 2024-rethinking-value-through-waste
-    title: ''
+    title: 'Rethinking value through waste: About devaluation and society'
     link: ''
     note: ''
   - pub: 2024-valuing-data-attaching-online-data-to-stakes-selves-and-othe
