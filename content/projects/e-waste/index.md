@@ -8,9 +8,9 @@ years: ''
 weight: 50
 featured_publications:
   - pub: 2020-hightech-am-ende
-    title: ''
+    title: 'Hightech am Ende: Über das globale Recycling von Elektroschrott und die Entstehung neuer Werte'
     link: ''
-    note: ''
+    note: My rewritten dissertation, the project link leads to an English website presenting the monograph
   - pub: 2020-sorting-shredding-and-smelting-scrap-the-production-of-value
     title: ''
     link: ''
