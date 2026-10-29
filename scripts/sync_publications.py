@@ -152,16 +152,19 @@ def score(work, entry):
     """How well an ORCID work matches a CV citation (0..1)."""
     if work["doi"] and work["doi"].lower() in entry["citation"].lower():
         return 1.0
-    if work["year"] and entry["year"] and work["year"] != entry["year"]:
-        return 0.0
     w = words(work["title"])
     if not w:
         return 0.0
+    if len(norm(work["title"])) >= 15 and norm(work["title"])[:45] in norm(entry["citation"]):
+        return 1.0
     c = set(words(entry["citation"]))
     share = sum(1 for x in w if x in c) / len(w)
     main = words(re.split(r"[:.?!]", work["title"])[0])  # the part before the subtitle
     if main and len("".join(main)) >= 8 and all(x in c for x in main):
         share = max(share, 0.75)
+    # ORCID often has the online or reprint year; a different year needs a clearer title match
+    if work["year"] and entry["year"] and work["year"] != entry["year"]:
+        share = share if share >= 0.8 else share * 0.5
     return share
 
 
@@ -169,12 +172,15 @@ def merge(cv, orcid):
     """Attach ORCID DOIs to CV entries; return the ORCID works the CV doesn't have."""
     extra = []
     for w in orcid:
-        best, hit = 0.0, None
+        best, hit = (0.0, 0.0), None
+        tw = set(words(w["title"]))
         for e in cv:
-            sc = score(w, e)
+            # ties are decided by how closely the CV title (not the whole citation) matches
+            ew = set(words(e["title"]))
+            sc = (score(w, e), len(tw & ew) / (len(tw | ew) or 1))
             if sc > best:
                 best, hit = sc, e
-        if hit and best >= 0.6:
+        if hit and best[0] >= 0.6:
             if w["doi"] and not hit["doi"]:
                 hit["doi"] = w["doi"]
                 if not hit["link"]:
