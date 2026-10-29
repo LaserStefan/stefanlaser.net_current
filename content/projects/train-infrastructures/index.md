@@ -1,20 +1,26 @@
 ---
 title: Train Infrastructures
-date: 2022-01-20 12:54:00+02:00
 summary: Based on my (now concluded) work in the collaborative research centre in Siegen I contribute to the discussion on mobility transitions.
 project_website: ''
 project_website_label: ''
 phase: Mobility
 years: ''
-weight: 70
+weight: 80
+featured_publications:
+  - pub: 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2022-verschwendung-handhaben
+    title: ''
+    link: ''
+    note: ''
 thumbnail: /uploads/2023/linus-mimietz-unsplash.webp
 thumbnail_alt: ''
+date: 2022-01-20 12:54:00+02:00
 old_url: /2022/01/20/train-infrastructures.html
 tags:
-- Portfolio
-featured_publications:
-- pub: 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
-- pub: 2022-verschwendung-handhaben
+  - Portfolio
 ---
 
 ## Abstract of the argument
