@@ -11,7 +11,7 @@
   let W = 0, H = 0, dpr = 1;
   let nodes = [], links = [], byTag = {}, themes = {}, themeColour = {};
   let minUses = 3, hover = null, picked = null, pickedTheme = null;
-  let view = { x: 0, y: 0, k: 1 }, alpha = 1, running = false, fitted = false, labelMin = 99;
+  let view = { x: 0, y: 0, k: 1 }, alpha = 1, running = false, shown = false, animId = 0, labelMin = 99;
 
   const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
@@ -60,11 +60,56 @@
     });
     for (const n of nodes) n.nb = new Set();
     for (const l of links) { l.s.nb.add(l.t); l.t.nb.add(l.s); }
+    // hashtags without any connection don't take part in the layout, they sit on a ring
+    for (const n of nodes) n.fixed = n.nb.size === 0;
     // label only the ten most used hashtags until you hover or zoom in
     labelMin = (nodes.map((n) => n.uses).sort((a, b) => b - a)[9]) || 1;
     drawLegend();
-    alpha = 1; fitted = false;
-    start();
+    // compute the layout before showing it, so the graph appears calm and finished
+    const from = new Map(nodes.filter((n) => old[n.id]).map((n) => [n, { x: n.x, y: n.y }]));
+    alpha = 1;
+    for (let k = 0; k < 400 && alpha > 0.02; k++) tick();
+    ring();
+    const target = fitView();
+    if (!shown) { view = target; shown = true; draw(); return; }
+    // otherwise glide from the old picture to the new one
+    const to = new Map(nodes.map((n) => [n, { x: n.x, y: n.y }]));
+    const v0 = { ...view }, t0 = performance.now(), dur = 450;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const anim = ++animId;
+    (function step(now) {
+      if (anim !== animId) return;
+      const t = ease(Math.min(1, (now - t0) / dur));
+      for (const n of nodes) {
+        const a = from.get(n), b = to.get(n);
+        n.fade = a ? 1 : t;
+        n.x = a ? a.x + (b.x - a.x) * t : b.x;
+        n.y = a ? a.y + (b.y - a.y) * t : b.y;
+      }
+      view = { x: v0.x + (target.x - v0.x) * t, y: v0.y + (target.y - v0.y) * t, k: v0.k + (target.k - v0.k) * t };
+      draw();
+      if (t < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  // loners on one or more rings around the connected part
+  function ring() {
+    const core = nodes.filter((n) => !n.fixed), lone = nodes.filter((n) => n.fixed).sort((a, b) => b.uses - a.uses);
+    if (!lone.length) return;
+    let cx = 0, cy = 0;
+    for (const n of core) { cx += n.x; cy += n.y; }
+    if (core.length) { cx /= core.length; cy /= core.length; }
+    const d = core.map((n) => Math.hypot(n.x - cx, n.y - cy)).sort((a, b) => a - b);
+    let r = (d[Math.floor(d.length * 0.95)] || 60) + 50, k = 0;
+    while (k < lone.length) {
+      const fit = Math.max(8, Math.floor((2 * Math.PI * r) / 16));
+      const part = lone.slice(k, k + fit);
+      part.forEach((n, j) => {
+        const a = (j / part.length) * Math.PI * 2 + r * 0.01;
+        n.x = cx + Math.cos(a) * r; n.y = cy + Math.sin(a) * r; n.vx = n.vy = 0;
+      });
+      k += fit; r += 18;
+    }
   }
 
   // ---- layout: plain force simulation, cools down and stops ----
@@ -72,11 +117,14 @@
     const rep = 3200, spring = 0.06, grav = 0.012;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
+      if (a.fixed) continue;
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];
-        let dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy + 0.01;
+        if (b.fixed) continue;
+        let dx = a.x - b.x, dy = a.y - b.y, d2 = Math.max(dx * dx + dy * dy, 36);
+        if (!dx && !dy) dx = Math.random() - 0.5;
         if (d2 > 250000) continue;
-        const f = (rep / d2) * alpha, d = Math.sqrt(d2);
+        const d = Math.sqrt(dx * dx + dy * dy) || 1, f = (rep / d2) * alpha;
         dx /= d; dy /= d;
         a.vx += dx * f; a.vy += dy * f; b.vx -= dx * f; b.vy -= dy * f;
       }
@@ -87,9 +135,11 @@
       l.s.vx += (dx / d) * f; l.s.vy += (dy / d) * f; l.t.vx -= (dx / d) * f; l.t.vy -= (dy / d) * f;
     }
     for (const n of nodes) {
-      if (n === drag) continue;
+      if (n === drag || n.fixed) continue;
       n.vx -= n.x * grav * alpha; n.vy -= n.y * grav * alpha;
       n.vx *= 0.6; n.vy *= 0.6;
+      const v = Math.hypot(n.vx, n.vy);
+      if (v > 12) { n.vx *= 12 / v; n.vy *= 12 / v; } // no node gets flung away
       n.x += n.vx; n.y += n.vy;
     }
     alpha *= 0.985;
@@ -100,21 +150,19 @@
     running = true;
     (function loop() {
       tick(); draw();
-      if (!fitted && alpha < 0.25) fit();
       if (alpha > 0.02 || drag) requestAnimationFrame(loop); else { running = false; draw(); }
     })();
   }
 
-  // zoom so the whole graph fits the window
-  function fit() {
-    fitted = true;
-    if (!nodes.length) return;
-    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-    for (const n of nodes) { x0 = Math.min(x0, n.x); y0 = Math.min(y0, n.y); x1 = Math.max(x1, n.x); y1 = Math.max(y1, n.y); }
-    const k = Math.min((W - 60) / (x1 - x0 || 1), (H - 60) / (y1 - y0 || 1), 1.6);
-    view.k = Math.max(0.3, k);
-    view.x = -((x0 + x1) / 2) * view.k;
-    view.y = -((y0 + y1) / 2) * view.k;
+  // view that fits the graph into the window; a few stray points don't count
+  function fitView() {
+    if (!nodes.length) return { x: 0, y: 0, k: 1 };
+    const xs = nodes.map((n) => n.x).sort((a, b) => a - b), ys = nodes.map((n) => n.y).sort((a, b) => a - b);
+    const q = (arr, p) => arr[Math.min(arr.length - 1, Math.max(0, Math.round((arr.length - 1) * p)))];
+    const cut = nodes.length > 60 ? 0.01 : 0;
+    const x0 = q(xs, cut), x1 = q(xs, 1 - cut), y0 = q(ys, cut), y1 = q(ys, 1 - cut);
+    const k = Math.max(0.25, Math.min((W - 70) / (x1 - x0 || 1), (H - 70) / (y1 - y0 || 1), 1.6));
+    return { x: -((x0 + x1) / 2) * k, y: -((y0 + y1) / 2) * k, k };
   }
 
   // ---- drawing ----
@@ -142,7 +190,7 @@
     ctx.font = `${11 / view.k}px ui-monospace, Menlo, Consolas, monospace`;
     ctx.textAlign = "center";
     for (const n of nodes) {
-      ctx.globalAlpha = lit(n) ? 1 : 0.15;
+      ctx.globalAlpha = (lit(n) ? 1 : 0.15) * (n.fade ?? 1);
       ctx.fillStyle = n.theme ? themeColour[n.theme] : line;
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill();
     }
@@ -212,6 +260,7 @@
     moved = false;
     const n = nodeAt(toWorld(e));
     if (n) drag = n; else panning = true;
+    animId++;
   });
   canvas.addEventListener("pointerup", () => {
     if (!moved) {
@@ -225,7 +274,7 @@
   canvas.addEventListener("pointerleave", () => { hover = null; draw(); });
   canvas.addEventListener("wheel", (e) => {
     e.preventDefault();
-    view.k = Math.min(4, Math.max(0.3, view.k * (e.deltaY < 0 ? 1.12 : 0.89)));
+    view.k = Math.min(4, Math.max(0.25, view.k * (e.deltaY < 0 ? 1.12 : 0.89)));
     draw();
   }, { passive: false });
 
@@ -235,14 +284,14 @@
     canvas.width = W * dpr; canvas.height = H * dpr;
     draw();
   }
-  window.addEventListener("resize", resize);
+  new ResizeObserver(() => { if (canvas.clientWidth && canvas.clientWidth !== W) resize(); }).observe(canvas);
 
   // threshold buttons
   let data = null;
   box.querySelectorAll("[data-min]").forEach((b) => b.addEventListener("click", () => {
     minUses = +b.dataset.min;
     box.querySelectorAll("[data-min]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-    picked = null; showNotes();
+    picked = null; hover = null; showNotes();
     build(data);
   }));
   new MutationObserver(() => { colours(); drawLegend(); draw(); })

@@ -1,9 +1,13 @@
-{{- /* Params: items (from photos.html), size (px) */ -}}
+{{- /* Params: items (from photos.html), size (px). A click opens the lightbox (assets/js/lightbox.js);
+     without JavaScript the link simply opens the original. */ -}}
 <ul class="photo-grid">
   {{- range .items }}
+  {{- $orig := .src }}{{ $w := 0 }}{{ $h := 0 }}
+  {{- with resources.Get (strings.TrimPrefix "/" .src) }}{{ $orig = .RelPermalink }}{{ if in (slice "jpeg" "png" "webp") .MediaType.SubType }}{{ $w = .Width }}{{ $h = .Height }}{{ end }}{{ end }}
   <li>
-    {{ partial "img.html" (dict "src" .src "alt" .alt "page" .page "width" ($.size | default 320) "fill" true "link" true) }}
-    <a class="photo-caption" href="{{ .page.RelPermalink }}"><time datetime="{{ .page.Date.Format "2006-01-02" }}">{{ .page.Date | time.Format "2 Jan 2006" }}</time></a>
+    <a class="lb" href="{{ $orig }}" data-post="{{ .page.RelPermalink }}" {{ with $w }}data-w="{{ . }}" data-h="{{ $h }}" {{ end }}data-date="{{ .page.Date | time.Format "2 Jan 2006" }}">
+      {{- partial "img.html" (dict "src" .src "alt" .alt "page" .page "width" ($.size | default 400) "fill" true) -}}
+    </a>
   </li>
   {{- end }}
 </ul>

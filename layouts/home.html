@@ -54,7 +54,7 @@
         <h2>{{ $s.home.photos_title | default "Photos" }}</h2>
         <a class="mono-link" href="{{ "photos/" | relURL }}">all {{ len $photos }}</a>
       </div>
-      {{ partial "photo-grid.html" (dict "items" . "size" 260) }}
+      {{ partial "photo-grid.html" (dict "items" . "size" 400) }}
     </section>
     {{- end }}
 
