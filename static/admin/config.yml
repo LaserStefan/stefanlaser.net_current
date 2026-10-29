@@ -359,10 +359,11 @@ collections:
             hint: Refreshed every three hours and whenever you publish.
             fields:
               - { label: Show the box, name: enabled, widget: boolean, default: true }
-              - label: Source
+              - label: Shown first
                 name: source
                 widget: select
-                default: mastodon
+                default: bluesky
+                hint: With both accounts filled in, the box gets two tabs; this one is open at first.
                 options:
                   - { label: Bluesky, value: bluesky }
                   - { label: Mastodon, value: mastodon }
