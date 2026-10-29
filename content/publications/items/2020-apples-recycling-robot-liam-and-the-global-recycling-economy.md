@@ -1,5 +1,5 @@
 ---
-title: Apple’s recycling robot „Liam“ and the global recycling economy of e‐waste
+title: 'Apple’s recycling robot „Liam“ and the global recycling economy of e‐waste: What ‘The Guardian’ does, and what he misses out on'
 year: '2020'
 pub_type: Article / chapter
 link: ''

@@ -1,5 +1,5 @@
 ---
-title: Vokabular des Virtuellen
+title: 'Vokabular des Virtuellen: Ein situiertes Lexikon'
 year: '2024'
 pub_type: Edited volume
 link: https://www.transcript-verlag.de/978-3-8376-7207-7/vokabular-des-virtuellen/

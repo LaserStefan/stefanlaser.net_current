@@ -1,5 +1,5 @@
 ---
-title: Dis/assembling value
+title: 'Dis/assembling value: Lessons from waste valuation practices'
 year: '2020'
 pub_type: Special issue
 link: https://valuationstudies.liu.se/article/view/3134

@@ -1,5 +1,5 @@
 ---
-title: Digitale Bewertungspraktiken
+title: 'Digitale Bewertungspraktiken: Für eine Bewertungssoziologie des Digitalen'
 year: '2018'
 pub_type: Edited volume
 link: https://link.springer.com/book/10.1007/978-3-658-21165-3

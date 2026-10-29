@@ -1,5 +1,5 @@
 ---
-title: 'Kurzbeiträge [Sticky Notes]: Untergrund, Ruins [Underground, Ruins]'
+title: 'Kurzbeiträge [Sticky Notes]: Untergrund, Ruins'
 year: '2026'
 pub_type: Article / chapter
 link: ''

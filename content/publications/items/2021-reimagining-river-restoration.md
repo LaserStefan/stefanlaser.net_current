@@ -1,5 +1,5 @@
 ---
-title: Re‐imagining river restoration
+title: 'Re‐imagining river restoration: Temporalities, landscapes and values of the Emscher set in a post‐mining environment'
 year: '2021'
 pub_type: Journal article
 link: ''

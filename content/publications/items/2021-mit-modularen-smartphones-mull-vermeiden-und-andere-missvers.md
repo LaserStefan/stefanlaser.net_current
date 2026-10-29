@@ -1,5 +1,5 @@
 ---
-title: Mit modularen Smartphones Müll vermeiden, und andere Missverständnisse
+title: 'Mit modularen Smartphones Müll vermeiden, und andere Missverständnisse: Über die Intervention in eine produktorientierte Bewegung und die methodologischen Früchte des Scheiterns'
 year: '2021'
 pub_type: Article / chapter
 link: ''

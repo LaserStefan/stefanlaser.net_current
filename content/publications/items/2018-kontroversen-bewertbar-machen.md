@@ -1,5 +1,5 @@
 ---
-title: Kontroversen bewertbar machen
+title: 'Kontroversen bewertbar machen: Über die Methode des „Mapping of Controversies“'
 year: '2018'
 pub_type: Article / chapter
 link: ''

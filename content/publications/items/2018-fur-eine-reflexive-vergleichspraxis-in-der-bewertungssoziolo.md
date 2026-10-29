@@ -1,5 +1,5 @@
 ---
-title: Für eine reflexive Vergleichspraxis in der Bewertungssoziologie
+title: 'Für eine reflexive Vergleichspraxis in der Bewertungssoziologie: Pinterest und WhatsApp als Beispiel'
 year: '2018'
 pub_type: Article / chapter
 link: ''

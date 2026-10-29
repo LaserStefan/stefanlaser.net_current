@@ -1,5 +1,5 @@
 ---
-title: Demokratischer Experimentalismus in transnationalen Wertschöpfungskollektiven
+title: 'Demokratischer Experimentalismus in transnationalen Wertschöpfungskollektiven: Über einige Herausforderungen des ethischen Konsums und den Fall Elektroschrott'
 year: '2015'
 pub_type: Article / chapter
 link: ''

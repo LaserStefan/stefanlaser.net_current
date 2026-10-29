@@ -1,5 +1,5 @@
 ---
-title: Hightech am Ende
+title: 'Hightech am Ende: Über das globale Recycling von Elektroschrott und die Entstehung neuer Werte'
 year: '2020'
 pub_type: Monograph
 link: https://link.springer.com/book/10.1007/978-3-658-30295-5

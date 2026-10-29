@@ -1,5 +1,5 @@
 ---
-title: Nachhaltiger Konsum im transnationalen Wertschöpfungskollektiv
+title: 'Nachhaltiger Konsum im transnationalen Wertschöpfungskollektiv: Versammlungsdynamiken in der Politischen Ökonomie des Elektroschrotts'
 year: '2016'
 pub_type: Journal article
 link: https://doi.org/10.1007/s11609-017-0318-6

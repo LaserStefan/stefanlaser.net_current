@@ -1,5 +1,5 @@
 ---
-title: Generative Prognosen in den Sozial- und Geisteswissenschaften [Generative predictions in the social sciences and humanities]
+title: Generative Prognosen in den Sozial- und Geisteswissenschaften
 year: '2026'
 pub_type: Article / chapter
 link: https://doi.org/10.14361/9783839400340-060

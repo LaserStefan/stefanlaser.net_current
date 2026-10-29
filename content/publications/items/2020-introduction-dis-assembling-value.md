@@ -1,5 +1,5 @@
 ---
-title: 'Introduction: Dis/assembling value'
+title: 'Introduction: Dis/assembling value: Lessons from waste valuation practices'
 year: '2020'
 pub_type: Article / chapter
 link: ''

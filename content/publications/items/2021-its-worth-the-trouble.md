@@ -1,5 +1,5 @@
 ---
-title: It’s worth the trouble
+title: 'It’s worth the trouble: On valuation studies and climate change'
 year: '2021'
 pub_type: Article / chapter
 link: ''

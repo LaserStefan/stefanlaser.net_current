@@ -1,5 +1,5 @@
 ---
-title: Wert mit Abfall befragen
+title: 'Wert mit Abfall befragen: Eine soziomaterielle Perspektive auf die Erzeugung von Wert mit Einsichten aus ethnographischer Forschung zu Elektroschrott'
 year: '2022'
 pub_type: Journal article
 link: https://doi.org/10.1515/zfsoz-2022-0007

@@ -1,5 +1,5 @@
 ---
-title: 'Wie Abfall die Welt bewegt: Handbuch sozialwissenschaftliche Abfallforschung [How waste moves the planet'
+title: 'Wie Abfall die Welt bewegt: Handbuch sozialwissenschaftliche Abfallforschung'
 year: '2026'
 pub_type: Edited volume
 link: https://www.transcript-publishing.com/978-3-8376-7818-5/wie-abfall-die-welt-bewegt-handbuch-sozialwissenschaftliche-abfallforschung/

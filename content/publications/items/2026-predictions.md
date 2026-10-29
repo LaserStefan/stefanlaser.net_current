@@ -1,5 +1,5 @@
 ---
-title: Predictions
+title: 'Predictions: From speculative ethnography to apocalyptic testimony'
 year: '2026'
 pub_type: Edited volume
 link: https://www.matteringpress.org/books/predictions-volume-1

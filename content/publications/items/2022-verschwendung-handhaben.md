@@ -1,5 +1,5 @@
 ---
-title: Verschwendung handhaben
+title: 'Verschwendung handhaben: Über Energie, Ressourceneinsatz und infrastrukturelles Erfahrungswissen in der Recycling- und Schienenindustrie'
 year: '2022'
 pub_type: Article / chapter
 link: ''

@@ -1,5 +1,5 @@
 ---
-title: ‘Ich denke, es ist wichtig zu verstehen, warum die Netzwerkanalyse jetzt populär und besonders interessant für die Forschung geworden ist.’ Im Gespräch mit einem Mathematiker und einem Informatiker [‘I think it is important to understand why network analysis has become popular and particularly interesting for research now.’ In conversation with a mathematician and a computer scientist]
+title: ‘Ich denke, es ist wichtig zu verstehen, warum die Netzwerkanalyse jetzt populär und besonders interessant für die Forschung geworden ist.’ Im Gespräch mit einem Mathematiker und einem Informatiker
 year: '2018'
 pub_type: Interview
 link: ''

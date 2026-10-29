@@ -1,5 +1,5 @@
 ---
-title: Residuale Verantwortung – Abfall, Ungleichheit und das Politische des Entsorgens [Residual responsibility – Waste, inequality, and the political of disposal]
+title: Residuale Verantwortung – Abfall, Ungleichheit und das Politische des Entsorgens
 year: '2026'
 pub_type: Article / chapter
 link: ''

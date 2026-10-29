@@ -1,5 +1,5 @@
 ---
-title: Vokabular des Virtuellen
+title: 'Vokabular des Virtuellen: Ein situiertes Lexikon'
 year: '2024'
 pub_type: Article / chapter
 link: https://doi.org/10.14361/9783839472071-026

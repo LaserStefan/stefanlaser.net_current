@@ -1,5 +1,5 @@
 ---
-title: Rethinking value through waste
+title: 'Rethinking value through waste: About devaluation and society'
 year: '2024'
 pub_type: Article / chapter
 link: ''
