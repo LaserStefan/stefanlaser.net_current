@@ -5,18 +5,27 @@ project_website: https://www.ioer.de/en/projects/silicon-urbanism
 project_website_label: ''
 phase: Data centres and semiconductors
 years: ''
-weight: 30
+weight: 15
+featured_publications:
+  - pub: 2026-encountering-the-semiconductor-industry-fairs-and-value-chai
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
+    title: ''
+    link: ''
+    note: ''
+  - pub: nd-mapping-vietnams-semiconductor-leapfrogging-desires-or-the-c
+    title: ''
+    link: ''
+    note: ''
 thumbnail: ''
 thumbnail_alt: ''
 date: 2026-06-02 09:27:08+02:00
 old_url: /2026/06/02/happy-to-share-that-my.html
 tags:
-- Portfolio
-- Research
-featured_publications:
-- pub: 2026-encountering-the-semiconductor-industry-fairs-and-value-chai
-- pub: 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
-- pub: nd-mapping-vietnams-semiconductor-leapfrogging-desires-or-the-c
+  - Portfolio
+  - Research
 ---
 
 I draw on ethnographic fieldwork at industry fairs in Taipei and Hanoi to make sense of a global frenzy. Follow me on a trip. 
