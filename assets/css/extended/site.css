@@ -107,11 +107,12 @@ h1, h2, .post-title, .entry-title, .logo a, .pub-title, .page-header h1, .theme-
 /* ---------------- micro stream box (sage) ---------------- */
 .stream-box {
   position: sticky; top: 16px;
+  margin-top: 1.5rem; /* same top line as the portrait (.hero padding-top) */
   background: var(--accent-soft); border: 1px solid var(--accent);
   padding: 18px 20px;
   box-shadow: 5px 5px 0 0 color-mix(in srgb, var(--accent) 35%, transparent);
 }
-@media (max-width: 900px) { .stream-box { position: static; } }
+@media (max-width: 900px) { .stream-box { position: static; margin-top: 0; } }
 .stream-title {
   display: flex; align-items: center; gap: 10px;
   font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em;

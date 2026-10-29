@@ -15,11 +15,7 @@ hero:
   bio: My blog and portfolio—a hub for research experience, personal commentary and street photography. I am situated at Ruhr-University Bochum, GER, studying digital infrastructures, from Europe to Asia. All imgs are dithered to improve site speed. Click for full colours.
   image: /uploads/1515048.webp
   image_alt: Portrai photo of Stefan Laser
-  links:
-    - label: Projects
-      url: /projects/
-    - label: CV
-      url: /cv/
+  links: []
 social:
   - platform: mastodon
     url: https://social.tchncs.de/@stefanlaser
