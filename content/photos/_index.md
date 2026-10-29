@@ -1,4 +1,5 @@
 ---
 title: Photos
 ---
-Street photography from my notes. All imgs dithered. Click for colour.
+
+Street photography clicked across the planet, with my Fuji cam or Vivo phone. All imgs dithered. Click or tap for high-res versions.
