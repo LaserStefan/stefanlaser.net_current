@@ -1,6 +1,6 @@
 ---
 title: Train Infrastructures
-summary: Based on my (now concluded) work in the collaborative research centre in Siegen I contribute to the discussion on mobility transitions.
+summary: Based on my work in the collaborative research centre "Media of Cooperation" in Siegen I contribute to the discussion on mobility transitions.
 project_website: ''
 project_website_label: ''
 phase: Mobility
@@ -12,8 +12,8 @@ featured_publications:
     link: ''
     note: ''
   - pub: 2022-verschwendung-handhaben
-    title: ''
-    link: ''
+    title: Verschwendung handhaben. Über Energie, Ressourceneinsatz und infrastrukturelles Erfahrungswissen in der Recycling- und Schienenindustrie
+    link: http://www.beltz.de/de/nc/verlagsgruppe-beltz/gesamtprogramm.html?isbn=978-3-7799-7007-1.
     note: ''
 thumbnail: /uploads/2023/linus-mimietz-unsplash.webp
 thumbnail_alt: ''
