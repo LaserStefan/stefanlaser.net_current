@@ -35,7 +35,7 @@ social:
     url: /index.xml
 home:
   blog_title: Blog
-  blog_count: 3
+  blog_count: 4
   photos_title: Street & field photos
   photos_count: 6
   publications_title: Latest publications
@@ -47,7 +47,7 @@ stream:
   enabled: true
   source: bluesky
   title: Microblogging
-  count: 6
+  count: 10
   bluesky_handle: stefanlaser.bsky.social
   mastodon_instance: social.tchncs.de
   mastodon_user: stefanlaser
