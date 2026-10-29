@@ -1,16 +1,17 @@
 ---
-title: "Data Centres"
-date: 2022-01-20T12:55:00+02:00
-summary: "My main research theme right now is data centres: their local arrangement, material legacies, building procedures, and global production networks enabling its operation. I have been living and working in Asia-Pacific for a longer period to follow actors."
-project_website: ""
-project_website_label: ""
-phase: "Data centres and semiconductors"
-years: ""
+title: Data Centres
+summary: 'My main research theme right now is data centres: their local arrangement, material legacies, building procedures, and global production networks enabling its operation. I have been living and working in Asia-Pacific for a longer period to follow actors.'
+project_website: https://www.virtuelle-lebenswelten.de/
+project_website_label: ''
+phase: Data centres and semiconductors
+years: ''
 weight: 20
-thumbnail: "/uploads/2023/mining.webp"
-thumbnail_alt: ""
-old_url: "/2022/01/20/current-project.html"
-tags: ["Portfolio"]
+thumbnail: 20240131_123342.webp
+thumbnail_alt: ''
+date: 2022-01-20T12:55:00+02:00
+old_url: /2022/01/20/current-project.html
+tags:
+  - Portfolio
 ---
 
 I've put a focus on dynamics in the semiconductor industry, expanding and making trouble in Vietnam and Taiwan. 
