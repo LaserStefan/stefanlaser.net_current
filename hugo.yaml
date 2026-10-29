@@ -75,5 +75,6 @@ params:
   hideFooter: false
   footer:
     hideCopyright: true
+    text: '[Impressum · Datenschutz](/impressum/) · [Legal notice · Privacy](/impressum/#legal-notice)'
   fuseOpts:
     keys: [title, content, summary]

@@ -7,17 +7,17 @@ phase: Waste
 years: ''
 weight: 40
 featured_publications:
-  - 2026-wie-abfall-die-welt-bewegt-handbuch-sozialwissenschaftliche
-  - 2019-waste-and-globalized-inequalities
-  - 2019-facing-frictions-waste-and-globalized-inequalities
-  - 2026-residuale-verantwortung-abfall-ungleichheit-und-das-politisc
-  - 2026-mull-in-bewegung-fursorge-im-wandel-fursorgliche-perspektive
+- pub: 2026-wie-abfall-die-welt-bewegt-handbuch-sozialwissenschaftliche
+- pub: 2019-waste-and-globalized-inequalities
+- pub: 2019-facing-frictions-waste-and-globalized-inequalities
+- pub: 2026-residuale-verantwortung-abfall-ungleichheit-und-das-politisc
+- pub: 2026-mull-in-bewegung-fursorge-im-wandel-fursorgliche-perspektive
 thumbnail: /uploads/2023/waste-and-globalised-inequalities.webp
 thumbnail_alt: ''
 date: 2023-11-28 01:05:00+02:00
 old_url: /2023/11/28/thinking-like-a-waste-scholar.html
 tags:
-  - Portfolio
+- Portfolio
 ---
 
 I was part of the initial steering group and now am a member of the research group [waste in motion](https://waste-in-motion.org) funded by the German Research Foundation. With Nicolas Schlitz [I've co-edited a Special Issue on frictions in global recycling networks](https://doi.org/10.20446/JEP-2414-3197-35-2-5).

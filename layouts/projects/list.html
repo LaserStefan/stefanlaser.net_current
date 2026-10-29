@@ -27,11 +27,10 @@
       <p class="theme-site"><a href="{{ . }}" target="_blank" rel="noopener">{{ $p.Params.project_website_label | default "Project website" }}</a></p>
       {{- end }}
       {{- with $featured }}
-      <p class="side-label">Publications</p>
+      <p class="side-label">Featured publications</p>
       <ul class="side-pubs">
         {{- range . }}
-        {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
-        <li><span class="side-year">{{ .Params.year | default .Params.status }}</span>{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}{{ with .Params.pub_type }}<em>{{ lower . }}</em>{{ end }}</li>
+        <li><span class="side-year">{{ .year }}</span>{{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}{{ with .note }}<em>{{ . }}</em>{{ else }}{{ with .type }}<em>{{ . }}</em>{{ end }}{{ end }}</li>
         {{- end }}
       </ul>
       {{- end }}

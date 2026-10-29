@@ -1,6 +1,22 @@
-{{- /* The publications picked for a project in the CMS (featured_publications), max 5. */ -}}
+{{- /* Featured publications of a project (max 5), as picked in the CMS.
+     Each item: pub (file name of the publication), optional title / link / note that
+     override what the publication list says, only for this project.
+     Returns slice of dict: title, link, year, type, note. */ -}}
 {{- $out := slice -}}
 {{- range first 5 (.Params.featured_publications | default slice) -}}
-  {{- with site.GetPage (printf "/publications/items/%s" .) }}{{ $out = $out | append . }}{{ else }}{{ warnf "Project %s: publication %q not found" $.File.Path . }}{{ end -}}
+  {{- $item := cond (reflect.IsMap .) . (dict "pub" .) -}}
+  {{- $p := false -}}
+  {{- with $item.pub }}{{ $p = site.GetPage (printf "/publications/items/%s" .) }}{{ end -}}
+  {{- if and $item.pub (not $p) }}{{ warnf "Project %s: publication %q not found" $.File.Path $item.pub }}{{ end -}}
+  {{- $title := $item.title | default (cond (ne $p false) $p.Title "") -}}
+  {{- if $title -}}
+    {{- $link := $item.link -}}
+    {{- if and (not $link) $p }}{{ $link = $p.Params.link | default (cond (ne ($p.Params.doi | default "") "") (printf "https://doi.org/%s" $p.Params.doi) "") }}{{ end -}}
+    {{- $out = $out | append (dict
+          "title" $title "link" $link "note" ($item.note | default "")
+          "year" (cond (ne $p false) ($p.Params.year | default $p.Params.status) "")
+          "type" (cond (ne $p false) (lower ($p.Params.pub_type | default "")) "")
+          "citation" (cond (and (ne $p false) (not $item.title)) ($p.Params.citation | default "") "")) -}}
+  {{- end -}}
 {{- end -}}
 {{- return $out -}}

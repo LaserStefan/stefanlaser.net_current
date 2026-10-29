@@ -11,8 +11,8 @@ old_url: /2022/11/20/interspecies-care.html
 tags:
 - Portfolio
 featured_publications:
-- 2022-artenubergreifende-fursorge-die-corona-pandemie-und-das-mens
-- 2021-eating-ourselves-out-of-industrial-excess-degrowth-multi-spe
+- pub: 2022-artenubergreifende-fursorge-die-corona-pandemie-und-das-mens
+- pub: 2021-eating-ourselves-out-of-industrial-excess-degrowth-multi-spe
 ---
 
 I have been researching public discourses on the meat industry and the culling of minks in a writing collective. The book is based on a cooperation with students. Building on an excellent seminar research report, we knitted a book together; thus the project also stands for an egalitarian (social) science that thinks across statuses.

@@ -11,11 +11,11 @@ old_url: /2022/01/01/network-valuation-studies.html
 tags:
 - Portfolio
 featured_publications:
-- 2020-dis-assembling-value
-- 2024-valuing-data-attaching-online-data-to-stakes-selves-and-othe
-- 2018-digitale-bewertungspraktiken
-- 2024-rethinking-value-through-waste
-- 2024-dynamiken-digitaler-bewertung
+- pub: 2020-dis-assembling-value
+- pub: 2024-valuing-data-attaching-online-data-to-stakes-selves-and-othe
+- pub: 2018-digitale-bewertungspraktiken
+- pub: 2024-rethinking-value-through-waste
+- pub: 2024-dynamiken-digitaler-bewertung
 ---
 
 We've been meeting for several years and are preparing a handbook on Valuation and Society (Routledge).

@@ -12,8 +12,20 @@
 
   {{- with $featured }}
   <section class="featured-pubs">
-    <h2>Publications</h2>
-    <ul class="pub-list">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
+    <h2>Featured publications</h2>
+    <ul class="pub-list">
+      {{- range . }}
+      <li class="pub">
+        {{- if .citation }}
+        <span class="pub-citation">{{ .citation | markdownify }}{{ if and .link (not (strings.Contains .citation "http")) }} <a class="mono-link" href="{{ .link }}" target="_blank" rel="noopener">link</a>{{ end }}</span>
+        {{- else }}
+        <span class="pub-meta">{{ .year }}{{ if and .year .type }} · {{ end }}{{ .type }}</span>
+        <span class="pub-title">{{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</span>
+        {{- end }}
+        {{ with .note }}<span class="pub-venue">{{ . | markdownify }}</span>{{ end }}
+      </li>
+      {{- end }}
+    </ul>
   </section>
   {{- end }}
 

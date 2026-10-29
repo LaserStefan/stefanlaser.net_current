@@ -174,17 +174,26 @@ collections:
       - { label: Theme label, name: phase, widget: string, required: false, hint: "Small label above the title in the overview, e.g. “current”, “waste” or “data centres and semiconductors”." }
       - { label: Years, name: years, widget: string, required: false, hint: "e.g. 2022–today" }
       - { label: Position, name: weight, widget: number, value_type: int, default: 100, hint: "Lower numbers appear higher in the overview (10, 20, 30 … leaves room in between)." }
-      - label: Publications (up to 5)
+      - label: Featured publications (up to 5)
         name: featured_publications
-        widget: relation
-        collection: publications
-        value_field: "{{slug}}"
-        search_fields: [title, year, citation]
-        display_fields: ["{{year}} · {{title}}"]
-        multiple: true
+        widget: list
         max: 5
         required: false
-        hint: Type a word from the title to search. Shown next to the project and on its page, in this order.
+        summary: "{{fields.title}}{{fields.pub}}"
+        hint: Shown next to the project and on its page, in this order. Drag to reorder.
+        fields:
+          - label: Publication
+            name: pub
+            widget: relation
+            collection: publications
+            value_field: "{{slug}}"
+            search_fields: [title, year, citation]
+            display_fields: ["{{year}} · {{title}}"]
+            required: false
+            hint: Type a word from the title to search.
+          - { label: Own title, name: title, widget: string, required: false, hint: "Optional. Replaces the title for this project only. Also lets you add something that is not in the list." }
+          - { label: Own link, name: link, widget: string, required: false, hint: "Optional. https://… replaces the DOI or publisher link." }
+          - { label: Short note, name: note, widget: string, required: false, hint: "Optional, e.g. “open access” or “with Estrid Sørensen”." }
       - { label: Image, name: thumbnail, widget: image, required: false, hint: Shown in the overview frame. If empty, the first image in the text is used. }
       - { label: Image description (alt text), name: thumbnail_alt, widget: string, required: false }
       - { label: Text, name: body, widget: markdown }
@@ -250,6 +259,12 @@ collections:
           - { label: Title, name: title, widget: string }
           - *old_url
           - { label: Text, name: body, widget: markdown, modes: [raw, rich_text] }
+      - name: impressum
+        label: Impressum / Legal notice
+        file: content/impressum.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Text, name: body, widget: markdown, modes: [raw, rich_text], hint: "German first, English below. Keep the {#…} marks after the headings: the footer links jump there." }
       - name: projects_intro
         label: Projects overview (intro text)
         file: content/projects/_index.md

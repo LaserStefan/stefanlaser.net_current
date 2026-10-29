@@ -14,9 +14,9 @@ tags:
 - Portfolio
 - Research
 featured_publications:
-- 2026-encountering-the-semiconductor-industry-fairs-and-value-chai
-- 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
-- nd-mapping-vietnams-semiconductor-leapfrogging-desires-or-the-c
+- pub: 2026-encountering-the-semiconductor-industry-fairs-and-value-chai
+- pub: 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
+- pub: nd-mapping-vietnams-semiconductor-leapfrogging-desires-or-the-c
 ---
 
 I draw on ethnographic fieldwork at industry fairs in Taipei and Hanoi to make sense of a global frenzy. Follow me on a trip. 

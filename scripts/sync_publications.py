@@ -111,14 +111,17 @@ def finish(e):
 
 
 # ---------------------------------------------------------------------------
-def fetch_orcid():
+def fetch_orcid(status):
     if not ORCID:
         return []
     base = f"https://pub.orcid.org/v3.0/{ORCID}"
     get = lambda url: json.load(urllib.request.urlopen(
-        urllib.request.Request(url, headers={"Accept": "application/json"}), timeout=30))
+        urllib.request.Request(url, headers={"Accept": "application/json"}), timeout=60))
+    groups = get(base + "/works").get("group", [])
+    status["orcid_groups"] = len(groups)
+    status["orcid_work_summaries"] = sum(len(g.get("work-summary") or []) for g in groups)
     works = []
-    for g in get(base + "/works").get("group", []):
+    for g in groups:
         w = (g.get("work-summary") or [{}])[0]
         title = (((w.get("title") or {}).get("title") or {}).get("value") or "").strip()
         if not title:
@@ -134,8 +137,47 @@ def fetch_orcid():
         url = f"https://doi.org/{doi}" if doi else (((w.get("url") or {}).get("value")) or url)
         works.append({"title": title, "year": str(year), "venue": venue, "doi": doi, "link": url,
                       "pub_type": ORCID_TYPES.get(w.get("type", ""), (w.get("type") or "").replace("-", " ").capitalize()),
-                      "put_code": w.get("put-code"), "source": "orcid"})
+                      "put_code": w.get("put-code"), "source": "orcid", "authors": ""})
     return works
+
+
+def orcid_authors(works):
+    """Fill in author names for the given works (ORCID bulk endpoint, 100 per request)."""
+    base = f"https://pub.orcid.org/v3.0/{ORCID}/works/"
+    by_code = {w["put_code"]: w for w in works}
+    codes = list(by_code)
+    for i in range(0, len(codes), 100):
+        url = base + ",".join(str(c) for c in codes[i:i + 100])
+        data = json.load(urllib.request.urlopen(
+            urllib.request.Request(url, headers={"Accept": "application/json"}), timeout=60))
+        for item in data.get("bulk", []):
+            work = item.get("work") or {}
+            names = []
+            for c in ((work.get("contributors") or {}).get("contributor") or []):
+                n = ((c.get("credit-name") or {}).get("value") or "").strip()
+                if n and n not in names:
+                    names.append(n)
+            if work.get("put-code") in by_code:
+                by_code[work["put-code"]]["authors"] = "/".join(surname_first(n) for n in names)
+
+
+def surname_first(name):
+    """'Stefan Laser' -> 'Laser, Stefan' (as in the CV). Names already with a comma stay."""
+    if "," in name:
+        return name
+    parts = name.split()
+    return f"{parts[-1]}, {' '.join(parts[:-1])}" if len(parts) > 1 else name
+
+
+def orcid_citation(w):
+    """A citation in the CV's style for works that are only in ORCID."""
+    who = w["authors"] or "Laser, Stefan"
+    c = f"{who} ({w['year'] or 'n.d.'}): {w['title'].rstrip('.')}."
+    if w["venue"]:
+        c += f" {w['venue'].rstrip('.')}."
+    if w["link"]:
+        c += f" {w['link']}"
+    return c
 
 
 STOP = {"the", "and", "and", "for", "with", "from", "into", "der", "die", "das", "des", "und", "ein", "eine",
@@ -203,15 +245,27 @@ def main(offline=False):
     OUT.mkdir(parents=True, exist_ok=True)
     cv = parse_cv()
     extra = []
+    status = {"cv_publications": len(cv)}
     if not offline:
         try:
-            orcid = fetch_orcid()
+            orcid = fetch_orcid(status)
             extra = merge(cv, orcid)
+            try:
+                orcid_authors(extra)
+            except Exception as ex:
+                print(f"ORCID author names not available ({ex})")
+            status.update({"orcid_public_works": len(orcid), "matched_to_cv": len(orcid) - len(extra),
+                           "only_in_orcid": len(extra)})
             print(f"ORCID: {len(orcid)} works, {len(orcid) - len(extra)} matched to the CV, {len(extra)} only in ORCID")
         except Exception as ex:  # keep the last known ORCID files if ORCID is down
             print(f"ORCID not reachable ({ex}); keeping the existing ORCID entries")
             offline = True
     print(f"CV: {len(cv)} publications")
+    if not offline:
+        status["checked"] = __import__("datetime").date.today().isoformat()
+        (ROOT / "data/publications_status.yaml").write_text(
+            "# Written by scripts/sync_publications.py on every build. Do not edit.\n"
+            + yaml.safe_dump(status, sort_keys=False))
 
     wanted = {}
     seen = set()
@@ -227,6 +281,7 @@ def main(offline=False):
             fm["sort"] = e["sort"]
         else:
             fm["venue"] = e["venue"]
+            fm["citation"] = orcid_citation(e)
             fm["sort"] = 1000 + i
         wanted[name] = fm
 

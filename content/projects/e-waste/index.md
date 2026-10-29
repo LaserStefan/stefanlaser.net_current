@@ -13,11 +13,11 @@ old_url: /2021/11/20/ewaste-dissertation-research.html
 tags:
 - Portfolio
 featured_publications:
-- 2020-hightech-am-ende
-- 2020-sorting-shredding-and-smelting-scrap-the-production-of-value
-- 2020-thinking-like-apples-recycling-robots-towards-the-activation
-- 2016-why-is-it-so-hard-to-engage-with-practices-of-the-informal-s
-- 2016-a-phone-worth-keeping-for-the-next-6-billion-exploring-the-c
+- pub: 2020-hightech-am-ende
+- pub: 2020-sorting-shredding-and-smelting-scrap-the-production-of-value
+- pub: 2020-thinking-like-apples-recycling-robots-towards-the-activation
+- pub: 2016-why-is-it-so-hard-to-engage-with-practices-of-the-informal-s
+- pub: 2016-a-phone-worth-keeping-for-the-next-6-billion-exploring-the-c
 ---
 
 Key for this research is a book I published: Hightech at the end.

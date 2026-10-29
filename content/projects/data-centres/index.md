@@ -13,11 +13,11 @@ old_url: /2022/01/20/current-project.html
 tags:
 - Portfolio
 featured_publications:
-- 2026-across-the-layers-of-planetary-matter-data-infrastructures-a
-- 2026-across-the-layers-how-data-infrastructures-link-knowledge-pr
-- 2023-towards-artful-sustainable-integration-of-it-infrastructures
-- 2023-the-environmental-footprint-of-social-media-hosting-tinkerin
-- 2026-staying-with-the-planet
+- pub: 2026-across-the-layers-of-planetary-matter-data-infrastructures-a
+- pub: 2026-across-the-layers-how-data-infrastructures-link-knowledge-pr
+- pub: 2023-towards-artful-sustainable-integration-of-it-infrastructures
+- pub: 2023-the-environmental-footprint-of-social-media-hosting-tinkerin
+- pub: 2026-staying-with-the-planet
 ---
 
 I've put a focus on dynamics in the semiconductor industry, expanding and making trouble in Vietnam and Taiwan. 

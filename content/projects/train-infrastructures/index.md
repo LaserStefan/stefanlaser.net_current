@@ -13,8 +13,8 @@ old_url: /2022/01/20/train-infrastructures.html
 tags:
 - Portfolio
 featured_publications:
-- 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
-- 2022-verschwendung-handhaben
+- pub: 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
+- pub: 2022-verschwendung-handhaben
 ---
 
 ## Abstract of the argument

@@ -14,10 +14,10 @@ tags:
 - Portfolio
 - Research
 featured_publications:
-- 2026-predictions
-- 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
-- 2024-vokabular-der-virtualitat
-- 2026-staying-with-the-planet
+- pub: 2026-predictions
+- pub: 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
+- pub: 2024-vokabular-der-virtualitat
+- pub: 2026-staying-with-the-planet
 ---
 
 So..., how about reclaiming the format of predictions? As critical thinkers? Can it work?
