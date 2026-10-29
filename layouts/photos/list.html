@@ -8,7 +8,7 @@
 {{- range uniq $years }}
 <section class="photo-year">
   <h2 class="year-mark">{{ . }}</h2>
-  {{ partial "photo-grid.html" (dict "items" (where $all "year" .) "size" 400) }}
+  {{ partial "photo-grid.html" (dict "items" (where $all "year" .) "size" 400 "lightbox" true) }}
 </section>
 {{- end }}
 {{- end }}

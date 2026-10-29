@@ -1,6 +1,6 @@
-// Photo lightbox for the photo grids: the original, in colour, loaded on click.
+// Photo lightbox for the photos page: the original, in colour, loaded on click.
 (function () {
-  const links = [...document.querySelectorAll(".photo-grid a.lb")];
+  const links = [...document.querySelectorAll(".lb-grid a.lb")];
   if (!links.length) return;
 
   const dlg = document.createElement("dialog");
@@ -8,7 +8,7 @@
   dlg.innerHTML =
     '<figure><img alt=""><figcaption>' +
     '<span class="lb-alt"></span>' +
-    '<span class="lb-meta"><a class="lb-post"></a> · <a class="lb-orig" target="_blank" rel="noopener">original</a> · <span class="lb-count"></span></span>' +
+    '<span class="lb-meta">Go to post from <a class="lb-post"></a> · <a class="lb-orig" target="_blank" rel="noopener">original</a> · <span class="lb-count"></span></span>' +
     "</figcaption></figure>" +
     '<button type="button" class="lb-prev" aria-label="Previous photo">←</button>' +
     '<button type="button" class="lb-next" aria-label="Next photo">→</button>' +

@@ -1,7 +1,9 @@
-{{- /* Params: items (from photos.html), size (px). A click opens the lightbox (assets/js/lightbox.js);
-     without JavaScript the link simply opens the original. */ -}}
-<ul class="photo-grid">
+{{- /* Params: items (from photos.html), size (px), lightbox (bool).
+     lightbox: a click opens the original in the lightbox (assets/js/lightbox.js); without JavaScript
+     the link opens the original. Otherwise a click switches between dithered and colour, with the date below. */ -}}
+<ul class="photo-grid{{ if .lightbox }} lb-grid{{ end }}">
   {{- range .items }}
+  {{- if $.lightbox }}
   {{- $orig := .src }}{{ $w := 0 }}{{ $h := 0 }}
   {{- with resources.Get (strings.TrimPrefix "/" .src) }}{{ $orig = .RelPermalink }}{{ if in (slice "jpeg" "png" "webp") .MediaType.SubType }}{{ $w = .Width }}{{ $h = .Height }}{{ end }}{{ end }}
   <li>
@@ -9,5 +11,11 @@
       {{- partial "img.html" (dict "src" .src "alt" .alt "page" .page "width" ($.size | default 400) "fill" true) -}}
     </a>
   </li>
+  {{- else }}
+  <li>
+    {{ partial "img.html" (dict "src" .src "alt" .alt "page" .page "width" ($.size | default 320) "fill" true "link" true) }}
+    <a class="photo-caption" href="{{ .page.RelPermalink }}"><time datetime="{{ .page.Date.Format "2006-01-02" }}">{{ .page.Date | time.Format "2 Jan 2006" }}</time></a>
+  </li>
+  {{- end }}
   {{- end }}
 </ul>
