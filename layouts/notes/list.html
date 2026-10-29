@@ -5,7 +5,8 @@
 </header>
 {{- $graph := partialCached "notes-graph-data.html" . "graph" }}
 {{- $js := resources.Get "js/graph.js" | minify | fingerprint }}
-<details class="graph-box">
+<h2 class="year-mark section-mark">Network of posts</h2>
+<details class="graph-box" open>
   <summary>graph</summary>
   <div class="graph" data-graph="{{ $graph.RelPermalink }}" data-script="{{ $js.RelPermalink }}">
     <div class="graph-bar">
@@ -17,20 +18,25 @@
     </div>
     <canvas aria-label="Graph of hashtags in my notes. Lines connect hashtags used in the same note."></canvas>
     <div class="graph-legend"></div>
+    <p class="graph-hint">Click/tap a node or theme to reveal related notes.</p>
     <div class="graph-notes" hidden></div>
   </div>
 </details>
 <script>
-document.querySelector(".graph-box").addEventListener("toggle", function (e) {
-  if (!e.target.open || e.target.dataset.loaded) return;
-  e.target.dataset.loaded = "1";
-  var s = document.createElement("script");
-  s.src = e.target.querySelector("[data-script]").dataset.script;
-  document.body.appendChild(s);
-});
-/* open by default on wide screens, closed on phones */
-if (window.matchMedia("(min-width: 900px)").matches) document.querySelector(".graph-box").open = true;
+(function () {
+  var box = document.querySelector(".graph-box");
+  function load() {
+    if (!box.open || box.dataset.loaded) return;
+    box.dataset.loaded = "1";
+    var s = document.createElement("script");
+    s.src = box.querySelector("[data-script]").dataset.script;
+    document.body.appendChild(s);
+  }
+  box.addEventListener("toggle", load);
+  load();
+})();
 </script>
+<h2 class="year-mark section-mark">All posts</h2>
 {{- $paginator := .Paginate (where site.RegularPages "Section" "in" (slice "notes" "posts")) }}
 <ol class="note-stream">
   {{- range $paginator.Pages }}

@@ -19,10 +19,10 @@
     const names = Object.keys(themes);
     const dark = document.documentElement.dataset.theme === "dark";
     themeColour = {};
-    names.forEach((t, i) => {
-      const hue = Math.round((i * 360) / names.length + 140) % 360;
-      themeColour[t] = `hsl(${hue} ${dark ? 35 : 38}% ${dark ? 62 : 48}%)`;
-    });
+    // hand-picked, clearly different colours; repeats only after 14 themes
+    const light = ["#2f7a52", "#8a4fb3", "#2f86b8", "#c0473f", "#d18a1f", "#28407f", "#9a6337", "#1f9a8c", "#c2549b", "#7a8a1f", "#5f73d6", "#7d2436", "#4caf50", "#e2622b"];
+    const darkP = ["#6cc596", "#b98ae0", "#6fb6e3", "#ea8079", "#f0b358", "#8ea4e8", "#cf9a6c", "#5fcfc0", "#e88ac6", "#b8c35a", "#9aa8f0", "#d46a7d", "#8ed88f", "#ff9a66"];
+    names.forEach((t, i) => { themeColour[t] = (dark ? darkP : light)[i % light.length]; });
   }
 
   function build(data) {
@@ -219,16 +219,26 @@
       b.type = "button";
       b.innerHTML = `<i style="background:${themeColour[t]}"></i>${t}`;
       b.setAttribute("aria-pressed", pickedTheme === t);
-      b.onclick = () => { pickedTheme = pickedTheme === t ? null : t; picked = null; drawLegend(); showNotes(); draw(); };
+      b.onclick = () => { pickedTheme = pickedTheme === t ? null : t; picked = null; hover = null; drawLegend(); showNotes(); draw(); };
       legend.appendChild(b);
     }
   }
 
   function showNotes() {
-    if (!picked) { list.innerHTML = ""; list.hidden = true; return; }
-    const notes = byTag[picked.id] || [];
+    let head = "", notes = [];
+    if (picked) {
+      head = `#${picked.id}`;
+      notes = byTag[picked.id] || [];
+    } else if (pickedTheme) {
+      // every note with at least one hashtag of this theme that is shown in the graph
+      head = pickedTheme;
+      const seen = new Set();
+      for (const n of nodes) if (n.theme === pickedTheme) for (const x of byTag[n.id] || []) seen.add(x);
+      notes = data.notes.filter((x) => seen.has(x));
+    }
+    if (!head) { list.innerHTML = ""; list.hidden = true; return; }
     list.hidden = false;
-    list.innerHTML = `<p class="graph-notes-head">#${picked.id} · ${notes.length}</p><ol>` +
+    list.innerHTML = `<p class="graph-notes-head">${escapeHtml(head)} · ${notes.length}</p><ol>` +
       notes.slice(0, 30).map((n) => `<li><a href="${n.u}"><span>${n.d}</span>${escapeHtml(n.t)}</a></li>`).join("") +
       `</ol>`;
   }
@@ -291,8 +301,8 @@
   box.querySelectorAll("[data-min]").forEach((b) => b.addEventListener("click", () => {
     minUses = +b.dataset.min;
     box.querySelectorAll("[data-min]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-    picked = null; hover = null; showNotes();
-    build(data);
+    picked = null; hover = null;
+    build(data); showNotes();
   }));
   new MutationObserver(() => { colours(); drawLegend(); draw(); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });

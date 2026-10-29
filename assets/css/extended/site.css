@@ -304,6 +304,10 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 .graph-legend button { padding: 1px 0; display: inline-flex; align-items: center; gap: 5px; }
 .graph-legend button[aria-pressed="true"] { color: var(--primary); text-decoration: underline; }
 .graph-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.graph-hint { margin: 0; padding: 0 12px 8px; font-family: var(--font-mono); font-size: .66rem; color: var(--secondary); }
+.section-mark { margin-top: 2rem; }
+.section-mark + .note-stream > .note:first-child { padding-top: .5rem; }
+.section-mark + .note-stream > .note:first-child > :first-child { margin-top: .4rem; }
 .graph-notes { padding: 8px 12px 12px; border-top: 1px dotted var(--hair); max-height: 260px; overflow: auto; }
 .graph-notes-head { font-family: var(--font-mono); font-size: .75rem; color: var(--accent-ink); margin: 0 0 6px; }
 .graph-notes ol { list-style: none; margin: 0; padding: 0; }

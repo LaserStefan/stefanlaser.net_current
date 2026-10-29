@@ -17,8 +17,8 @@
     {{- if not (in $ignore $t) }}{{ $tags = $tags | append $t }}{{ end -}}
   {{- end -}}
   {{- if $tags -}}
-    {{- $label := $p.Title -}}
-    {{- if not $label }}{{ $label = $p.Plain | replaceRE `\s+` " " | truncate 90 }}{{ end -}}
+    {{- $label := $p.Title | htmlUnescape -}}
+    {{- if not $label }}{{ $label = $p.Plain | htmlUnescape | replaceRE `\s+` " " | truncate 90 }}{{ end -}}
     {{- $notes = $notes | append (dict "u" $p.RelPermalink "d" ($p.Date.Format "2 Jan 2006") "t" $label "g" (uniq $tags)) -}}
   {{- end -}}
 {{- end -}}
