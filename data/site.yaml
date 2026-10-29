@@ -11,14 +11,10 @@ nav:
     url: /cv/
 hero:
   name: Stefan Laser
-  subtitle: ""
-  bio: >-
-    My blog and portfolio—a hub for research experience, personal commentary and
-    street photography. I am situated at Ruhr-University Bochum, GER, studying digital
-    infrastructures, from Europe to Asia. All imgs dithered to improve site speed.
-    Say no to bots.
-  image: ""
-  image_alt: ""
+  subtitle: ''
+  bio: My blog and portfolio—a hub for research experience, personal commentary and street photography. I am situated at Ruhr-University Bochum, GER, studying digital infrastructures, from Europe to Asia. All imgs dithered to improve site speed. Say no to bots.
+  image: /uploads/1515048.webp
+  image_alt: Portrai photo of Stefan Laser
   links:
     - label: Projects
       url: /projects/
@@ -28,13 +24,13 @@ social:
   - platform: mastodon
     url: https://social.tchncs.de/@stefanlaser
   - platform: bluesky
-    url: ""
+    url: https://bsky.app/profile/stefanlaser.bsky.social
   - platform: linkedin
-    url: ""
+    url: https://www.linkedin.com/in/stefanlaser/
   - platform: orcid
     url: https://orcid.org/0000-0002-6782-3496
   - platform: email
-    url: ""
+    url: ''
   - platform: rss
     url: /index.xml
 home:
@@ -46,44 +42,44 @@ home:
   publications_count: 3
 publications:
   orcid: 0000-0002-6782-3496
-  intro: "From my ORCID record."
+  intro: From my ORCID record.
 stream:
   enabled: true
   source: mastodon
-  title: Micro thoughts
+  title: Microblogging
   count: 6
-  bluesky_handle: ""
+  bluesky_handle: stefanlaser.bsky.social
   mastodon_instance: social.tchncs.de
   mastodon_user: stefanlaser
   hide_replies: true
-  hide_reposts: true
+  hide_reposts: false
 design:
-  accent: "#5e8b72"
-  accent_soft: "#eef4f0"
-  accent_dark: "#8fbfa3"
-  accent_soft_dark: "#1d2722"
-  paper: "#f7f6f2"
-  paper_dark: "#1b1c1e"
+  accent: '#5e8b72'
+  accent_soft: '#eef4f0'
+  accent_dark: '#8fbfa3'
+  accent_soft_dark: '#1d2722'
+  paper: '#f7f6f2'
+  paper_dark: '#1b1c1e'
   serif_headings: true
   dither_images: true
   dither_mode: rotate
-  dither_method: Atkinson
-  dither_gamma: 1.25
-  dither_ink: "#1f2421"
+  dither_ink: '#1f2421'
   dither_colours:
-    - "#a8d5ba"
-    - "#f6c453"
-    - "#f4a09c"
-    - "#a7c7e7"
-    - "#c9b6e4"
-    - "#e9dcc0"
+    - '#a8d5ba'
+    - '#f6c453'
+    - '#f4a09c'
+    - '#a7c7e7'
+    - '#c9b6e4'
+    - '#e9dcc0'
   dither_palette:
-    - "#1f2421"
-    - "#3f6b55"
-    - "#8fc4a3"
-    - "#f6f1e3"
-    - "#f2b134"
-    - "#e5625e"
+    - '#1f2421'
+    - '#3f6b55'
+    - '#8fc4a3'
+    - '#f6f1e3'
+    - '#f2b134'
+    - '#e5625e'
+  dither_gamma: 1.25
+  dither_method: Atkinson
   image_width: 600
-  extra_css: ""
-footer_text: ""
+  extra_css: ''
+footer_text: ''
