@@ -18,15 +18,21 @@ concurrency:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 env:
   HUGO_VERSION: "0.169.0"
   CF_PROJECT: stefanlaser-net
   SITE_URL: https://stefanlaser.net
+  # set the repository variable CLOUDFLARE_PAGES to "off" to stop deploying there
+  CF_ENABLED: ${{ vars.CLOUDFLARE_PAGES != 'off' }}
 
 jobs:
   site:
     runs-on: ubuntu-latest
+    outputs:
+      pages: ${{ steps.pagesout.outputs.ready }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,7 +71,39 @@ jobs:
       - name: Shrink dithered images
         run: python3 scripts/shrink_dithered.py public
 
+      # ---------------- GitHub Pages ----------------
+      - name: Look up the GitHub Pages address
+        id: pages
+        if: github.ref_name == 'main'
+        continue-on-error: true   # fails until Pages is switched on (Settings → Pages → GitHub Actions)
+        uses: actions/configure-pages@v5
+
+      - name: Build for GitHub Pages
+        id: pagesout
+        if: github.ref_name == 'main' && steps.pages.outcome == 'success'
+        env:
+          PAGES_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          echo "GitHub Pages address: $PAGES_URL"
+          if [ "${PAGES_URL%/}" = "${SITE_URL%/}" ]; then
+            # custom domain is set: the normal build is exactly right
+            cp -r public public-pages
+          else
+            # no custom domain yet: the site lives in a sub-folder of github.io
+            hugo --minify --baseURL "${PAGES_URL%/}/" -d public-pages
+            python3 scripts/shrink_dithered.py public-pages
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Hand the site to GitHub Pages
+        if: steps.pagesout.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public-pages
+
+      # ---------------- Cloudflare Pages ----------------
       - name: Deploy to Cloudflare Pages
+        if: env.CF_ENABLED == 'true'
         env:
           CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -122,3 +160,15 @@ jobs:
         run: |
           echo "::error::At least one cross-post failed. See the 'Cross-post new posts' step above. The other platforms were posted and recorded; the failed one is retried on the next run."
           exit 1
+
+  pages:
+    needs: site
+    if: github.ref_name == 'main' && needs.site.outputs.pages == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish on GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

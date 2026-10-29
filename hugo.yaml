@@ -46,6 +46,11 @@ mediaTypes:
     suffixes: [json]
 
 outputFormats:
+  FeedXML:          # the old Micro.blog feed address /feed.xml keeps working
+    mediaType: application/rss+xml
+    baseName: feed
+    isPlainText: false
+    noUgly: true
   JSONFeed:
     mediaType: application/feed+json
     baseName: feed
@@ -53,7 +58,7 @@ outputFormats:
     rel: alternate
 
 outputs:
-  home: [HTML, RSS, JSON, JSONFeed]   # JSON = search index, JSONFeed = /feed.json like Micro.blog
+  home: [HTML, RSS, FeedXML, JSON, JSONFeed]   # JSON = search index, JSONFeed = /feed.json like Micro.blog
 
 services:
   rss:

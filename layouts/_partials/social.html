@@ -4,7 +4,7 @@
   {{- range . }}
   {{- $url := .url }}
   {{- if eq .platform "email" }}{{ if not (hasPrefix $url "mailto:") }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
-  <li><a href="{{ $url | relURL }}" title="{{ .platform | title }}" aria-label="{{ .platform | title }}"{{ if eq .platform "mastodon" }} rel="me"{{ end }}>{{ partial "icon.html" .platform }}</a></li>
+  <li><a href="{{ partial "url.html" $url }}" title="{{ .platform | title }}" aria-label="{{ .platform | title }}"{{ if eq .platform "mastodon" }} rel="me"{{ end }}>{{ partial "icon.html" .platform }}</a></li>
   {{- end }}
 </ul>
 {{- end }}

@@ -64,5 +64,5 @@
 {{- else if $res -}}
   <img src="{{ $res.RelPermalink }}" alt="{{ $alt }}" loading="lazy" class="{{ $class }}">
 {{- else -}}
-  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" class="{{ $class }}">
+  <img src="{{ partial "url.html" $src }}" alt="{{ $alt }}" loading="lazy" class="{{ $class }}">
 {{- end -}}

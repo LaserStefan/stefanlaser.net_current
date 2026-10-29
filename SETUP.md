@@ -20,6 +20,41 @@ to load. Nothing here costs money.
 4. *Actions* tab → *Build, deploy and cross-post* → *Run workflow*. After 3–5 minutes the site is
    live at **https://stefanlaser-net.pages.dev**. Check it there before touching the domain.
 
+## GitHub Pages (main hosting)
+
+The workflow publishes every build to GitHub Pages, and to Cloudflare Pages as long as that is on.
+
+1. The repository must be **public** for GitHub Pages on a free account
+   (*Settings → General → Danger Zone → Change visibility*).
+2. *Settings → Pages → Build and deployment → Source:* **GitHub Actions**.
+3. *Actions → Build, deploy and cross-post → Run workflow*. Afterwards the site is at
+   https://laserstefan.github.io/stefanlaser.net_Cloudflare/ (in a sub-folder until the domain is set).
+4. Cloudflare's CMS login helper: add `laserstefan.github.io` to the worker's `ALLOWED_DOMAINS`
+   to use the CMS at the github.io address.
+
+### Moving the domain (last step)
+
+1. *Settings → Pages → Custom domain:* `stefanlaser.net` → Save. (No CNAME file is needed with
+   GitHub Actions.) GitHub redirects `www.stefanlaser.net` to `stefanlaser.net` by itself.
+2. At Biohost, change only these records. Leave MX, SPF (TXT), DKIM (`mail._domainkey`) and
+   the SRV record `_autodiscover._tcp` untouched.
+
+   | Name | Type | Value |
+   |---|---|---|
+   | @ | A | 185.199.108.153 |
+   | @ | A | 185.199.109.153 |
+   | @ | A | 185.199.110.153 |
+   | @ | A | 185.199.111.153 |
+   | www | CNAME | laserstefan.github.io. |
+   | @ | AAAA (optional) | 2606:50c0:8000::153, 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153 |
+
+   Delete the old A record `@ → 104.200.22.214` and the A record for `www`.
+3. Wait until *Settings → Pages* shows "DNS check successful", then tick **Enforce HTTPS**
+   (can take up to 24 hours to become available).
+4. Run the workflow once more, so the site is built for the real address.
+5. To stop deploying to Cloudflare Pages: add a repository variable `CLOUDFLARE_PAGES` = `off`
+   (*Settings → Secrets and variables → Actions → Variables*).
+
 ## 2. Test address for design changes
 
 Every branch other than `main` gets its own address. Create a branch called `test`

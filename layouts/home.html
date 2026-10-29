@@ -18,7 +18,7 @@
         <div class="hero-foot">
           {{ partial "social.html" $s.social }}
           {{- with $s.hero.links }}
-          <p class="hero-links">{{ range $i, $l := . }}{{ if $i }}<span class="sep" aria-hidden="true">/</span>{{ end }}<a href="{{ $l.url | relURL }}">{{ $l.label }}</a>{{ end }}</p>
+          <p class="hero-links">{{ range $i, $l := . }}{{ if $i }}<span class="sep" aria-hidden="true">/</span>{{ end }}<a href="{{ partial "url.html" $l.url }}">{{ $l.label }}</a>{{ end }}</p>
           {{- end }}
         </div>
       </div>

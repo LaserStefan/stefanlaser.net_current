@@ -18,8 +18,8 @@
       {{- range $s.nav }}
       {{- $ext := hasPrefix .url "http" }}
       <li>
-        <a href="{{ .url | relURL }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}>
-          <span{{ if and (not $ext) (ne .url "/") (hasPrefix $here .url) }} class="active" aria-current="page"{{ end }}>{{ .name }}</span>{{ if $ext }}<sup class="ext">ext</sup>{{ end }}
+        <a href="{{ partial "url.html" .url }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}>
+          <span{{ if and (not $ext) (ne .url "/") (strings.Contains $here .url) }} class="active" aria-current="page"{{ end }}>{{ .name }}</span>{{ if $ext }}<sup class="ext">ext</sup>{{ end }}
         </a>
       </li>
       {{- end }}

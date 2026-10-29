@@ -1,0 +1,8 @@
+{{- /* Internal links that also work when the site lives in a sub-folder (github.io preview).
+     "/notes/" -> "<base path>/notes/"; external links stay as they are. */ -}}
+{{- $u := . | default "" -}}
+{{- if or (hasPrefix $u "http") (hasPrefix $u "mailto:") (hasPrefix $u "#") -}}
+  {{- return $u -}}
+{{- else -}}
+  {{- return (strings.TrimPrefix "/" $u | relURL) -}}
+{{- end -}}

@@ -48,7 +48,7 @@
     <div class="meta">
       <span>{{ .Date | time.Format "2 Jan 2006" }}</span>
       <a href="{{ .RelPermalink }}">open on the site</a>
-      <a href="/admin/#/collections/{{ .Section }}/entries/{{ strings.TrimSuffix ".md" (strings.TrimPrefix (printf "%s/" .Section) .File.Path) }}">edit in the CMS</a>
+      <a href="{{ "admin/" | relURL }}#/collections/{{ .Section }}/entries/{{ strings.TrimSuffix ".md" (strings.TrimPrefix (printf "%s/" .Section) .File.Path) }}">edit in the CMS</a>
       {{- with .Params.syndication }}{{ with .linkedin }}<span>already on LinkedIn</span>{{ end }}{{ end }}
     </div>
     {{ with .Title }}<h2>{{ . }}</h2>{{ end }}

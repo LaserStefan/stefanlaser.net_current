@@ -1,0 +1,15 @@
+{{- /* Redirect pages for old Micro.blog addresses (GitHub Pages has no _redirects file).
+     Old project posts -> project pages, /archive/ -> /notes/. Call once with partialCached. */ -}}
+{{- $map := slice -}}
+{{- range where site.RegularPages "Section" "projects" -}}
+  {{- $p := . -}}
+  {{- with $p.Params.old_url }}{{ $map = $map | append (dict "from" . "to" $p.RelPermalink) }}{{ end -}}
+{{- end -}}
+{{- $map = $map | append (dict "from" "/archive/index.html" "to" ("notes/" | relURL)) -}}
+{{- range $map -}}
+  {{- $to := .to -}}
+  {{- $from := strings.TrimPrefix "/" .from -}}
+  {{- if hasSuffix $from "/" }}{{ $from = printf "%sindex.html" $from }}{{ end -}}
+  {{- $html := printf `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="%s"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=%s"></head><body><a href="%s">This page has moved.</a></body></html>` (absURL $to) $to $to -}}
+  {{- $_ := (resources.FromString $from $html).RelPermalink -}}
+{{- end -}}
