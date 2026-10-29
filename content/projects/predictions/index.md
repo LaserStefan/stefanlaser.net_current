@@ -16,7 +16,7 @@ tags:
 featured_publications:
 - pub: 2026-predictions
 - pub: 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
-- pub: 2024-vokabular-der-virtualitat
+- pub: 2024-vokabular-des-virtuellen
 - pub: 2026-staying-with-the-planet
 ---
 
