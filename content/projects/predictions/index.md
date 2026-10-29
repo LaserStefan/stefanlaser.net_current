@@ -6,7 +6,7 @@ project_website_label: ''
 phase: Predictions
 years: ''
 weight: 10
-thumbnail: ''
+thumbnail: predictions.webp
 thumbnail_alt: ''
 date: 2026-06-23T10:15:42+02:00
 old_url: /2026/06/23/the-elon-musks-of-the.html
@@ -30,3 +30,5 @@ Collectively troubling timescapes is one of the sweetest aspects of thinking thr
 > "We invite you to engage with Predictions as openings: opportunities to read generously and wander thoughtfully. To let go of extractivist habits of reading; to resist the pull to mine for definitive conclusions. Instead, we invite you to trace the threads that resonate with you, even if they fray at the edges."
 
 Rethinking reading and writing in academia is a key task, a helpful intervention. Related contributions are [zines](/2024/10/10/publication-formats-and.html), [a sci-fi story about overcoming excessive data infrastructures in the university](https://www.transcript-verlag.de/978-3-8376-7819-2/staying-with-the-planet/?number=978-3-8394-0451-5&c=310000064), [a speculative dictionary discussing virtuality](/2024/10/09/a-situated-lexicon.html), among other things.
+
+Volume 2 is on the way, and we have an open call for Vol 3, waiting for submissions.
