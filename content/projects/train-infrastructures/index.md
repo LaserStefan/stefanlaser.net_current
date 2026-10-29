@@ -1,16 +1,20 @@
 ---
-title: "Train Infrastructures"
-date: 2022-01-20T12:54:00+02:00
-summary: "Based on my (now concluded) work in the collaborative research centre in Siegen I contribute to the discussion on mobility transitions."
-project_website: ""
-project_website_label: ""
-phase: "Mobility"
-years: ""
+title: Train Infrastructures
+date: 2022-01-20 12:54:00+02:00
+summary: Based on my (now concluded) work in the collaborative research centre in Siegen I contribute to the discussion on mobility transitions.
+project_website: ''
+project_website_label: ''
+phase: Mobility
+years: ''
 weight: 70
-thumbnail: "/uploads/2023/linus-mimietz-unsplash.webp"
-thumbnail_alt: ""
-old_url: "/2022/01/20/train-infrastructures.html"
-tags: ["Portfolio"]
+thumbnail: /uploads/2023/linus-mimietz-unsplash.webp
+thumbnail_alt: ''
+old_url: /2022/01/20/train-infrastructures.html
+tags:
+- Portfolio
+featured_publications:
+- 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
+- 2022-verschwendung-handhaben
 ---
 
 ## Abstract of the argument

@@ -1,0 +1,7 @@
+{{- /* Short form: year, title (linked), type. For the homepage and project frames. */ -}}
+{{- $p := . -}}
+{{- $href := $p.Params.link | default (cond (ne ($p.Params.doi | default "") "") (printf "https://doi.org/%s" $p.Params.doi) "") -}}
+<li class="pub">
+  <span class="pub-meta">{{ $p.Params.year | default $p.Params.status }}{{ with $p.Params.status }}{{ if $p.Params.year }} · {{ . }}{{ end }}{{ end }}{{ with $p.Params.pub_type }} · {{ lower . }}{{ end }}</span>
+  <span class="pub-title">{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ $p.Title }}</a>{{ else }}{{ $p.Title }}{{ end }}</span>
+</li>

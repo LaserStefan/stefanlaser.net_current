@@ -8,11 +8,16 @@ years: ''
 weight: 10
 thumbnail: predictions.webp
 thumbnail_alt: ''
-date: 2026-06-23T10:15:42+02:00
+date: 2026-06-23 10:15:42+02:00
 old_url: /2026/06/23/the-elon-musks-of-the.html
 tags:
-  - Portfolio
-  - Research
+- Portfolio
+- Research
+featured_publications:
+- 2026-predictions
+- 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
+- 2024-vokabular-der-virtualitat
+- 2026-staying-with-the-planet
 ---
 
 So..., how about reclaiming the format of predictions? As critical thinkers? Can it work?

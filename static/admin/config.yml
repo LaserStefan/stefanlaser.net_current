@@ -45,7 +45,9 @@ collections:
   - name: notes
     label: Notes
     label_singular: Note
-    description: Short posts without a title, like on Micro.blog.
+    description: >-
+      Short posts without a title, like on Micro.blog. Text for LinkedIn, ready to copy:
+      /admin/share/
     folder: content/notes
     path: "{{year}}/{{month}}/{{day}}/{{hour}}{{minute}}"
     create: true
@@ -73,7 +75,7 @@ collections:
         fields:
           - { label: Bluesky, name: bluesky, widget: boolean, default: true }
           - { label: Mastodon, name: mastodon, widget: boolean, default: true }
-          - { label: LinkedIn, name: linkedin, widget: boolean, default: true }
+          - { label: "LinkedIn (automatic, only with a LinkedIn token)", name: linkedin, widget: boolean, default: false, hint: "Without a token: copy the text from stefanlaser.net/admin/share/ instead." }
           - label: Short text for social media
             name: text
             widget: text
@@ -130,6 +132,7 @@ collections:
     description: >-
       Long-form posts with a title. Shown in the Blog row on the homepage and on /posts/,
       and also in the Notes stream. Research projects go into Projects instead.
+      Text for LinkedIn, ready to copy: /admin/share/
     folder: content/posts
     path: "{{year}}/{{slug}}"
     create: true
@@ -171,6 +174,17 @@ collections:
       - { label: Theme label, name: phase, widget: string, required: false, hint: "Small label above the title in the overview, e.g. “current”, “waste” or “data centres and semiconductors”." }
       - { label: Years, name: years, widget: string, required: false, hint: "e.g. 2022–today" }
       - { label: Position, name: weight, widget: number, value_type: int, default: 100, hint: "Lower numbers appear higher in the overview (10, 20, 30 … leaves room in between)." }
+      - label: Publications (up to 5)
+        name: featured_publications
+        widget: relation
+        collection: publications
+        value_field: "{{slug}}"
+        search_fields: [title, year, citation]
+        display_fields: ["{{year}} · {{title}}"]
+        multiple: true
+        max: 5
+        required: false
+        hint: Type a word from the title to search. Shown next to the project and on its page, in this order.
       - { label: Image, name: thumbnail, widget: image, required: false, hint: Shown in the overview frame. If empty, the first image in the text is used. }
       - { label: Image description (alt text), name: thumbnail_alt, widget: string, required: false }
       - { label: Text, name: body, widget: markdown }
@@ -182,46 +196,35 @@ collections:
     label: Publications
     label_singular: Publication
     description: >-
-      The list itself comes from ORCID. Add an entry here to put a publication next to a project:
-      give its DOI, or a few words of its ORCID title under "ORCID match". Title, year and journal
-      are then taken from ORCID, never typed here. Fill in a title only for things that are not in ORCID.
+      Filled automatically from the publication list in your CV (Pages → CV) and from ORCID.
+      To change a publication, edit it in the CV; this list follows on the next build.
+      Add an entry here only for something that is in neither.
     folder: content/publications/items
     path: "{{slug}}"
-    slug: "{{fields.orcid_match}}{{fields.doi}}{{title}}-{{uuid_short}}"
-    identifier_field: link
     create: true
     format: yaml-frontmatter
     extension: md
-    summary: "{{title}}{{orcid_match}} {{doi}}"
+    summary: "{{year}} · {{title}} ({{source}})"
     sortable_fields:
-      fields: [date]
-      default: { field: date, direction: descending }
+      fields: [sort, year, title]
+      default: { field: sort, direction: ascending }
     view_filters:
-      - { label: Shown next to a project, field: featured, pattern: true }
+      - { label: From the CV, field: source, pattern: "^cv$" }
+      - { label: Only in ORCID, field: source, pattern: "^orcid$" }
+      - { label: Added by hand, field: source, pattern: "^manual$" }
     fields:
-      - { label: DOI, name: doi, widget: string, required: false, hint: "Only the DOI, e.g. 10.1080/17530350.2026.2654530. Best way to match the ORCID entry." }
-      - { label: ORCID match, name: orcid_match, widget: string, required: false, hint: "For items without DOI: a few words from the title exactly as in ORCID, e.g. “Hightech am Ende”." }
-      - label: Projects
-        name: projects
-        widget: relation
-        collection: projects
-        value_field: "{{slug}}"
-        search_fields: [title]
-        display_fields: [title]
-        multiple: true
-        required: false
-      - { label: Show next to the project in the overview, name: featured, widget: boolean, default: true }
-      - { label: Link, name: link, widget: string, required: false, hint: Optional. Used when ORCID has no link. }
-      - { label: Date (for sorting), name: date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, required: false }
-      - { label: Title (only if not in ORCID), name: title, widget: string, required: false }
-      - { label: Authors (only if not in ORCID), name: authors, widget: string, required: false }
-      - { label: Year (only if not in ORCID), name: year, widget: string, required: false }
-      - label: Type (only if not in ORCID)
+      - { label: Title, name: title, widget: string }
+      - { label: Year, name: year, widget: string, required: false }
+      - label: Type
         name: pub_type
         widget: select
         required: false
-        options: [Journal article, Book, Edited collection, Book chapter, Special issue, Special issue introduction, Report, Working paper, Zine, Other]
-      - { label: Journal / publisher (only if not in ORCID), name: venue, widget: string, required: false }
+        options: [Monograph, Special issue, Edited volume, Journal article, Article / chapter, Review, Interview, Report / working paper, Other]
+      - { label: Full citation, name: citation, widget: text, required: false, hint: "Shown on the publications page exactly as written." }
+      - { label: Link, name: link, widget: string, required: false }
+      - { label: DOI, name: doi, widget: string, required: false }
+      - { label: Source, name: source, widget: hidden, default: manual }
+      - { label: Order, name: sort, widget: hidden, default: 5000 }
 
   - name: pages
     label: Pages
@@ -232,14 +235,21 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - *old_url
-          - { label: Text, name: body, widget: markdown }
+          - label: Text
+            name: body
+            widget: markdown
+            modes: [raw, rich_text]
+            hint: >-
+              Opens as plain Markdown so pasted text keeps its formatting. The publication list
+              (under "## List of Publications", one "- " line per item, grouped by "###" headings)
+              also feeds the Publications page.
       - name: socials
         label: Socials
         file: content/socials.md
         fields:
           - { label: Title, name: title, widget: string }
           - *old_url
-          - { label: Text, name: body, widget: markdown }
+          - { label: Text, name: body, widget: markdown, modes: [raw, rich_text] }
       - name: projects_intro
         label: Projects overview (intro text)
         file: content/projects/_index.md
@@ -359,6 +369,7 @@ collections:
               - { label: Accent background (dark mode), name: accent_soft_dark, widget: color }
               - { label: Page background, name: paper, widget: color }
               - { label: Page background (dark mode), name: paper_dark, widget: color }
+              - { label: Tab icon, name: favicon, widget: image, required: false, hint: "Small icon in the browser tab. Empty = the homepage photo. A simple, high-contrast picture works best." }
               - { label: Serif headings, name: serif_headings, widget: boolean, default: true }
               - { label: Dither images, name: dither_images, widget: boolean, default: true, hint: "Click on an image shows it in colour. Off = normal WebP images." }
               - label: Dither style

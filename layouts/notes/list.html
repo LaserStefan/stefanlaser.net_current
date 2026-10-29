@@ -28,6 +28,8 @@ document.querySelector(".graph-box").addEventListener("toggle", function (e) {
   s.src = e.target.querySelector("[data-script]").dataset.script;
   document.body.appendChild(s);
 });
+/* open by default on wide screens, closed on phones */
+if (window.matchMedia("(min-width: 900px)").matches) document.querySelector(".graph-box").open = true;
 </script>
 {{- $paginator := .Paginate (where site.RegularPages "Section" "in" (slice "notes" "posts")) }}
 <ol class="note-stream">

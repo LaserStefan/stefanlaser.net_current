@@ -1,0 +1,6 @@
+{{- /* The publications picked for a project in the CMS (featured_publications), max 5. */ -}}
+{{- $out := slice -}}
+{{- range first 5 (.Params.featured_publications | default slice) -}}
+  {{- with site.GetPage (printf "/publications/items/%s" .) }}{{ $out = $out | append . }}{{ else }}{{ warnf "Project %s: publication %q not found" $.File.Path . }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

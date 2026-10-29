@@ -8,13 +8,13 @@
   </div>
 </header>
 {{- $all := partialCached "publications-all.html" "all" }}
-{{- $years := slice }}{{ range $all }}{{ $years = $years | append (.year | default "") }}{{ end }}
-{{- range (uniq $years) }}
-{{- $y := . }}
+{{- $types := slice }}{{ range $all }}{{ $types = $types | append (.Params.pub_type | default "Other") }}{{ end }}
+{{- range uniq $types }}
+{{- $t := . }}
 <section class="pub-year">
-  <h2 class="year-mark">{{ $y | default "Undated" }}</h2>
+  <h2 class="year-mark">{{ $t }}</h2>
   <ul class="pub-list">
-    {{- range where $all "year" $y }}{{ partial "pub-item.html" . }}{{ end }}
+    {{- range $all }}{{ if eq (.Params.pub_type | default "Other") $t }}{{ partial "pub-item.html" . }}{{ end }}{{ end }}
   </ul>
 </section>
 {{- end }}

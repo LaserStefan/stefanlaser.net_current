@@ -1,7 +1,13 @@
-{{- /* One publication (dict from publications-all.html) */ -}}
+{{- /* One publication page. Shows the citation exactly as in the CV when there is one. */ -}}
+{{- $p := . -}}
+{{- $href := $p.Params.link | default (cond (ne ($p.Params.doi | default "") "") (printf "https://doi.org/%s" $p.Params.doi) "") -}}
 <li class="pub">
-  <span class="pub-meta">{{ .year }}{{ if and .year .type }} · {{ end }}{{ .type }}</span>
-  <span class="pub-title">{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</span>
-  {{ with .authors }}<span class="pub-authors">{{ . }}</span>{{ end }}
-  {{ with .venue }}<span class="pub-venue">{{ . | markdownify }}</span>{{ end }}
+  {{- with $p.Params.citation }}
+  {{- $c := . | markdownify }}
+  <span class="pub-citation">{{ $c }}{{ if and $href (not (strings.Contains . "http")) }} <a class="mono-link" href="{{ $href }}" target="_blank" rel="noopener">link</a>{{ end }}{{ if and $p.Params.doi (not (strings.Contains (lower .) (lower $p.Params.doi))) }} <a class="mono-link" href="https://doi.org/{{ $p.Params.doi }}" target="_blank" rel="noopener">doi</a>{{ end }}</span>
+  {{- else }}
+  <span class="pub-meta">{{ $p.Params.year }}{{ if and $p.Params.year $p.Params.pub_type }} · {{ end }}{{ lower ($p.Params.pub_type | default "") }}</span>
+  <span class="pub-title">{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ $p.Title }}</a>{{ else }}{{ $p.Title }}{{ end }}</span>
+  {{ with $p.Params.venue }}<span class="pub-venue">{{ . }}</span>{{ end }}
+  {{- end }}
 </li>

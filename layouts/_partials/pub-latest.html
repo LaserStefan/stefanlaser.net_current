@@ -1,0 +1,10 @@
+{{- /* Newest published items (no "in review"), for the homepage. Param: count */ -}}
+{{- $list := slice -}}
+{{- range partialCached "publications-all.html" "all" -}}
+  {{- if and .Params.year (not (in (slice "in review" "accepted") .Params.status)) -}}
+    {{- $list = $list | append (dict "y" (int .Params.year) "s" (int (.Params.sort | default 0)) "p" .) -}}
+  {{- end -}}
+{{- end -}}
+{{- $list = sort (sort $list "s" "asc") "y" "desc" -}}
+{{- $out := slice }}{{ range first .count $list }}{{ $out = $out | append .p }}{{ end -}}
+{{- return $out -}}

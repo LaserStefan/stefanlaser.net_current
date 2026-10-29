@@ -8,11 +8,15 @@ years: ''
 weight: 30
 thumbnail: ''
 thumbnail_alt: ''
-date: 2026-06-02T09:27:08+02:00
+date: 2026-06-02 09:27:08+02:00
 old_url: /2026/06/02/happy-to-share-that-my.html
 tags:
-  - Portfolio
-  - Research
+- Portfolio
+- Research
+featured_publications:
+- 2026-encountering-the-semiconductor-industry-fairs-and-value-chai
+- 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
+- nd-mapping-vietnams-semiconductor-leapfrogging-desires-or-the-c
 ---
 
 I draw on ethnographic fieldwork at industry fairs in Taipei and Hanoi to make sense of a global frenzy. Follow me on a trip. 

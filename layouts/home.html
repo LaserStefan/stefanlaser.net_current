@@ -59,7 +59,7 @@
     {{- end }}
 
     {{- $pubs := partialCached "publications-all.html" "all" }}
-    {{- with first ($s.home.publications_count | default 3) $pubs }}
+    {{- with partial "pub-latest.html" (dict "count" ($s.home.publications_count | default 3)) }}
     <hr class="rule">
     <section class="home-row">
       <div class="row-head">
@@ -67,7 +67,7 @@
         <a class="mono-link" href="{{ "publications/" | relURL }}">all {{ len $pubs }}</a>
       </div>
       <ul class="pub-list pub-list-home">
-        {{- range . }}{{ partial "pub-item.html" . }}{{ end }}
+        {{- range . }}{{ partial "pub-short.html" . }}{{ end }}
       </ul>
     </section>
     {{- end }}

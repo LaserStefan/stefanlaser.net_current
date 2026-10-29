@@ -42,7 +42,7 @@ home:
   publications_count: 3
 publications:
   orcid: 0000-0002-6782-3496
-  intro: From my ORCID record.
+  intro: From my CV and ORCID record.
 stream:
   enabled: true
   source: mastodon

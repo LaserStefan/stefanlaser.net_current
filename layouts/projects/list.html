@@ -11,7 +11,7 @@
   {{- $img := .Params.thumbnail }}
   {{- $imgAlt := .Params.thumbnail_alt | default "" }}
   {{- if not $img }}{{ with findRESubmatch `!\[([^\]]*)\]\((/uploads/[^)\s]+)\)` .RawContent 1 }}{{ $img = index (index . 0) 2 }}{{ $imgAlt = index (index . 0) 1 }}{{ end }}{{ end }}
-  {{- $featured := partial "project-pubs.html" (dict "page" . "featured" true) }}
+  {{- $featured := partial "project-featured.html" . }}
   <article class="theme">
     <div class="theme-main">
       <p class="theme-label">{{ with .Params.phase }}<span>{{ . }}</span>{{ end }}{{ with .Params.years }}<span>{{ . }}</span>{{ end }}</p>
@@ -30,7 +30,8 @@
       <p class="side-label">Publications</p>
       <ul class="side-pubs">
         {{- range . }}
-        <li><span class="side-year">{{ .year }}</span>{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}{{ with .venue }}<em>{{ . }}</em>{{ end }}</li>
+        {{- $href := .Params.link | default (cond (ne (.Params.doi | default "") "") (printf "https://doi.org/%s" .Params.doi) "") }}
+        <li><span class="side-year">{{ .Params.year | default .Params.status }}</span>{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}{{ with .Params.pub_type }}<em>{{ lower . }}</em>{{ end }}</li>
         {{- end }}
       </ul>
       {{- end }}

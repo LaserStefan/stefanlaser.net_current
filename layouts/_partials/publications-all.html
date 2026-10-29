@@ -1,16 +1,3 @@
-{{- /* Every publication: ORCID works, plus CMS entries that ORCID doesn't have.
-     ORCID metadata always wins. Returns slice of dict, newest first. Call with partialCached. */ -}}
-{{- $list := slice -}}
-{{- $seen := dict -}}
-{{- range where (where site.Pages "Section" "publications") "Kind" "page" -}}
-  {{- with partial "pub-resolve.html" . -}}
-    {{- $list = $list | append . -}}
-    {{- with .doi }}{{ $seen = merge $seen (dict (lower .) true) }}{{ end -}}
-    {{- $seen = merge $seen (dict (lower .title | replaceRE `[^a-z0-9]` "") true) -}}
-  {{- end -}}
-{{- end -}}
-{{- range partialCached "orcid.html" "orcid" -}}
-  {{- if or (and .doi (index $seen (lower .doi))) (index $seen (lower .title | replaceRE `[^a-z0-9]` "")) }}{{ continue }}{{ end -}}
-  {{- $list = $list | append . -}}
-{{- end -}}
-{{- return sort $list "year" "desc" -}}
+{{- /* All publication pages (from the CV, from ORCID, or added by hand), in CV order. */ -}}
+{{- $all := where (where site.Pages "Section" "publications") "Kind" "page" -}}
+{{- return sort $all "Params.sort" "asc" -}}

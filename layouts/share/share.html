@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Copy for LinkedIn · {{ site.Title }}</title>
+<style>
+  :root { --ink:#1f2421; --paper:#f7f6f2; --accent:#5e8b72; --line:#d9d8d2; --mute:#6b6f6c; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#e4e4e2; --paper:#1b1c1e; --accent:#8fbfa3; --line:#3a3b3e; --mute:#9a9c9e; } }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 system-ui, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font: 700 1.5rem Georgia, serif; margin: 0 0 .3rem; }
+  .intro { color: var(--mute); margin: 0 0 1.5rem; font-size: .9rem; }
+  article { border-top: 1px solid var(--line); padding: 16px 0; }
+  .meta { font: .72rem ui-monospace, Menlo, monospace; color: var(--mute); display: flex; gap: 1em; flex-wrap: wrap; }
+  .meta a { color: var(--accent); }
+  h2 { font-size: 1rem; margin: .3rem 0 .5rem; }
+  textarea { width: 100%; box-sizing: border-box; min-height: 7.5em; font: .9rem/1.45 system-ui, sans-serif; color: var(--ink); background: transparent;
+    border: 1px solid var(--line); padding: 8px 10px; resize: vertical; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 6px; font: .75rem ui-monospace, Menlo, monospace; }
+  button, .btn { font: inherit; padding: 5px 10px; border: 1px solid var(--accent); background: none; color: var(--accent); cursor: pointer; text-decoration: none; }
+  button:hover, .btn:hover { background: var(--accent); color: var(--paper); }
+  .count { margin-left: auto; color: var(--mute); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Copy for LinkedIn</h1>
+  <p class="intro">Your latest notes and posts as plain text for LinkedIn. Edit the text if you like, then copy it, or open LinkedIn with the text already filled in. Not linked anywhere on the site.</p>
+  {{- range first 30 (where site.RegularPages "Section" "in" (slice "notes" "posts")).ByDate.Reverse }}
+  {{- $p := . }}
+  {{- /* Markdown -> plain text: links become "text URL", images and markup go */ -}}
+  {{- $t := .RawContent | replaceRE `<!--[\s\S]*?-->` "" | replaceRE `!\[[^\]]*\]\([^)]*\)` "" | replaceRE `<img[^>]*>` "" -}}
+  {{- $t = $t | replaceRE `\[([^\]]+)\]\((/[^)\s]*)\)` (printf "$1 %s$2" (strings.TrimSuffix "/" site.BaseURL)) -}}
+  {{- /* link text that is itself a (shortened) address: keep only the full URL */ -}}
+  {{- $t = $t | replaceRE `\[[^\]\s]*\.[a-z]{2,}[^\]\s]*\]\((https?://[^)\s]+)\)` "$1" | replaceRE `\[([^\]]+)\]\((https?://[^)\s]+)\)` "$1 $2" -}}
+  {{- $t = $t | replaceRE `(?m)^#{1,6}\s+` "" | replaceRE `(?m)^>\s?` "" | replaceRE `\*\*([^*]+)\*\*` "$1" | replaceRE `__([^_]+)__` "$1" | replaceRE "`([^`]+)`" "$1" | replaceRE `<[^>]+>` "" -}}
+  {{- $t = $t | replaceRE `\n{3,}` "\n\n" | htmlUnescape | strings.TrimSpace -}}
+  {{- $text := "" -}}
+  {{- if .Title -}}
+    {{- $teaser := .Params.summary | default (index (split $t "<!--more-->") 0) | default $t -}}
+    {{- $text = printf "%s\n\n%s\n\n%s" .Title ($teaser | truncate 1200 | htmlUnescape) .Permalink -}}
+  {{- else -}}
+    {{- $text = printf "%s\n\n%s" ($t | truncate 2800 | htmlUnescape) .Permalink -}}
+  {{- end -}}
+  <article>
+    <div class="meta">
+      <span>{{ .Date | time.Format "2 Jan 2006" }}</span>
+      <a href="{{ .RelPermalink }}">open on the site</a>
+      <a href="/admin/#/collections/{{ .Section }}/entries/{{ strings.TrimSuffix ".md" (strings.TrimPrefix (printf "%s/" .Section) .File.Path) }}">edit in the CMS</a>
+      {{- with .Params.syndication }}{{ with .linkedin }}<span>already on LinkedIn</span>{{ end }}{{ end }}
+    </div>
+    {{ with .Title }}<h2>{{ . }}</h2>{{ end }}
+    <textarea>{{ $text }}</textarea>
+    <div class="row">
+      <button type="button" data-copy>copy</button>
+      <a class="btn" data-open href="#" target="_blank" rel="noopener">open LinkedIn with this text</a>
+      <span class="count"></span>
+    </div>
+  </article>
+  {{- end }}
+</main>
+<script>
+document.querySelectorAll("article").forEach(function (a) {
+  var ta = a.querySelector("textarea"), count = a.querySelector(".count"), open = a.querySelector("[data-open]");
+  function update() {
+    count.textContent = ta.value.length + " / 3000";
+    open.href = "https://www.linkedin.com/feed/?shareActive=true&text=" + encodeURIComponent(ta.value);
+  }
+  ta.addEventListener("input", update); update();
+  a.querySelector("[data-copy]").addEventListener("click", function (e) {
+    var b = e.target;
+    (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject())
+      .catch(function () { ta.select(); document.execCommand("copy"); })
+      .finally(function () { b.textContent = "copied"; setTimeout(function () { b.textContent = "copy"; }, 1500); });
+  });
+});
+</script>
+</body>
+</html>

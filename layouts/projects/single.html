@@ -1,7 +1,5 @@
 {{- define "main" }}
-{{- $all := partial "project-pubs.html" (dict "page" . "featured" false) }}
-{{- $featured := where $all "featured" true }}
-{{- $rest := where $all "featured" false }}
+{{- $featured := partial "project-featured.html" . }}
 <article class="post-single project-single">
   <header class="post-header">
     <p class="card-meta"><a href="{{ "projects/" | relURL }}">Projects</a>{{ with .Params.phase }} · {{ . }}{{ end }}{{ with .Params.years }} · {{ . }}{{ end }}</p>
@@ -14,7 +12,7 @@
 
   {{- with $featured }}
   <section class="featured-pubs">
-    <h2>Highlighted publications</h2>
+    <h2>Publications</h2>
     <ul class="pub-list">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
   </section>
   {{- end }}
@@ -25,11 +23,5 @@
 
   <div class="post-content md-content">{{ .Content }}</div>
 
-  {{- with $rest }}
-  <section class="more-pubs">
-    <h2>More publications from this project</h2>
-    <ul class="pub-list">{{ range . }}{{ partial "pub-item.html" . }}{{ end }}</ul>
-  </section>
-  {{- end }}
 </article>
 {{- end }}

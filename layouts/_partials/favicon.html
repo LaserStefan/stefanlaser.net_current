@@ -1,0 +1,18 @@
+{{- /* Browser-tab icons: the photo from Site settings → Design → Tab icon, or the homepage photo.
+     Two-colour dither (ink + light accent). Written to the paths PaperMod links to.
+     Call with partialCached. */ -}}
+{{- $d := hugo.Data.site.design -}}
+{{- with $d.favicon | default hugo.Data.site.hero.image -}}
+{{- with resources.Get (strings.TrimPrefix "/" .) -}}
+  {{- $src := . -}}
+  {{- $colours := slice ($d.dither_ink | default "#1f2421") ($d.accent_soft | default "#eef4f0") -}}
+  {{- $filters := slice (images.Gamma 1.8) (images.Contrast 20) (images.Dither (dict "colors" $colours "method" "Atkinson")) -}}
+  {{- /* size of the file, size the dots are drawn at */ -}}
+  {{- range slice (slice 16 16 "favicon-16x16.png") (slice 32 32 "favicon-32x32.png") (slice 48 48 "favicon.ico") (slice 180 64 "apple-touch-icon.png") (slice 192 64 "android-chrome-192x192.png") -}}
+    {{- $size := index . 0 }}{{ $grid := index . 1 -}}
+    {{- $img := ($src.Fill (printf "%dx%d Center png" $grid $grid)).Filter $filters -}}
+    {{- if gt $size $grid }}{{ $img = $img.Resize (printf "%dx%d png NearestNeighbor" $size $size) }}{{ end -}}
+    {{- $_ := ($img | resources.Copy (index . 2)).RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+{{- end -}}

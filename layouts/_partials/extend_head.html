@@ -1,4 +1,5 @@
 {{- $d := hugo.Data.site.design -}}
+{{- partialCached "favicon.html" . "favicon" -}}
 <style>
 :root {
   --accent: {{ $d.accent | default "#5e8b72" | safeCSS }};

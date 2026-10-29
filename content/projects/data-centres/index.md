@@ -8,10 +8,16 @@ years: ''
 weight: 20
 thumbnail: 20240131_123342.webp
 thumbnail_alt: ''
-date: 2022-01-20T12:55:00+02:00
+date: 2022-01-20 12:55:00+02:00
 old_url: /2022/01/20/current-project.html
 tags:
-  - Portfolio
+- Portfolio
+featured_publications:
+- 2026-across-the-layers-of-planetary-matter-data-infrastructures-a
+- 2026-across-the-layers-how-data-infrastructures-link-knowledge-pr
+- 2023-towards-artful-sustainable-integration-of-it-infrastructures
+- 2023-the-environmental-footprint-of-social-media-hosting-tinkerin
+- 2026-staying-with-the-planet
 ---
 
 I've put a focus on dynamics in the semiconductor industry, expanding and making trouble in Vietnam and Taiwan. 
