@@ -1,14 +1,18 @@
 ---
-title: "Semiconductor research in Taiwan and Vietnam"
-date: 2026-06-02T09:27:08+02:00
-summary: "Happy to share that my article is live: enjoy some #semiconductor industry dynamics in #Vietnam and #Taiwan."
-project_website: ""
-project_website_label: ""
-phase: "Data centres and semiconductors"
-years: ""
+title: Semiconductor research in Taiwan and Vietnam
+summary: 'I studied #semiconductor industry dynamics in #Vietnam and #Taiwan, based on multiple project setups.'
+project_website: https://www.ioer.de/en/projects/silicon-urbanism
+project_website_label: ''
+phase: Data centres and semiconductors
+years: ''
 weight: 30
-old_url: "/2026/06/02/happy-to-share-that-my.html"
-tags: ["Portfolio", "Research"]
+thumbnail: ''
+thumbnail_alt: ''
+date: 2026-06-02T09:27:08+02:00
+old_url: /2026/06/02/happy-to-share-that-my.html
+tags:
+  - Portfolio
+  - Research
 ---
 
 I draw on ethnographic fieldwork at industry fairs in Taipei and Hanoi to make sense of a global frenzy. Follow me on a trip. 
