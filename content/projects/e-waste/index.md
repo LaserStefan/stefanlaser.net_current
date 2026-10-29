@@ -1,23 +1,38 @@
 ---
 title: E-Waste Research
-date: 2021-11-20 12:58:00+02:00
 summary: 'Global and interdisciplinary research on e-waste: ethnographic studies in Germany, India, and across social media platforms.'
-project_website: ''
+project_website: https://hightech-am-ende.de/en/
 project_website_label: ''
 phase: Waste
 years: ''
 weight: 50
+featured_publications:
+  - pub: 2020-hightech-am-ende
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2020-sorting-shredding-and-smelting-scrap-the-production-of-value
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2020-thinking-like-apples-recycling-robots-towards-the-activation
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2016-why-is-it-so-hard-to-engage-with-practices-of-the-informal-s
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2016-a-phone-worth-keeping-for-the-next-6-billion-exploring-the-c
+    title: ''
+    link: ''
+    note: ''
 thumbnail: /uploads/2023/hightech-am-ende-en.png
 thumbnail_alt: ''
+date: 2021-11-20 12:58:00+02:00
 old_url: /2021/11/20/ewaste-dissertation-research.html
 tags:
-- Portfolio
-featured_publications:
-- pub: 2020-hightech-am-ende
-- pub: 2020-sorting-shredding-and-smelting-scrap-the-production-of-value
-- pub: 2020-thinking-like-apples-recycling-robots-towards-the-activation
-- pub: 2016-why-is-it-so-hard-to-engage-with-practices-of-the-informal-s
-- pub: 2016-a-phone-worth-keeping-for-the-next-6-billion-exploring-the-c
+  - Portfolio
 ---
 
 Key for this research is a book I published: Hightech at the end.
