@@ -157,6 +157,44 @@ collections:
       - { name: card_title, widget: hidden, required: false }
       - { name: no_crosspost, widget: hidden, required: false }
 
+  - name: archive
+    label: Archive
+    label_singular: Archive entry
+    description: >-
+      Notes and blog posts from Micro.blog and the old blog. Addresses stay as they are.
+      Nothing here is cross-posted. New entries: Write.
+    folder: content/notes
+    path: "{{year}}/{{slug}}"
+    create: false
+    delete: false
+    format: yaml-frontmatter
+    extension: md
+    identifier_field: date
+    summary: "{{date | date('DD.MM.YYYY')}} · {{blog | ternary('Blog · ', '')}}{{research | ternary('Research · ', '')}}{{title}}{{body | truncate(70)}}"
+    sortable_fields:
+      fields: [date]
+      default: { field: date, direction: descending }
+    view_filters:
+      - { label: Blog posts, field: blog, pattern: true }
+      - { label: Research notes, field: research, pattern: true }
+    fields:
+      - { label: Blog post, name: blog, widget: boolean, default: false, required: false }
+      - { label: Research note, name: research, widget: boolean, default: false, required: false }
+      - { label: Title, name: title, widget: string, required: false }
+      - label: Text
+        name: body
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+      - { label: Date, name: date, widget: datetime, picker_utc: false, hint: "Leave as is." }
+      - { label: Teaser, name: summary, widget: text, required: false }
+      - { label: Address, name: url, widget: string, required: false, readonly: true, hint: "The old address. Fixed." }
+      # kept unchanged when saving; not shown
+      - { name: syndication, widget: hidden, required: false }
+      - { name: tags, widget: hidden, required: false }
+      - { name: no_crosspost, widget: hidden, required: false }
+      - { name: card_title, widget: hidden, required: false }
+
   - name: projects
     label: Projects
     label_singular: Project
