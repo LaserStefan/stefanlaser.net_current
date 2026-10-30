@@ -48,7 +48,7 @@ stream:
   mastodon_instance: social.tchncs.de
   mastodon_user: stefanlaser
   hide_replies: true
-  hide_reposts: false
+  hide_reposts: true
 design:
   accent: '#5e8b72'
   accent_soft: '#eef4f0'
