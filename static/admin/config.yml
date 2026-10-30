@@ -43,59 +43,91 @@ slug:
 # ---------------------------------------------------------------------------
 collections:
   - name: notes
-    label: Notes
-    label_singular: Note
+    label: Write
+    label_singular: Entry
     description: >-
-      Short posts without a title, like on Micro.blog. Text for LinkedIn, ready to copy:
-      /admin/share/
+      Notes, research notes and blog posts. Without a tick it is a note.
+      LinkedIn text to copy: /admin/share/
     folder: content/notes
-    path: "{{year}}/{{month}}/{{day}}/{{hour}}{{minute}}"
+    path: "{{year}}/{{month}}/{{day}}/{{slug}}"
+    slug: "{{hour}}{{minute}}-{{fields.title}}"
     create: true
     format: yaml-frontmatter
     extension: md
     identifier_field: date
-    summary: "{{date | date('YYYY-MM-DD')}} · {{body | truncate(80)}}"
+    summary: "{{date | date('DD.MM.YYYY')}} · {{blog | ternary('Blog · ', '')}}{{research | ternary('Research · ', '')}}{{title}}{{body | truncate(70)}}"
     sortable_fields:
       fields: [date]
       default: { field: date, direction: descending }
+    view_filters:
+      - { label: Blog posts, field: blog, pattern: true }
+      - { label: Research notes, field: research, pattern: true }
+      - { label: Drafts, field: draft, pattern: true }
     fields:
-      - { label: Text, name: body, widget: markdown, buttons: [bold, italic, link, quote, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: Blog post, name: blog, widget: boolean, default: false, required: false }
+      - { label: Research note, name: research, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+      - { label: Title, name: title, widget: string, required: false, hint: "Blog posts need one. Notes: leave empty." }
+      - label: Text
+        name: body
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+        hint: "Hashtags go straight into the text (#waste). They make up the graph on the notes page."
       - { label: Date, name: date, widget: datetime, picker_utc: false }
-      - { label: Tags, name: tags, widget: list, required: false }
-      - { label: Research note, name: research, widget: boolean, default: false, required: false, hint: "Also shown in the Blog row on the homepage and under Research notes. Notes tagged Research count too." }
-      - { label: Title in the Blog row, name: card_title, widget: string, required: false, hint: "Optional, only for research notes. Otherwise the first sentence is used." }
-      - { label: Draft, name: draft, widget: boolean, default: false, hint: Drafts are not published or cross-posted. }
-      - &crosspost
-        label: Cross-posting
+      - label: Social media
         name: crosspost
         widget: object
         collapsed: true
         required: false
+        summary: "{{fields.bluesky | ternary('Bluesky ', '')}}{{fields.mastodon | ternary('Mastodon ', '')}}{{fields.linkedin | ternary('LinkedIn', '')}}"
         hint: >-
-          Runs once, right after the post is live on the site. Old posts are never sent.
-          Untick a platform to skip it for this post.
+          Sent once, right after the entry is live. What gets posted: own thread if filled,
+          else short text if filled, else the text itself.
         fields:
           - { label: Bluesky, name: bluesky, widget: boolean, default: true }
           - { label: Mastodon, name: mastodon, widget: boolean, default: true }
-          - { label: "LinkedIn (automatic, only with a LinkedIn token)", name: linkedin, widget: boolean, default: false, hint: "Without a token: copy the text from stefanlaser.net/admin/share/ instead." }
-          - label: Short text for social media
+          - { label: "LinkedIn (needs a token)", name: linkedin, widget: boolean, default: false, hint: "Without a token: copy from /admin/share/." }
+          - label: Long text as thread
+            name: auto_thread
+            widget: boolean
+            default: true
+            hint: >-
+              Over 300 characters (Bluesky) or 500 (Mastodon): split into posts numbered (1/3), (2/3) …
+              Each image goes with the part it stands in, max. 4 per post.
+              Off: one post, cut off, with link.
+          - label: Short text instead
             name: text
             widget: text
             required: false
             maxlength: 300
-            hint: >-
-              Optional. Replaces the automatic text (title + start of the post). Max 300
-              characters, the Bluesky limit. A link to the post is added automatically.
-          - label: Bluesky thread
+            hint: "If filled: one post with this text and a link. Max. 300 characters."
+          - label: Image for the short text
+            name: image
+            widget: image
+            required: false
+            hint: "Optional. Otherwise the first images of the entry."
+          - { label: Alt text, name: image_alt, widget: string, required: false }
+          - label: Own thread
             name: thread
             widget: list
             required: false
-            field: { label: Post, name: post, widget: text, maxlength: 300 }
-            hint: >-
-              Optional. Each entry becomes one post in a Bluesky reply chain (max 300 characters each).
-              If filled, it replaces the short text on Bluesky.
-          - { label: Use the thread on Mastodon too, name: thread_mastodon, widget: boolean, default: true }
-          - label: Where the link goes
+            collapsed: true
+            label_singular: Post
+            summary: "{{fields.text | truncate(60)}}"
+            hint: "If filled: posted instead of everything above. Max. 300 characters per post."
+            fields:
+              - { label: Text, name: text, widget: text, maxlength: 300 }
+              - label: Images
+                name: images
+                widget: list
+                required: false
+                max: 4
+                label_singular: Image
+                fields:
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt text, name: alt, widget: string, required: false }
+          - label: Link to the entry
             name: link_position
             widget: select
             default: end
@@ -103,57 +135,29 @@ collections:
               - { label: "In the last post", value: end }
               - { label: "In the first post", value: start }
               - { label: "No link", value: none }
-          - label: Image for social media
-            name: image
-            widget: image
-            required: false
-            hint: Optional. Otherwise the first images of the post are attached (up to 4).
-          - { label: Image description (alt text), name: image_alt, widget: string, required: false }
       - &syndication
-        label: Posted to (filled in automatically)
+        label: Posted to
         name: syndication
         widget: object
         collapsed: true
         required: false
-        hint: Links to the copies on social media. Written by the cross-posting job; leave as is.
+        hint: Filled in by the cross-posting job. Leave as is.
         fields:
           - { label: Bluesky, name: bluesky, widget: string, required: false }
           - { label: Mastodon, name: mastodon, widget: string, required: false }
           - { label: LinkedIn, name: linkedin, widget: string, required: false }
+      - { label: Teaser, name: summary, widget: text, required: false, hint: "Blog posts, optional: short text for cards. Otherwise the start of the text." }
       - &old_url
-        label: Old address
+        label: Address
         name: url
         widget: string
         required: false
         readonly: true
-        hint: Address from the Micro.blog days. Keeps old links working; don't change it.
-
-  - name: posts
-    label: Blog posts
-    label_singular: Blog post
-    description: >-
-      Long-form posts with a title. Shown in the Blog row on the homepage and on /posts/,
-      and also in the Notes stream. Research projects go into Projects instead.
-      Text for LinkedIn, ready to copy: /admin/share/
-    folder: content/posts
-    path: "{{year}}/{{slug}}"
-    create: true
-    format: yaml-frontmatter
-    extension: md
-    summary: "{{date | date('YYYY-MM-DD')}} · {{title}}"
-    sortable_fields:
-      fields: [date, title]
-      default: { field: date, direction: descending }
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Date, name: date, widget: datetime, picker_utc: false }
-      - { label: Summary, name: summary, widget: text, required: false, hint: "Optional teaser for cards and feeds. Otherwise the text up to <!--more--> or the first lines are used." }
-      - { label: Text, name: body, widget: markdown }
-      - { label: Tags, name: tags, widget: list, required: false }
-      - { label: Draft, name: draft, widget: boolean, default: false }
-      - *crosspost
-      - *syndication
-      - *old_url
+        hint: Fixed address from Micro.blog or the old blog. Don't change it.
+      # kept so older entries don't lose them when saved; not shown
+      - { name: tags, widget: hidden, required: false }
+      - { name: card_title, widget: hidden, required: false }
+      - { name: no_crosspost, widget: hidden, required: false }
 
   - name: projects
     label: Projects

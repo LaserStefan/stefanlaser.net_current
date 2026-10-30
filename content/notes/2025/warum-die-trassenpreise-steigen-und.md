@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Warum die Trassenpreise steigen, und was das mit Obsoleszenz im System der #Bahn zu tun hat. Oder: Buchungstechnisch modernisiert, strukturell blockiert"
 date: 2025-07-04T10:37:37+02:00
 url: "/2025/07/04/warum-die-trassenpreise-steigen-und.html"

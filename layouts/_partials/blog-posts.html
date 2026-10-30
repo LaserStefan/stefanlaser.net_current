@@ -1,0 +1,4 @@
+{{- /* All blog posts, newest first. Call with partialCached. */ -}}
+{{- $out := slice -}}
+{{- range where site.RegularPages "Section" "in" (slice "notes" "posts") }}{{ if partial "is-blog.html" . }}{{ $out = $out | append . }}{{ end }}{{ end -}}
+{{- return sort $out "Date" "desc" -}}

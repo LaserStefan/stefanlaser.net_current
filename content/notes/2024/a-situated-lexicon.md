@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "A situated lexicon of #virtuality: We have written a volume on an underappreciated term"
 date: 2024-10-09T16:30:00+02:00
 url: "/2024/10/09/a-situated-lexicon.html"

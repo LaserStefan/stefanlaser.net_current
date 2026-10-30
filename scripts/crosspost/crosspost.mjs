@@ -24,6 +24,7 @@ import {
   markdownToPlain, truncate, graphemes, withInlineUrls, mastodonLength,
   blueskyFacets, linkedinEscape,
 } from "./text.mjs";
+import { plainWithImages, splitThread, singlePost } from "./thread.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 // trim stray spaces/line breaks from pasted secrets
@@ -33,6 +34,9 @@ const DRY = env.DRY_RUN === "1" || env.DRY_RUN === "true";
 const MAX_AGE_DAYS = Number(env.MAX_AGE_DAYS || 3);
 const TZ = "Europe/Berlin";
 const SECTIONS = ["content/notes", "content/posts"];
+// Nothing dated before this moment is ever sent: everything older was already posted by
+// Micro.blog or by hand, and the old blog posts were moved between folders on this day.
+const CROSSPOST_SINCE = new Date("2026-10-30T10:00:00+01:00");
 
 const log = (...a) => console.log(...a);
 const warn = (...a) => console.log("::warning::" + a.join(" "));
@@ -83,10 +87,11 @@ async function loadCandidates() {
     if (!parsed) continue;
     const fm = parsed.doc.toJS() || {};
     const cp = fm.crosspost;
-    if (!cp || fm.draft) continue;
+    if (!cp || fm.draft || fm.no_crosspost) continue;
     const date = new Date(fm.date);
     if (Number.isNaN(date.getTime())) continue;
     if (date.getTime() > now) continue; // scheduled for later
+    if (date < CROSSPOST_SINCE) continue; // never touch old posts, not even with ONLY_FILE
     if (!env.ONLY_FILE && now - date.getTime() > MAX_AGE_DAYS * 864e5) continue; // never touch old posts
     const want = ["bluesky", "mastodon", "linkedin"].filter((p) => cp[p] && !(fm.syndication || {})[p]);
     if (!want.length) continue;
@@ -103,61 +108,69 @@ function excerpt(body, max = 400) {
   return truncate(markdownToPlain(head).text.replace(/\n+/g, " "), max);
 }
 
-/** Returns [{ text, links, withLink }] posts for a platform with a character limit. */
+/**
+ * Posts for one platform: [{ text, links, withLink, images: [{src, alt}] }].
+ * Order: own thread > short text > the text itself (as a numbered thread if it is long).
+ */
 function compose(post, { limit, platform }) {
   const { fm, cp } = post;
-  const linkPos = cp.link_position || "end";
-  const allowLink = linkPos !== "none";
-  const linkLen = platform === "mastodon" ? 25 : graphemes(post.url) + 2;
+  const linkAt = cp.link_position || "end";
+  const reserve = platform === "mastodon" ? 25 : graphemes(post.url) + 2;
+  const measureFor = (links) => (s) => platform === "mastodon"
+    ? mastodonLength(withInlineUrls(s, links, absolutize))
+    : graphemes(s);
+  const linksIn = (links, s) => links.filter((l) => s.includes(l.text));
 
-  // 1. explicit thread
-  const useThread = Array.isArray(cp.thread) && cp.thread.filter(Boolean).length &&
-    (platform === "bluesky" || (platform === "mastodon" && cp.thread_mastodon !== false));
-  if (useThread) {
-    const parts = cp.thread.filter((t) => t && t.trim()).map((t) => markdownToPlain(t));
-    const idx = linkPos === "start" ? 0 : parts.length - 1;
-    return parts.map((p, i) => ({
-      text: truncate(p.text, limit - (allowLink && i === idx ? linkLen : 0)),
-      links: p.links,
-      withLink: allowLink && i === idx,
-    }));
+  // 1. own thread: each entry with its own images
+  const own = (Array.isArray(cp.thread) ? cp.thread : [])
+    .map((t) => (typeof t === "string" ? { text: t } : t || {}))
+    .filter((t) => (t.text && t.text.trim()) || (t.images && t.images.length));
+  const ownOn = own.length && (platform === "bluesky" || cp.thread_mastodon !== false);
+  if (ownOn) {
+    const idx = linkAt === "start" ? 0 : own.length - 1;
+    return own.map((t, i) => {
+      const p = markdownToPlain(t.text || "");
+      const withLink = linkAt !== "none" && i === idx;
+      return {
+        text: truncate(p.text, limit - (withLink ? reserve : 0)),
+        links: p.links, withLink,
+        images: (t.images || []).filter((x) => x && x.image).map((x) => ({ src: x.image, alt: x.alt || "" })),
+      };
+    });
   }
 
-  // 2. custom short text
+  // 2. short text: one post with link
   if (cp.text && cp.text.trim()) {
     const p = markdownToPlain(cp.text);
-    return [{ text: truncate(p.text, limit - (allowLink ? linkLen : 0)), links: p.links, withLink: allowLink }];
+    const withLink = linkAt !== "none";
+    const imgs = cp.image ? [{ src: cp.image, alt: cp.image_alt || "" }] : plainWithImages(post.parsed.body).images;
+    return [{ text: truncate(p.text, limit - (withLink ? reserve : 0)), links: p.links, withLink, images: imgs.slice(0, 4) }];
   }
 
-  // 3. automatic: titled post = title + teaser + link; note = the note itself
-  if (fm.title) {
-    const teaser = fm.summary ? markdownToPlain(fm.summary).text : excerpt(post.parsed.body);
-    const text = truncate(`${fm.title}\n\n${teaser}`, limit - (allowLink ? linkLen : 0));
-    return [{ text, links: [], withLink: allowLink }];
-  }
-  const p = markdownToPlain(post.parsed.body);
-  const measure = platform === "mastodon"
-    ? mastodonLength(withInlineUrls(p.text, p.links, absolutize))
-    : graphemes(p.text);
-  if (measure <= limit && linkPos !== "start") {
-    return [{ text: p.text, links: p.links, withLink: false }]; // fits completely, like Micro.blog
-  }
-  return [{ text: truncate(p.text, limit - (allowLink ? linkLen : 0)), links: p.links, withLink: allowLink }];
+  // 3. the text itself; long texts become a numbered thread unless switched off
+  const src = plainWithImages(post.parsed.body.split("<!--more-->").join(""));
+  const text = fm.title ? `${fm.title}\n\n${src.text}` : src.text;
+  const opts = { limit, measure: measureFor(src.links), reserve, linkAt };
+  const parts = cp.auto_thread === false
+    ? (fm.title
+      ? [{ text: truncate(`${fm.title}\n\n${fm.summary ? markdownToPlain(fm.summary).text : excerpt(post.parsed.body)}`, limit - reserve), images: [0, 1, 2, 3].filter((i) => i < src.images.length), withLink: linkAt !== "none" }]
+      : singlePost(text, opts))
+    : splitThread(text, opts);
+  if (cp.image && parts.length && !parts[0].images.length) parts[0].extra = [{ src: cp.image, alt: cp.image_alt || "" }];
+  return parts.map((part) => {
+    const imgs = part.extra || part.images.map((i) => src.images[i]);
+    if (imgs.length > 4) warn(`${path.relative(ROOT, post.file)}: more than 4 images in one part of the thread; only the first 4 are attached.`);
+    return { text: part.text, links: linksIn(src.links, part.text), withLink: part.withLink, images: imgs.slice(0, 4) };
+  });
 }
 
 // ---------------------------------------------------------------------------
 // Images
 // ---------------------------------------------------------------------------
-async function collectImages(post) {
-  const list = [];
-  const { cp } = post;
-  if (cp.image) list.push({ src: cp.image, alt: cp.image_alt || "" });
-  else {
-    for (const m of post.parsed.body.matchAll(/!\[([^\]]*)\]\(([^)\s]+)\)/g)) list.push({ src: m[2], alt: m[1] });
-  }
+async function resolveImages(post, list) {
   const found = [];
-  for (const img of list.slice(0, 4)) {
-    if (/^https?:/.test(img.src)) continue;
+  for (const img of list) {
+    if (!img || !img.src || /^https?:/.test(img.src)) continue;
     const rel = img.src.replace(/^\//, "");
     const candidates = [path.join(ROOT, "assets", rel), path.join(ROOT, "static", rel), path.join(path.dirname(post.file), rel)];
     for (const c of candidates) {
@@ -209,8 +222,8 @@ async function waitUntilLive(url) {
 async function postBluesky(post) {
   const service = (env.BLUESKY_SERVICE || "https://bsky.social").replace(/\/$/, "");
   const parts = compose(post, { limit: 300, platform: "bluesky" });
-  const images = await collectImages(post);
-  if (DRY) return dryPrint("Bluesky", parts.map((p) => p.text + (p.withLink ? `\n[link card: ${post.url}]` : "")), images);
+  for (const p of parts) p.files = await resolveImages(post, p.images);
+  if (DRY) return dryPrint("Bluesky", parts.map((p) => p.text + (p.withLink ? `\n[link card: ${post.url}]` : "") + (p.files.length ? `\n[${p.files.length} image(s)]` : "")));
 
   const { data: session } = await http(`${service}/xrpc/com.atproto.server.createSession`, {
     method: "POST", headers: { "Content-Type": "application/json" },
@@ -218,20 +231,24 @@ async function postBluesky(post) {
   });
   const auth = { Authorization: `Bearer ${session.accessJwt}` };
 
-  const blobs = [];
-  for (const img of images) {
-    const prepared = await prepareImage(img.file, 950_000);
-    const { data } = await http(`${service}/xrpc/com.atproto.repo.uploadBlob`, {
-      method: "POST", headers: { ...auth, "Content-Type": "image/jpeg" }, body: prepared.bytes,
-    });
-    blobs.push({ image: data.blob, alt: img.alt || "", aspectRatio: { width: prepared.width, height: prepared.height } });
-  }
+  const upload = async (files) => {
+    const blobs = [];
+    for (const img of files) {
+      const prepared = await prepareImage(img.file, 950_000);
+      const { data } = await http(`${service}/xrpc/com.atproto.repo.uploadBlob`, {
+        method: "POST", headers: { ...auth, "Content-Type": "image/jpeg" }, body: prepared.bytes,
+      });
+      blobs.push({ image: data.blob, alt: img.alt || "", aspectRatio: { width: prepared.width, height: prepared.height } });
+    }
+    return blobs;
+  };
 
   let root = null, parent = null, firstUri = null;
   for (const [i, part] of parts.entries()) {
     let text = part.text;
     let embed;
-    if (i === 0 && blobs.length) embed = { $type: "app.bsky.embed.images", images: blobs };
+    const blobs = await upload(part.files);
+    if (blobs.length) embed = { $type: "app.bsky.embed.images", images: blobs };
     if (part.withLink) {
       if (embed) text = `${text}\n\n${post.url}`;
       else embed = {
@@ -266,33 +283,37 @@ async function postBluesky(post) {
 async function postMastodon(post) {
   const instance = "https://" + (env.MASTODON_INSTANCE || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
   const parts = compose(post, { limit: 500, platform: "mastodon" });
-  const images = await collectImages(post);
+  for (const p of parts) p.files = await resolveImages(post, p.images);
   const render = (p) => {
     let t = withInlineUrls(p.text, p.links, absolutize);
     if (p.withLink) t = `${t}\n\n${post.url}`;
     return t;
   };
-  if (DRY) return dryPrint("Mastodon", parts.map(render), images);
+  if (DRY) return dryPrint("Mastodon", parts.map((p) => render(p) + (p.files.length ? `\n[${p.files.length} image(s)]` : "")));
 
   const auth = { Authorization: `Bearer ${env.MASTODON_TOKEN}` };
-  const mediaIds = [];
-  for (const img of images) {
-    const prepared = await prepareImage(img.file, 8_000_000);
-    const form = new FormData();
-    form.append("file", new Blob([prepared.bytes], { type: "image/jpeg" }), "image.jpg");
-    if (img.alt) form.append("description", img.alt.slice(0, 1500));
-    let { data } = await http(`${instance}/api/v2/media`, { method: "POST", headers: auth, body: form });
-    for (let i = 0; i < 10 && !data.url; i++) {
-      await new Promise((r) => setTimeout(r, 2000));
-      ({ data } = await http(`${instance}/api/v1/media/${data.id}`, { headers: auth }));
+  const upload = async (files) => {
+    const ids = [];
+    for (const img of files) {
+      const prepared = await prepareImage(img.file, 8_000_000);
+      const form = new FormData();
+      form.append("file", new Blob([prepared.bytes], { type: "image/jpeg" }), "image.jpg");
+      if (img.alt) form.append("description", img.alt.slice(0, 1500));
+      let { data } = await http(`${instance}/api/v2/media`, { method: "POST", headers: auth, body: form });
+      for (let i = 0; i < 10 && !data.url; i++) {
+        await new Promise((r) => setTimeout(r, 2000));
+        ({ data } = await http(`${instance}/api/v1/media/${data.id}`, { headers: auth }));
+      }
+      ids.push(data.id);
     }
-    mediaIds.push(data.id);
-  }
+    return ids;
+  };
 
   let parentId = null, firstUrl = null;
   for (const [i, part] of parts.entries()) {
     const body = { status: render(part), visibility: "public", language: post.fm.lang || guessLang(part.text) };
-    if (i === 0 && mediaIds.length) body.media_ids = mediaIds;
+    const mediaIds = await upload(part.files);
+    if (mediaIds.length) body.media_ids = mediaIds;
     if (parentId) body.in_reply_to_id = parentId;
     const key = crypto.createHash("sha256").update(`${post.file}|mastodon|${i}`).digest("hex");
     const { data } = await http(`${instance}/api/v1/statuses`, {
@@ -324,7 +345,7 @@ async function postLinkedin(post) {
   text = truncate(text, 2900);
   const commentary = linkedinEscape(text).replace(/\\#([\p{L}\p{N}_]+)/gu, "{hashtag|\\#|$1}");
   const title = fm.title || truncate(markdownToPlain(post.parsed.body).text.replace(/\n+/g, " "), 120);
-  if (DRY) return dryPrint("LinkedIn", [`${text}\n[link preview: ${post.url} · ${title}]`], []);
+  if (DRY) return dryPrint("LinkedIn", [`${text}\n[link preview: ${post.url} · ${title}]`]);
 
   const headers = {
     Authorization: `Bearer ${env.LINKEDIN_TOKEN}`,
@@ -357,8 +378,8 @@ function guessLang(text) {
   return de > en ? "de" : "en";
 }
 
-function dryPrint(platform, posts, images) {
-  log(`\n--- ${platform} (${posts.length} post${posts.length > 1 ? "s" : ""}${images.length ? `, ${images.length} image(s)` : ""}) ---`);
+function dryPrint(platform, posts) {
+  log(`\n--- ${platform} (${posts.length} post${posts.length > 1 ? "s" : ""}) ---`);
   posts.forEach((p, i) => log(`[${i + 1}] (${graphemes(p)} chars)\n${p}\n`));
   return `dry-run:${platform.toLowerCase()}`;
 }

@@ -24,7 +24,7 @@
       </div>
     </section>
 
-    {{- $blog := (where site.RegularPages "Section" "posts") | append (partialCached "research-notes.html" "all") }}
+    {{- $blog := (partialCached "blog-posts.html" "all") | append (partialCached "research-notes.html" "all") }}
     {{- with first ($s.home.blog_count | default 3) (sort $blog "Date" "desc") }}
     <hr class="rule">
     <section class="home-row">

@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Comparing Fediverse software for hosting: Ease of use, efficiency, waste"
 date: 2023-12-18T05:17:00+02:00
 url: "/2023/12/18/comparing-fediverse-software-for-hosting.html"

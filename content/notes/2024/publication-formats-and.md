@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Publication formats: Maybe you need do decide what side you're on, GenAI or Zine?"
 date: 2024-10-10T14:52:09+02:00
 url: "/2024/10/10/publication-formats-and.html"

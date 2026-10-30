@@ -1,4 +1,4 @@
-{{- /* All research notes (see is-research.html), newest first. Call with partialCached. */ -}}
+{{- /* All research notes (see is-research.html) that are not blog posts. Call with partialCached. */ -}}
 {{- $out := slice -}}
-{{- range where site.RegularPages "Section" "notes" }}{{ if partial "is-research.html" . }}{{ $out = $out | append . }}{{ end }}{{ end -}}
+{{- range where site.RegularPages "Section" "notes" }}{{ if and (partial "is-research.html" .) (not (partial "is-blog.html" .)) }}{{ $out = $out | append . }}{{ end }}{{ end -}}
 {{- return $out -}}

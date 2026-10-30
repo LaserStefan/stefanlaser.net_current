@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Patchy value chains"
 date: 2023-06-15T02:00:00+02:00
 url: "/2023/06/15/patchy-value-chains.html"

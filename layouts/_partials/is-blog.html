@@ -1,0 +1,2 @@
+{{- /* true for a blog post: ticked "Blog post" in the CMS (blog: true), or an old post in content/posts */ -}}
+{{- return (or .Params.blog (eq .Section "posts")) -}}

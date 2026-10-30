@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Ethnography"
 date: 2022-01-01T02:00:00+02:00
 url: "/2022/01/01/ethnography.html"

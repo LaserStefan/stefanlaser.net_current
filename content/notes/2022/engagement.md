@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Engagement"
 date: 2022-11-20T12:59:00+02:00
 url: "/2022/11/20/engagement.html"

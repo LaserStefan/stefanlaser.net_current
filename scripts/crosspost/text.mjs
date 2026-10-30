@@ -46,7 +46,8 @@ export function withInlineUrls(text, links, absolutize) {
   let out = text;
   for (const { text: t, url } of links) {
     const abs = absolutize(url);
-    if (t.includes(abs) || abs.includes(t.replace(/…$/, ""))) {
+    // link text that is itself the address (or a shortened form of it): show the address once
+    if (t.includes(abs) || (/[./]/.test(t) && abs.includes(t.replace(/…$/, "")))) {
       out = out.replace(t, abs);
       continue;
     }

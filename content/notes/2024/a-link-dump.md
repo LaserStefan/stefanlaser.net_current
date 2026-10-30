@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "A link dump featuring: Public decay"
 date: 2024-01-18T16:45:19+02:00
 url: "/2024/01/17/a-link-dump.html"

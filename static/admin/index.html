@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Stefan Laser · CMS</title>
+    <style>
+      /* Small additions to Sveltia's editor. They hook into the field attributes Sveltia sets
+         (data-key-path, data-field-type). If an update changes those, the CMS simply looks
+         like plain Sveltia again; nothing breaks. */
+      :root {
+        --sl-group: #f2f6f3;
+        --sl-group-line: #d3e1d8;
+        --sl-switch: #e7f0ea;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root { --sl-group: #1f2623; --sl-group-line: #334039; --sl-switch: #24302a; }
+      }
+
+      /* the three switches at the top, side by side */
+      :has(> .field[data-key-path="blog"]) { display: flex; flex-wrap: wrap; column-gap: 10px; }
+      :has(> .field[data-key-path="blog"]) > * { flex: 1 1 100%; min-width: 0; }
+      .field:is([data-key-path="blog"], [data-key-path="research"], [data-key-path="draft"]) {
+        flex: 1 1 28% !important;
+        background: var(--sl-switch);
+        border-radius: 6px;
+        padding: 6px 12px !important;
+        margin-bottom: 8px;
+      }
+
+      /* groups: a light tint so Social media and Posted to stand apart from the writing */
+      .field[data-field-type="object"],
+      .field[data-key-path="crosspost.thread"] {
+        background: var(--sl-group);
+        border: 1px solid var(--sl-group-line);
+        border-radius: 6px;
+        padding: 10px 14px !important;
+        margin: 14px 0;
+      }
+      .field[data-field-type="object"] .field[data-field-type="object"],
+      .field[data-field-type="object"] .field[data-key-path="crosspost.thread"] {
+        background: transparent;
+      }
+
+      /* the writing field: roomy, and it can be dragged larger at the bottom right corner */
+      .field[data-key-path="body"] [contenteditable="true"],
+      .field[data-key-path="body"] textarea {
+        min-height: 42vh;
+        resize: vertical;
+        overflow: auto;
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>

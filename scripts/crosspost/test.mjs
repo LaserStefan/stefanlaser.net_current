@@ -60,3 +60,47 @@ test("old notes are matched to their Mastodon copies by text and date", () => {
 test("short posts never match by words alone", () => {
   assert.equal(containment(tokens("a long note about many things"), tokens("nice")), 0);
 });
+
+import { splitThread, plainWithImages } from "./thread.mjs";
+
+test("short text stays one post without numbering", () => {
+  const parts = splitThread("Just a short note. #waste", { limit: 300 });
+  assert.equal(parts.length, 1);
+  assert.equal(parts[0].text, "Just a short note. #waste");
+  assert.equal(parts[0].withLink, false);
+});
+
+test("long text becomes a numbered thread within the limit, link in the last part", () => {
+  const sentence = "This sentence is about infrastructures and their many quiet failures in everyday life. ";
+  const text = sentence.repeat(12).trim();
+  const parts = splitThread(text, { limit: 300, reserve: 40 });
+  assert.ok(parts.length >= 4);
+  parts.forEach((p, i) => {
+    assert.ok(p.text.endsWith(`(${i + 1}/${parts.length})`), p.text);
+    assert.ok([...p.text].length <= 300 - (p.withLink ? 40 : 0), `${[...p.text].length}`);
+  });
+  assert.equal(parts.at(-1).withLink, true);
+  assert.equal(parts.filter((p) => p.withLink).length, 1);
+  // nothing lost
+  const joined = parts.map((p) => p.text.replace(/ \(\d+\/\d+\)$/, "")).join(" ");
+  assert.equal(joined.replace(/\s+/g, " "), text.replace(/\s+/g, " "));
+});
+
+test("images go with the part they stand in", () => {
+  const long = "Words about the first place and what happened there on that very long day. ".repeat(5);
+  const md = `${long}\n\n![first](/uploads/a.jpg)\n\n${long}\n\n![second](/uploads/b.jpg)`;
+  const { text, images } = plainWithImages(md);
+  assert.equal(images.length, 2);
+  const parts = splitThread(text, { limit: 300 });
+  const withA = parts.findIndex((p) => p.images.includes(0));
+  const withB = parts.findIndex((p) => p.images.includes(1));
+  assert.ok(withA >= 0 && withB > withA, JSON.stringify(parts.map((p) => p.images)));
+  assert.ok(parts.every((p) => !p.text.includes("⁣")));
+});
+
+test("one very long sentence is cut at word boundaries", () => {
+  const text = "word ".repeat(200).trim();
+  const parts = splitThread(text, { limit: 300 });
+  assert.ok(parts.length > 1);
+  assert.ok(parts.every((p) => [...p.text].length <= 300));
+});

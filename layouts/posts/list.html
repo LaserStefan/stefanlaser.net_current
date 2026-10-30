@@ -4,5 +4,5 @@
   {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
 {{ partial "notes-tabs.html" "blog" }}
-{{ partial "note-stream.html" (.Paginate .Pages.ByDate.Reverse) }}
+{{ partial "note-stream.html" (.Paginate (partialCached "blog-posts.html" "all")) }}
 {{- end }}

@@ -1,4 +1,6 @@
 ---
+blog: true
+no_crosspost: true
 title: "Social sciences, ecology and careful digital communication"
 date: 2023-06-13T02:00:00+02:00
 url: "/2023/06/13/social-sciences-ecology.html"

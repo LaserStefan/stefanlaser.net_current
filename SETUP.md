@@ -156,13 +156,18 @@ Cloudflare → your domain → *Security → Bots → Block AI bots* once the do
 - Publications from your ORCID record are fetched on every build, so a new entry in ORCID shows up by the next scheduled run.
 - The photos page collects every image used in notes automatically.
 - Posts dated in the future are published by the next run after their date.
-- Old posts are never cross-posted: only posts from the last 3 days with a cross-posting block are sent.
+- Old posts are never cross-posted: only entries from the last 3 days with a cross-posting block are sent,
+  and nothing dated before 30 Oct 2026, 10:00 (the day the old blog posts were moved), whatever else is set.
+  Entries with `no_crosspost: true` are never sent.
+- Long texts go out as a numbered thread, (1/3) (2/3) …, split at sentences and paragraphs:
+  300 characters per post on Bluesky, 500 on Mastodon. Each image goes with the part it stands in.
+  A short text or an own thread in the CMS replaces this.
 
 ## Files worth knowing
 
 | Where | What |
 |---|---|
-| `content/notes`, `content/posts` | Notes without and with a title (one stream on the site) |
+| `content/notes` | Everything you write: notes, research notes (`research: true`), blog posts (`blog: true`). `content/posts` only holds the intro of the blog page. |
 | `content/projects/<name>/index.md` | One folder per project |
 | `content/publications/items` | Publications added by hand (linked to projects); the rest comes from ORCID |
 | `data/site.yaml` | Menu, homepage text, micro stream, colours (edited in the CMS) |
