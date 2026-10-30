@@ -1,4 +1,5 @@
 ---
+research: true
 date: 2026-07-02T10:50:51+02:00
 url: "/2026/07/02/exploring-the-biggest-construction-site.html"
 syndication:

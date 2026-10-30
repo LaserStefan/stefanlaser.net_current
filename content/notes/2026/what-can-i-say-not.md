@@ -1,4 +1,5 @@
 ---
+research: true
 date: 2026-10-14T15:07:49+02:00
 url: "/2026/10/14/what-can-i-say-not.html"
 syndication:

@@ -1,4 +1,5 @@
 ---
+research: true
 date: 2026-09-10T11:35:04+02:00
 url: "/2026/09/10/were-doing-a-cozy-book.html"
 syndication:

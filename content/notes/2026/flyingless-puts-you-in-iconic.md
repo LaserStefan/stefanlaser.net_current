@@ -1,4 +1,5 @@
 ---
+research: true
 date: 2026-09-12T15:34:28+02:00
 url: "/2026/09/12/flyingless-puts-you-in-iconic.html"
 syndication:
