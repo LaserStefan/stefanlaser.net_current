@@ -4,7 +4,9 @@ on:
   push:
     branches: ["**"]          # main = live site, any other branch = preview address
   schedule:
-    - cron: "23 */3 * * *"    # refresh the micro stream every 3 hours (times are UTC)
+    # refresh the micro stream twice a day: 6:17 and 16:13 CET (cron times are UTC = CET - 1 h)
+    - cron: "17 5 * * *"
+    - cron: "13 15 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

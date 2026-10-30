@@ -152,8 +152,8 @@ Cloudflare → your domain → *Security → Bots → Block AI bots* once the do
 
 - Write in the CMS and press **Publish**. GitHub builds the site and uploads it (2–4 minutes),
   then sends the post to the ticked platforms and writes the links back into the post.
-- The micro stream (Bluesky or Mastodon, switch in *Site settings*) refreshes every 3 hours.
-- Publications from your ORCID record are fetched on every build, so a new entry in ORCID shows up within 3 hours.
+- The micro stream (Bluesky and Mastodon, see *Site settings*) refreshes twice a day, around 6:17 and 16:13 CET, and on every save in the CMS. To refresh it right away: Actions → Build, deploy and cross-post → Run workflow.
+- Publications from your ORCID record are fetched on every build, so a new entry in ORCID shows up by the next scheduled run.
 - The photos page collects every image used in notes automatically.
 - Posts dated in the future are published by the next run after their date.
 - Old posts are never cross-posted: only posts from the last 3 days with a cross-posting block are sent.
