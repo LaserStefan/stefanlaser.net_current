@@ -72,6 +72,26 @@ function permalink(file, fm, date) {
   return `/${y}/${mo}/${d}/${path.basename(file, ".md")}.html`;
 }
 
+/** Dates without a time zone (the CMS writes them that way) are Berlin time, as on the site. */
+export function parseDate(v) {
+  if (v instanceof Date) return v;
+  const s = String(v ?? "").trim();
+  if (!s) return new Date(NaN);
+  if (/(Z|[+-]\d\d:?\d\d)$/i.test(s) || !/\d{4}-\d\d-\d\d/.test(s)) return new Date(s);
+  const m = s.match(/^(\d{4})-(\d\d)-(\d\d)(?:[T ](\d\d):(\d\d)(?::(\d\d))?)?/);
+  if (!m) return new Date(s);
+  const wall = Date.UTC(+m[1], +m[2] - 1, +m[3], +(m[4] || 0), +(m[5] || 0), +(m[6] || 0));
+  const offset = (t) => {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: TZ, hourCycle: "h23",
+      year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" })
+      .formatToParts(new Date(t)).map((x) => [x.type, x.value]));
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - t;
+  };
+  let t = wall - offset(wall);
+  t = wall - offset(t); // right on the day the clocks change
+  return new Date(t);
+}
+
 const absolutize = (u) => (/^https?:\/\//.test(u) ? u : SITE_URL + (u.startsWith("/") ? u : "/" + u));
 
 async function loadCandidates() {
@@ -88,7 +108,7 @@ async function loadCandidates() {
     const fm = parsed.doc.toJS() || {};
     const cp = fm.crosspost;
     if (!cp || fm.draft || fm.no_crosspost) continue;
-    const date = new Date(fm.date);
+    const date = parseDate(fm.date);
     if (Number.isNaN(date.getTime())) continue;
     if (date.getTime() > now) continue; // scheduled for later
     if (date < CROSSPOST_SINCE) continue; // never touch old posts, not even with ONLY_FILE
@@ -422,4 +442,6 @@ async function main() {
   if (failed) process.exitCode = 1;
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
+  main().catch((e) => { console.error(e); process.exit(1); });
+}

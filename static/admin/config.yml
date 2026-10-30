@@ -49,8 +49,7 @@ collections:
       Notes, research notes and blog posts. Without a tick it is a note.
       LinkedIn text to copy: /admin/share/
     folder: content/notes
-    path: "{{year}}/{{month}}/{{day}}/{{slug}}"
-    slug: "{{hour}}{{minute}}-{{fields.title}}"
+    path: "{{year}}/{{month}}/{{day}}/{{hour}}{{minute}}"
     create: true
     format: yaml-frontmatter
     extension: md
@@ -74,12 +73,11 @@ collections:
         buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
         editor_components: [image]
         hint: "Hashtags go straight into the text (#waste). They make up the graph on the notes page."
-      - { label: Date, name: date, widget: datetime, picker_utc: false }
+      - { label: Date, name: date, widget: datetime, picker_utc: false, default: "{{now}}" }
       - label: Social media
         name: crosspost
         widget: object
         collapsed: true
-        required: false
         summary: "{{fields.bluesky | ternary('Bluesky ', '')}}{{fields.mastodon | ternary('Mastodon ', '')}}{{fields.linkedin | ternary('LinkedIn', '')}}"
         hint: >-
           Sent once, right after the entry is live. What gets posted: own thread if filled,

@@ -104,3 +104,12 @@ test("one very long sentence is cut at word boundaries", () => {
   assert.ok(parts.length > 1);
   assert.ok(parts.every((p) => [...p.text].length <= 300));
 });
+
+import { parseDate } from "./crosspost.mjs";
+
+test("dates without a time zone are Berlin time", () => {
+  assert.equal(parseDate("2026-10-30T23:10:00").toISOString(), "2026-10-30T22:10:00.000Z"); // winter, +1
+  assert.equal(parseDate("2026-07-01T12:00:00").toISOString(), "2026-07-01T10:00:00.000Z"); // summer, +2
+  assert.equal(parseDate("2026-10-30T23:10:00+01:00").toISOString(), "2026-10-30T22:10:00.000Z");
+  assert.equal(parseDate("2026-10-30T22:10:00Z").toISOString(), "2026-10-30T22:10:00.000Z");
+});
