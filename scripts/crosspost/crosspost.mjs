@@ -443,6 +443,8 @@ async function main() {
     }
     if (!DRY && Object.keys(results).length) {
       const doc = post.parsed.doc;
+      const syn = doc.get("syndication");
+      if (!syn || typeof syn !== "object") doc.set("syndication", doc.createNode({})); // the CMS writes "syndication: null"
       for (const [p, url] of Object.entries(results)) doc.setIn(["syndication", p], url);
       await fs.writeFile(post.file, `---\n${doc.toString({ lineWidth: 0 }).trimEnd()}\n---\n${post.parsed.body.startsWith("\n") ? "" : "\n"}${post.parsed.body}`);
     }
