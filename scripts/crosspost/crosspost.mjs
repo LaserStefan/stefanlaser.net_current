@@ -39,7 +39,15 @@ const SECTIONS = ["content/notes", "content/posts"];
 const CROSSPOST_SINCE = new Date("2026-10-30T10:00:00+01:00");
 
 const log = (...a) => console.log(...a);
-const warn = (...a) => console.log("::warning::" + a.join(" "));
+// one line per problem, visible on the run's summary page; secrets are never printed
+const secret = (k) => (env[k] && env[k].length > 4 ? env[k] : null);
+const redact = (t) => ["BLUESKY_APP_PASSWORD", "MASTODON_TOKEN", "LINKEDIN_TOKEN"].map(secret).filter(Boolean)
+  .reduce((acc, v) => acc.split(v).join("***"), String(t));
+const warn = (...a) => {
+  const msg = redact(a.join(" ")).replace(/\s*\n\s*/g, " ");
+  console.log("::warning::" + msg);
+  if (env.GITHUB_STEP_SUMMARY) fs.appendFile(env.GITHUB_STEP_SUMMARY, `- ${msg}\n`).catch(() => {});
+};
 
 // ---------------------------------------------------------------------------
 // Reading posts
@@ -247,7 +255,7 @@ async function postBluesky(post) {
 
   const { data: session } = await http(`${service}/xrpc/com.atproto.server.createSession`, {
     method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ identifier: env.BLUESKY_HANDLE, password: env.BLUESKY_APP_PASSWORD }),
+    body: JSON.stringify({ identifier: env.BLUESKY_HANDLE.replace(/^@/, ""), password: env.BLUESKY_APP_PASSWORD }),
   });
   const auth = { Authorization: `Bearer ${session.accessJwt}` };
 
@@ -443,5 +451,5 @@ async function main() {
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
-  main().catch((e) => { console.error(e); process.exit(1); });
+  main().catch((e) => { warn(`cross-posting stopped: ${e.stack || e.message}`); process.exitCode = 1; });
 }
