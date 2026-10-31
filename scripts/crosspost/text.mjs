@@ -32,7 +32,12 @@ export function markdownToPlain(md) {
   });
   s = s.replace(/<[^>]+>/g, "");
   s = s.replace(/^#{1,6}\s+/gm, "");
-  s = s.replace(/^>\s?/gm, "");
+  // quotes: Bluesky and Mastodon show ">" literally, so a quoted block gets quotation marks instead
+  s = s.replace(/(^>.*(?:\n>.*)*)/gm, (block) => {
+    const inner = block.replace(/^>\s?/gm, "").trim();
+    if (!inner) return "";
+    return /^["“„«‚‘']/.test(inner) ? inner : `“${inner}”`;
+  });
   s = s.replace(/^\s*[-*+]\s+/gm, "• ");
   s = s.replace(/(\*\*|__)(.+?)\1/g, "$2").replace(/(\*|_)(\S.*?\S|\S)\1/g, "$2");
   s = s.replace(/`([^`]+)`/g, "$1");

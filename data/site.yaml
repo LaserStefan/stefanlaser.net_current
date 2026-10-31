@@ -80,3 +80,5 @@ design:
   image_width: 600
   extra_css: ''
 footer_text: ''
+analytics:
+  goatcounter: stefanlaser

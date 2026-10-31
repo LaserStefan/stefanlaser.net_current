@@ -113,3 +113,8 @@ test("dates without a time zone are Berlin time", () => {
   assert.equal(parseDate("2026-10-30T23:10:00+01:00").toISOString(), "2026-10-30T22:10:00.000Z");
   assert.equal(parseDate("2026-10-30T22:10:00Z").toISOString(), "2026-10-30T22:10:00.000Z");
 });
+
+test("quotes get quotation marks for social media", () => {
+  assert.equal(markdownToPlain("Graeber wrote:\n\n> Bullshit jobs\n> are real.\n\nIndeed.").text, "Graeber wrote:\n\n“Bullshit jobs\nare real.”\n\nIndeed.");
+  assert.equal(markdownToPlain("> “Already quoted”").text, "“Already quoted”");
+});

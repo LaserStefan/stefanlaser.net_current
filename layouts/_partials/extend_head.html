@@ -21,3 +21,6 @@
 <link rel="alternate" type="application/feed+json" href="{{ .RelPermalink }}" title="{{ site.Title }}">
 {{- end }}
 <meta name="robots" content="noai, noimageai">
+{{- with hugo.Data.site.analytics }}{{ with .goatcounter }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{{- end }}{{ end }}

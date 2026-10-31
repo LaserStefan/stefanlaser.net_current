@@ -54,7 +54,7 @@ collections:
     format: yaml-frontmatter
     extension: md
     identifier_field: date
-    summary: "{{date | date('DD.MM.YYYY')}} · {{blog | ternary('Blog · ', '')}}{{research | ternary('Research · ', '')}}{{title}}{{body | truncate(70)}}"
+    summary: "{{date | date('DD.MM.YY')}} – {{blog | ternary('Blog: ', '')}}{{research | ternary('Research: ', '')}}{{title}}{{title | ternary(' · ', '')}}{{body | truncate(60)}}"
     sortable_fields:
       fields: [date]
       default: { field: date, direction: descending }
@@ -72,7 +72,7 @@ collections:
         widget: markdown
         buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
         editor_components: [image]
-        hint: "Hashtags go straight into the text (#waste). They make up the graph on the notes page."
+        modes: [rich_text, raw]
       - { label: Date, name: date, widget: datetime, picker_utc: false, default: "{{now}}" }
       - label: Social media
         name: crosspost
@@ -170,7 +170,7 @@ collections:
     format: yaml-frontmatter
     extension: md
     identifier_field: date
-    summary: "{{date | date('DD.MM.YYYY')}} · {{blog | ternary('Blog · ', '')}}{{research | ternary('Research · ', '')}}{{title}}{{body | truncate(70)}}"
+    summary: "{{date | date('DD.MM.YY')}} – {{blog | ternary('Blog: ', '')}}{{research | ternary('Research: ', '')}}{{title}}{{title | ternary(' · ', '')}}{{body | truncate(60)}}"
     sortable_fields:
       fields: [date]
       default: { field: date, direction: descending }
@@ -186,6 +186,7 @@ collections:
         widget: markdown
         buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
         editor_components: [image]
+        modes: [rich_text, raw]
       - { label: Date, name: date, widget: datetime, picker_utc: false, hint: "Leave as is." }
       - { label: Teaser, name: summary, widget: text, required: false }
       - { label: Address, name: url, widget: string, required: false, readonly: true, hint: "The old address. Fixed." }
@@ -402,10 +403,16 @@ collections:
               - { label: ORCID iD, name: orcid, widget: string, required: false, hint: "e.g. 0000-0002-6782-3496. Your public ORCID works are listed automatically. Leave empty to show only the entries from the Publications collection." }
               - { label: Intro text, name: intro, widget: text, required: false }
 
+          - label: Visitor statistics
+            name: analytics
+            widget: object
+            collapsed: true
+            fields:
+              - { label: GoatCounter code, name: goatcounter, widget: string, required: false, hint: "The part before .goatcounter.com, e.g. stefanlaser. Empty = no statistics. If you switch it off, also take the paragraph out of the privacy notice." }
           - label: Micro stream (right column)
             name: stream
             widget: object
-            hint: Refreshed every three hours and whenever you publish.
+            hint: Refreshed twice a day (about 6:17 and 16:13) and whenever you publish.
             fields:
               - { label: Show the box, name: enabled, widget: boolean, default: true }
               - label: Shown first

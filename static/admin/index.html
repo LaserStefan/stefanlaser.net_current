@@ -52,6 +52,10 @@
         font-size: 1.05rem;
         line-height: 1.65;
       }
+      @media (max-width: 700px) {
+        .field[data-key-path="body"] [contenteditable="true"],
+        .field[data-key-path="body"] textarea { min-height: 30vh; }
+      }
     </style>
   </head>
   <body>
