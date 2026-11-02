@@ -10,7 +10,7 @@ featured_publications:
   - pub: 2026-on-stranded-infrastructure-facing-chip-promises-in-magdeburg
     title: ''
     link: ''
-    note: ''
+    note: in press (Engaging Science, Technology and Society)
 thumbnail: Laser_Fig1.webp
 thumbnail_alt: Model image of a chip factory landing on a greenfield.
 date: 2026-11-02T15:15:00
