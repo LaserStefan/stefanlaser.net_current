@@ -4,20 +4,32 @@ summary: 'The Elon Musks of the world abuse #sf, #AI companies push eerie next-w
 project_website: https://www.matteringpress.org/books/predictions-volume-1
 project_website_label: ''
 phase: Predictions
-years: ''
+years: 2024-today
 weight: 10
+featured_publications:
+  - pub: 2026-predictions
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2024-vokabular-des-virtuellen
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2026-staying-with-the-planet
+    title: ''
+    link: ''
+    note: ''
 thumbnail: predictions.webp
 thumbnail_alt: ''
 date: 2026-06-23 10:15:42+02:00
 old_url: /2026/06/23/the-elon-musks-of-the.html
 tags:
-- Portfolio
-- Research
-featured_publications:
-- pub: 2026-predictions
-- pub: 2026-generative-prognosen-in-den-sozial-und-geisteswissenschaften
-- pub: 2024-vokabular-des-virtuellen
-- pub: 2026-staying-with-the-planet
+  - Portfolio
+  - Research
 ---
 
 So..., how about reclaiming the format of predictions? As critical thinkers? Can it work?
