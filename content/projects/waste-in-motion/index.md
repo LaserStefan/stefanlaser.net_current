@@ -4,7 +4,7 @@ summary: Waste is often lingering in the back of my mind, although the theme mig
 project_website: https://waste-in-motion.org/en/
 project_website_label: ''
 phase: Waste
-years: ''
+years: 2013-today
 weight: 40
 featured_publications:
   - pub: 2026-wie-abfall-die-welt-bewegt-handbuch-sozialwissenschaftliche
