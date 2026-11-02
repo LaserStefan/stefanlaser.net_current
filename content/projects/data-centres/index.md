@@ -4,20 +4,35 @@ summary: 'My main research theme right now is data centres: their local arrangem
 project_website: https://www.virtuelle-lebenswelten.de/
 project_website_label: ''
 phase: Data centres and semiconductors
-years: ''
+years: 2024-today
 weight: 20
+featured_publications:
+  - pub: 2026-across-the-layers-of-planetary-matter-data-infrastructures-a
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2026-across-the-layers-how-data-infrastructures-link-knowledge-pr
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2023-towards-artful-sustainable-integration-of-it-infrastructures
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2023-the-environmental-footprint-of-social-media-hosting-tinkerin
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2026-staying-with-the-planet
+    title: ''
+    link: ''
+    note: ''
 thumbnail: 20240131_123342.webp
 thumbnail_alt: ''
 date: 2022-01-20 12:55:00+02:00
 old_url: /2022/01/20/current-project.html
 tags:
-- Portfolio
-featured_publications:
-- pub: 2026-across-the-layers-of-planetary-matter-data-infrastructures-a
-- pub: 2026-across-the-layers-how-data-infrastructures-link-knowledge-pr
-- pub: 2023-towards-artful-sustainable-integration-of-it-infrastructures
-- pub: 2023-the-environmental-footprint-of-social-media-hosting-tinkerin
-- pub: 2026-staying-with-the-planet
+  - Portfolio
 ---
 
 I've put a focus on dynamics in the semiconductor industry, expanding and making trouble in Vietnam and Taiwan. 
