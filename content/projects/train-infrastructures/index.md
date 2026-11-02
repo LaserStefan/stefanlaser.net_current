@@ -4,7 +4,7 @@ summary: Based on my work in the collaborative research centre "Media of Coopera
 project_website: ''
 project_website_label: ''
 phase: Mobility
-years: ''
+years: 2020-2022
 weight: 80
 featured_publications:
   - pub: 2022-obsoleszenz-statt-transformation-im-schienenverkehr-uber-die
