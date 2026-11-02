@@ -4,7 +4,7 @@ summary: I have contributed to the field of valuation research with multiple pie
 project_website: ''
 project_website_label: ''
 phase: Valuation studies
-years: ''
+years: 2013-2025
 weight: 70
 featured_publications:
   - pub: 2020-dis-assembling-value
