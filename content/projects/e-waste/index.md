@@ -4,7 +4,7 @@ summary: 'Global and interdisciplinary research on e-waste: ethnographic studies
 project_website: https://hightech-am-ende.de/en/
 project_website_label: ''
 phase: Waste
-years: ''
+years: 2013-2019
 weight: 50
 featured_publications:
   - pub: 2020-hightech-am-ende
