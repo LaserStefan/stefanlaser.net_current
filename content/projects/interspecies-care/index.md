@@ -1,18 +1,26 @@
 ---
 title: Interspecies Care
-date: 2022-11-20 12:53:00+02:00
 summary: More-than-human research in the aftermath of the Corona crisis, and more.
 project_website: ''
 project_website_label: ''
 phase: More-than-human
-years: ''
+years: 2019-2022
 weight: 60
+featured_publications:
+  - pub: 2022-artenubergreifende-fursorge-die-corona-pandemie-und-das-mens
+    title: ''
+    link: ''
+    note: ''
+  - pub: 2021-eating-ourselves-out-of-industrial-excess-degrowth-multi-spe
+    title: ''
+    link: ''
+    note: ''
+thumbnail: ''
+thumbnail_alt: ''
+date: 2022-11-20 12:53:00+02:00
 old_url: /2022/11/20/interspecies-care.html
 tags:
-- Portfolio
-featured_publications:
-- pub: 2022-artenubergreifende-fursorge-die-corona-pandemie-und-das-mens
-- pub: 2021-eating-ourselves-out-of-industrial-excess-degrowth-multi-spe
+  - Portfolio
 ---
 
 I have been researching public discourses on the meat industry and the culling of minks in a writing collective. The book is based on a cooperation with students. Building on an excellent seminar research report, we knitted a book together; thus the project also stands for an egalitarian (social) science that thinks across statuses.
