@@ -1,6 +1,6 @@
 ---
 title: 'Stranded infrastructure: Controversy, fragility and failure of a large-scale industrial project'
-summary: This is an upcoming DFG (third-party funded) research project. Funding was approved. Intel wanted to build a "fab" in Magdeburg, a city in East-Germany that used to be an industrial centre. After the Berlin wall fell, it was hit by deindustrialization. Intel's arrival promising a way back to the ever-expanding industrial future of the past. Infrastructure was prepared. But then the project was paused, and, ultimately abandoned. Lots to uncover.
+summary: This is an upcoming DFG (third-party funded) research project. Funding was approved. Intel wanted to build a "fab" in Magdeburg, a city in East-Germany that used to be an industrial centre. After the Berlin wall fell, it was hit by deindustrialization. Intel's arrival promised a way back to the ever-expanding industrial future of the past. Infrastructure was prepared for Intel to arrive. But then the project was paused, and, ultimately abandoned. Lots to uncover.
 project_website: ''
 project_website_label: ''
 phase: Upcoming
