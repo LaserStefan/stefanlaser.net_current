@@ -120,15 +120,35 @@ jobs:
           npx --yes wrangler@4 pages project create "$CF_PROJECT" --production-branch=main 2>/dev/null || true
           npx --yes wrangler@4 pages deploy public --project-name="$CF_PROJECT" --branch="${GITHUB_REF_NAME}" --commit-dirty=true
 
-      # ---------------- cross-posting (live site only) ----------------
+  pages:
+    needs: site
+    if: github.ref_name == 'main' && needs.site.outputs.pages == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish on GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Cross-posting runs only after GitHub Pages has published the new page,
+  # so the link in the post works and the "is it live?" check succeeds.
+  crosspost:
+    needs: [site, pages]
+    if: github.ref_name == 'main' && !cancelled() && needs.site.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: Install cross-posting tools
-        if: github.ref_name == 'main'
         working-directory: scripts/crosspost
         run: npm ci --no-audit --no-fund
 
       - name: Cross-post new posts
         id: crosspost
-        if: github.ref_name == 'main'
         continue-on-error: true
         working-directory: scripts/crosspost
         env:
@@ -142,7 +162,6 @@ jobs:
         run: node crosspost.mjs
 
       - name: Save links to the social posts
-        if: github.ref_name == 'main'
         run: |
           if [ -n "$(git status --porcelain content)" ]; then
             git config user.name "github-actions[bot]"
@@ -166,15 +185,3 @@ jobs:
         run: |
           echo "::error::At least one cross-post failed. See the 'Cross-post new posts' step above. The other platforms were posted and recorded; the failed one is retried on the next run."
           exit 1
-
-  pages:
-    needs: site
-    if: github.ref_name == 'main' && needs.site.outputs.pages == 'true'
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Publish on GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
