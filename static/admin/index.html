@@ -56,9 +56,53 @@
         .field[data-key-path="body"] [contenteditable="true"],
         .field[data-key-path="body"] textarea { min-height: 30vh; }
       }
+      /* character count under the writing field (script below) */
+      .sl-count {
+        position: sticky; bottom: 0; z-index: 2;
+        margin-top: 6px; padding: 4px 10px;
+        font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace;
+        background: var(--sl-switch); border-radius: 4px; opacity: .95;
+      }
+      .sl-count b { font-weight: 600; }
+      .sl-count .over { color: #b4532a; }
     </style>
   </head>
   <body>
+    <script>
+      // Live character count for the text of an entry, as Bluesky (300) and Mastodon (500)
+      // will roughly see it: markup, image tags and link addresses don't count.
+      (function () {
+        const seg = window.Intl && Intl.Segmenter ? new Intl.Segmenter("en", { granularity: "grapheme" }) : null;
+        const len = (t) => (seg ? [...seg.segment(t)].length : [...t].length);
+        const plainFromMarkdown = (md) => md
+          .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+          .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+          .replace(/^#{1,6}\s+/gm, "").replace(/^>\s?/gm, "").replace(/(\*\*|__|\*|_|`)/g, "");
+        const parts = (n, limit) => (n <= limit ? "1 post" : `~${Math.ceil(n / (limit - 12))} posts`);
+        function update() {
+          const field = document.querySelector('.field[data-key-path="body"]');
+          if (!field) return;
+          const ed = field.querySelector('[contenteditable="true"]');
+          const ta = field.querySelector("textarea");
+          let text = "";
+          if (ta && ta.offsetParent !== null) text = plainFromMarkdown(ta.value);
+          else if (ed) text = ed.innerText;
+          text = text.replace(/\n{3,}/g, "\n\n").trim();
+          let box = field.querySelector(".sl-count");
+          if (!box) {
+            box = document.createElement("div");
+            box.className = "sl-count";
+            box.setAttribute("aria-live", "polite");
+            field.appendChild(box);
+          }
+          const n = len(text);
+          const html = `<b>${n}</b> characters · Bluesky <span class="${n > 300 ? "over" : ""}">${parts(n, 300)}</span>` +
+            ` · Mastodon <span class="${n > 500 ? "over" : ""}">${parts(n, 500)}</span>`;
+          if (box.innerHTML !== html) box.innerHTML = html;
+        }
+        setInterval(update, 400);
+      })();
+    </script>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </body>
 </html>
