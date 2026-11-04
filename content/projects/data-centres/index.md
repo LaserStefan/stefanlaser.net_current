@@ -1,6 +1,6 @@
 ---
 title: Data Centres
-summary: 'Until recently, data centres were my main object of reference: their local arrangement, material legacies, building procedures, and global production networks enabling its operation. I have been living and working in Asia-Pacific for a longer period to follow actors. I am part of emerging data centre scholarship, also my special interest moved to semiconductors (that you may consider part of the data centre discussion).'
+summary: 'Until recently, data centres were my main object of reference: their local arrangement, material legacies, building procedures, and global production networks enabling its operation. I have been living and working in Asia-Pacific for a longer period to follow actors. I am part of emerging data centre scholars group, although my special interest moved to semiconductors (which you, however, may consider part of the data centre discussion).'
 project_website: https://www.virtuelle-lebenswelten.de/
 project_website_label: ''
 phase: Data centres and semiconductors
