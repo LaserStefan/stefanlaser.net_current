@@ -362,7 +362,7 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 .entry-no { display: none; }
 .entry a { border-top: 0; padding-top: 0; }
 .entries { row-gap: 10px; }
-.home-main .rule { background: none; height: 0; margin: 3rem 0 0; }
+.home-main .rule { background: var(--hair); height: 1px; opacity: 1; margin: 2.6rem 0 2rem; }
 .pub-list-home .pub { border-top: 0; padding: 6px 0; }
 /* shorter row title on phones */
 .t-short { display: none; }
@@ -388,3 +388,9 @@ h1 .spark { font-family: var(--font-sans); }
 /* the small graphics need room: not on phones */
 @media (max-width: 720px) { .spark { display: none; } }
 .paginav a span:not(.title) { font-family: var(--font-display); font-size: .98rem; line-height: 1.35; color: var(--primary); }
+
+/* publications: one quiet line per section, no lines between entries */
+.year-mark { border-bottom: 1px solid var(--hair); }
+.pub { border-top: 0; padding: 9px 0; }
+/* reading width for posts, notes and project pages: about 65–70 characters per line */
+.main:has(.post-single) { max-width: calc(520px + var(--gap) * 2); }
