@@ -1,0 +1,18 @@
+{{- /* Previous / next entry. Notes have no title, so their first sentence is shown. */ -}}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- if and (gt (len $pages) 1) (in $pages . ) }}
+<nav class="paginav">
+  {{- with $pages.Next . }}
+  <a class="prev" href="{{ .RelPermalink }}">
+    <span class="title">« newer · {{ .Date | time.Format "2 Jan 2006" }}</span>
+    <span>{{ (partial "card-title.html" .).title | truncate 80 }}</span>
+  </a>
+  {{- end }}
+  {{- with $pages.Prev . }}
+  <a class="next" href="{{ .RelPermalink }}">
+    <span class="title">{{ .Date | time.Format "2 Jan 2006" }} · older »</span>
+    <span>{{ (partial "card-title.html" .).title | truncate 80 }}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}

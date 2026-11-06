@@ -29,7 +29,7 @@
     <hr class="rule">
     <section class="home-row">
       <div class="row-head">
-        <h2>{{ $s.home.blog_title | default "Blog" }}</h2>
+        <h2>{{ with $s.home.blog_title_short }}<span class="t-long">{{ $s.home.blog_title | default "Blog" }}</span><span class="t-short">{{ . }}</span>{{ else }}{{ $s.home.blog_title | default "Blog" }}{{ end }}</h2>
         <a class="mono-link" href="{{ "notes/" | relURL }}">all notes</a>
       </div>
       <ol class="entries">

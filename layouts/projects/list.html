@@ -4,9 +4,6 @@
   {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
 </header>
 
-{{- /* shared axis for the running-time bars: first start year to last end year */}}
-{{- $from := now.Year }}{{ $to := now.Year }}
-{{- range .Pages }}{{ with .Params.years }}{{ $p := split (replace . "–" "-") "-" }}{{ $a := int (trim (index $p 0) " ") }}{{ if lt $a $from }}{{ $from = $a }}{{ end }}{{ $e := trim (index $p 1 | default "") " " }}{{ if and $e (ne $e "today") }}{{ if gt (int $e) $to }}{{ $to = int $e }}{{ end }}{{ end }}{{ end }}{{ end }}
 <div class="themes">
   {{- range .Pages.ByWeight }}
   {{- $p := . }}
@@ -17,7 +14,7 @@
   {{- $featured := partial "project-featured.html" . }}
   <article class="theme">
     <div class="theme-main">
-      <p class="theme-label">{{ with .Params.phase }}<span>{{ . }}</span>{{ end }}{{ with .Params.years }}<span>{{ . }}</span>{{ partial "timeline.html" (dict "years" . "from" $from "to" $to) }}{{ end }}</p>
+      <p class="theme-label">{{ with .Params.phase }}<span>{{ . }}</span>{{ end }}{{ with .Params.years }}<span>{{ . }}</span>{{ end }}</p>
       <h2 class="theme-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{- with $img }}
       <figure class="theme-img">{{ partial "img.html" (dict "src" . "alt" $imgAlt "page" $p "width" 560 "link" true) }}</figure>

@@ -358,9 +358,24 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 .post-content, .hero-bio, .entry-text, .theme-summary, .stream-text, .project-summary { font-family: var(--font-display); }
 .hero-bio { font-size: 1.12rem; line-height: 1.6; }
 .entry-text, .theme-summary { font-size: 1.02rem; }
-/* blog cards: no numbering, a light hairline instead of the black rule */
+/* homepage: rows and items separated by space, not by lines */
 .entry-no { display: none; }
-.entry a { border-top: 1px solid var(--hair); }
+.entry a { border-top: 0; padding-top: 0; }
+.entries { row-gap: 10px; }
+.home-main .rule { background: none; height: 0; margin: 3rem 0 0; }
+.pub-list-home .pub { border-top: 0; padding: 6px 0; }
+/* shorter row title on phones */
+.t-short { display: none; }
+@media (max-width: 600px) { .row-head .t-long { display: none; } .row-head .t-short { display: inline; } }
+/* previous / next at the end of a post: more room, a quiet frame */
+.paginav {
+  margin-top: 3.5rem; background: none; border: 1px solid var(--hair);
+  box-shadow: 3px 3px 0 0 color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.paginav a { padding: .9rem 1rem; }
+.paginav a:hover { background: var(--accent-soft); }
+.paginav .next:not(:first-child) { border-left: 1px solid var(--hair); }
+.paginav .title { font-family: var(--font-mono); letter-spacing: 0; text-transform: lowercase; font-size: .72rem; color: var(--accent-ink); }
 /* social links as words */
 .social-words { margin: 0; font-size: .95rem; }
 .social-words a { color: var(--secondary); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; box-shadow: none; }
@@ -369,9 +384,7 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 /* sparkline next to "Latest publications" */
 .spark { display: inline-flex; align-items: center; gap: 6px; margin-left: .6rem; color: var(--secondary); vertical-align: middle; }
 .spark-label { font-family: var(--font-mono); font-size: .62rem; }
-/* running-time bar of each project */
-.theme-label { align-items: center; }
-.timeline { color: var(--secondary); display: inline-block; height: 10px; }
 h1 .spark { font-family: var(--font-sans); }
 /* the small graphics need room: not on phones */
-@media (max-width: 720px) { .spark, .timeline { display: none; } }
+@media (max-width: 720px) { .spark { display: none; } }
+.paginav a span:not(.title) { font-family: var(--font-display); font-size: .98rem; line-height: 1.35; color: var(--primary); }
