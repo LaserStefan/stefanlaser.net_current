@@ -352,3 +352,23 @@ img.dithered { image-rendering: pixelated; image-rendering: crisp-edges; }
 /* archive link in the micro stream box */
 .stream-archive { margin-left: auto; font-family: var(--font-mono); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: .72rem; color: var(--accent-ink); box-shadow: none; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 .stream-archive:hover { color: var(--primary); }
+
+/* ---------------- small Tufte touches ---------------- */
+/* body text in the serif of the headings */
+.post-content, .hero-bio, .entry-text, .theme-summary, .stream-text, .project-summary { font-family: var(--font-display); }
+.hero-bio { font-size: 1.12rem; line-height: 1.6; }
+.entry-text, .theme-summary { font-size: 1.02rem; }
+/* blog cards: no numbering, a light hairline instead of the black rule */
+.entry-no { display: none; }
+.entry a { border-top: 1px solid var(--hair); }
+/* social links as words */
+.social-words { margin: 0; font-size: .95rem; }
+.social-words a { color: var(--secondary); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; box-shadow: none; }
+.social-words a:hover { color: var(--accent-ink); }
+.social-words .sep { color: var(--secondary); }
+/* sparkline next to "Latest publications" */
+.spark { display: inline-flex; align-items: center; gap: 6px; margin-left: .6rem; color: var(--secondary); vertical-align: middle; }
+.spark-label { font-family: var(--font-mono); font-size: .62rem; }
+/* running-time bar of each project */
+.theme-label { align-items: center; }
+.timeline { color: var(--secondary); display: inline-block; height: 10px; }

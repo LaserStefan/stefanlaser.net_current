@@ -1,0 +1,9 @@
+{{- /* Sparkline: publications per year, last year marked */ -}}
+{{- $counts := dict -}}
+{{- range partialCached "publications-all.html" "all" }}{{ with .Params.year }}{{ $y := string . }}{{ $counts = merge $counts (dict $y (add (index $counts $y | default 0) 1)) }}{{ end }}{{ end -}}
+{{- $y0 := 2013 }}{{ $y1 := now.Year -}}
+{{- $max := 1 }}{{ range $k, $v := $counts }}{{ if gt $v $max }}{{ $max = $v }}{{ end }}{{ end -}}
+{{- $w := 96.0 }}{{ $h := 14.0 }}{{ $step := div $w (sub $y1 $y0) -}}
+{{- $pts := slice }}{{ $lx := 0.0 }}{{ $ly := 0.0 -}}
+{{- range seq $y0 $y1 }}{{ $c := index $counts (string .) | default 0 }}{{ $x := mul (sub . $y0) $step }}{{ $yy := sub $h (mul (div (float $c) $max) (sub $h 2)) }}{{ $pts = $pts | append (printf "%.1f,%.1f" $x $yy) }}{{ $lx = $x }}{{ $ly = $yy }}{{ end -}}
+<span class="spark" title="Publications per year, {{ $y0 }}–{{ $y1 }}"><svg width="{{ $w }}" height="{{ $h }}" viewBox="-1 -1 {{ add $w 3 }} {{ add $h 2 }}" aria-hidden="true"><polyline points="{{ delimit $pts " " }}" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="{{ $lx }}" cy="{{ $ly }}" r="1.8" fill="var(--accent)"/></svg><span class="spark-label">{{ $y0 }}–{{ $y1 }}</span></span>

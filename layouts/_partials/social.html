@@ -1,10 +1,8 @@
+{{- /* Tufte mockup: words instead of icons */ -}}
 {{- $links := where . "url" "!=" "" -}}
+{{- $names := dict "mastodon" "Mastodon" "bluesky" "Bluesky" "linkedin" "LinkedIn" "orcid" "ORCID" "rss" "RSS" "email" "Email" -}}
 {{- with $links }}
-<ul class="social">
-  {{- range . }}
-  {{- $url := .url }}
-  {{- if eq .platform "email" }}{{ if not (hasPrefix $url "mailto:") }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
-  <li><a href="{{ partial "url.html" $url }}" title="{{ .platform | title }}" aria-label="{{ .platform | title }}"{{ if eq .platform "mastodon" }} rel="me"{{ end }}>{{ partial "icon.html" .platform }}</a></li>
-  {{- end }}
-</ul>
+<p class="social-words">
+  {{- range $i, $l := . }}{{ if $i }}<span class="sep"> · </span>{{ end }}<a href="{{ partial "url.html" $l.url }}"{{ if eq $l.platform "mastodon" }} rel="me"{{ end }}>{{ index $names $l.platform | default $l.platform }}</a>{{ end -}}
+</p>
 {{- end }}
