@@ -14,7 +14,7 @@ hero:
   image: /uploads/1515048.webp
   image_alt: Portrait photo of Stefan Laser
   links:
-    - label: A network of toughts.
+    - label: A network of thoughts.
       url: https://stefanlaser.net/notes/
 social:
   - platform: mastodon
@@ -39,6 +39,8 @@ home:
 publications:
   orcid: 0000-0002-6782-3496
   intro: ''
+analytics:
+  goatcounter: stefanlaser
 stream:
   enabled: true
   source: bluesky
@@ -80,5 +82,3 @@ design:
   image_width: 600
   extra_css: ''
 footer_text: ''
-analytics:
-  goatcounter: stefanlaser
