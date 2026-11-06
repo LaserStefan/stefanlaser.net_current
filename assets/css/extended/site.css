@@ -21,7 +21,7 @@
 :root[data-theme="dark"] { --accent-ink: var(--accent); --secondary: rgb(160, 162, 163); }
 
 /* top menu: thin accent line under the current page, underline on hover */
-.menu .active { border-bottom: 1px solid var(--accent); }
+.menu .active { border-bottom: 0; } /* the theme underlines the current page already */
 .menu a:hover span:not(.active) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; text-decoration-color: var(--accent); }
 
 
@@ -393,4 +393,4 @@ h1 .spark { font-family: var(--font-sans); }
 .year-mark { border-bottom: 1px solid var(--hair); }
 .pub { border-top: 0; padding: 9px 0; }
 /* reading width for posts, notes and project pages: about 65–70 characters per line */
-.main:has(.post-single) { max-width: calc(520px + var(--gap) * 2); }
+.main:has(.post-single) { max-width: calc(620px + var(--gap) * 2); }
