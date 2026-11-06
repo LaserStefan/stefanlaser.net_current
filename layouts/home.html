@@ -64,7 +64,7 @@
     <hr class="rule">
     <section class="home-row">
       <div class="row-head">
-        <h2>{{ $s.home.publications_title | default "Latest publications" }} {{ partial "spark-pubs.html" . }}</h2>
+        <h2>{{ $s.home.publications_title | default "Latest publications" }}</h2>
         <a class="mono-link" href="{{ "publications/" | relURL }}">all {{ len $pubs }}</a>
       </div>
       <ul class="pub-list pub-list-home">

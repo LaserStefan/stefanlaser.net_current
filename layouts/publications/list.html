@@ -1,7 +1,7 @@
 {{- define "main" }}
 {{- $p := hugo.Data.site.publications }}
 <header class="page-header">
-  <h1>{{ .Title }}</h1>
+  <h1>{{ .Title }} {{ partial "spark-pubs.html" . }}</h1>
   <div class="post-description">
     {{ with $p.intro }}{{ . | markdownify }}{{ end }}
     {{ with $p.orcid }} <a class="mono-link" href="https://orcid.org/{{ . }}">ORCID {{ . }}</a>{{ end }}
