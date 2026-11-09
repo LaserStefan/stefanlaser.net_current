@@ -82,6 +82,12 @@
         function update() {
           const field = document.querySelector('.field[data-key-path="body"]');
           if (!field) return;
+          // only under Write: projects, pages and the archive are never posted
+          if (!/\/collections\/notes(\/|$)/.test(location.hash)) {
+            const old = field.querySelector(".sl-count");
+            if (old) old.remove();
+            return;
+          }
           const ed = field.querySelector('[contenteditable="true"]');
           const ta = field.querySelector("textarea");
           let text = "";
