@@ -345,6 +345,18 @@ collections:
     editor:
       preview: false
     files:
+      - name: redirects
+        label: Redirects
+        file: data/redirects.yaml
+        description: Old addresses that forward to new ones, e.g. /portfolio/ to /projects/.
+        fields:
+          - label: Redirects
+            name: redirects
+            widget: list
+            summary: "{{fields.from}} → {{fields.to}}"
+            fields:
+              - { label: Old address, name: from, widget: string, hint: "Starts and ends with /, e.g. /portfolio/" }
+              - { label: New address, name: to, widget: string, hint: "e.g. /projects/" }
       - name: site
         label: Menu, homepage, micro stream and design
         file: data/site.yaml

@@ -1,11 +1,15 @@
 {{- /* Redirect pages for old Micro.blog addresses (GitHub Pages has no _redirects file).
-     Old project posts -> project pages, /archive/ -> /notes/. Call once with partialCached. */ -}}
+     Old project posts -> project pages, /archive/ -> /notes/, data/redirects.yaml, /page/N/. Call once with partialCached. */ -}}
 {{- $map := slice -}}
 {{- range where site.RegularPages "Section" "projects" -}}
   {{- $p := . -}}
   {{- with $p.Params.old_url }}{{ $map = $map | append (dict "from" . "to" $p.RelPermalink) }}{{ end -}}
 {{- end -}}
 {{- $map = $map | append (dict "from" "/archive/index.html" "to" ("notes/" | relURL)) -}}
+{{- /* hand-made redirects from data/redirects.yaml (CMS: Site settings → Redirects) */ -}}
+{{- range hugo.Data.redirects.redirects }}{{ if and .from .to }}{{ $map = $map | append (dict "from" .from "to" (partial "url.html" .to)) }}{{ end }}{{ end -}}
+{{- /* Micro.blog's numbered pages /page/2/ … -> the notes stream (page sizes differ, so to its start) */ -}}
+{{- range seq 2 40 }}{{ $map = $map | append (dict "from" (printf "/page/%d/" .) "to" ("notes/" | relURL)) }}{{ end -}}
 {{- range $map -}}
   {{- $to := .to -}}
   {{- $from := strings.TrimPrefix "/" .from -}}

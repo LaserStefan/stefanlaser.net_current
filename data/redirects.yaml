@@ -1,0 +1,12 @@
+# Old addresses that forward to new ones. Edit in the CMS under Site settings → Redirects.
+redirects:
+  - from: /portfolio/
+    to: /projects/
+  - from: /categories/
+    to: /tags/
+  - from: /categories/research/
+    to: /tags/research/
+  - from: /categories/portfolio/
+    to: /projects/
+  - from: /categories/link-dumps/
+    to: /tags/link-dumps/
