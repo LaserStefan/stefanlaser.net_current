@@ -15,10 +15,15 @@ taxonomies:
 
 # New posts get Micro.blog-style URLs, so old and new links share one pattern.
 # Imported posts carry their exact old URL in the `url:` front matter field.
+# notes and posts end in .html, as on Micro.blog: write them as files, not as folders
+uglyURLs:
+  notes: true
+  posts: true
+
 permalinks:
   page:
-    posts: /:year/:month/:day/:contentbasename.html
-    notes: /:year/:month/:day/:contentbasename.html
+    posts: /:year/:month/:day/:contentbasename
+    notes: /:year/:month/:day/:contentbasename
     projects: /projects/:contentbasename/
 
 markup:

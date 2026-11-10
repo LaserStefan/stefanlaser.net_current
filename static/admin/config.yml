@@ -49,6 +49,9 @@ collections:
       Notes, research notes and blog posts. Without a tick it is a note.
       LinkedIn text to copy: /admin/share/
     folder: content/notes
+    # always the shared upload folder, never a folder next to the entry
+    media_folder: /assets/uploads
+    public_folder: /uploads
     path: "{{year}}/{{month}}/{{day}}/{{hour}}{{minute}}"
     create: true
     format: yaml-frontmatter
@@ -164,6 +167,9 @@ collections:
       Notes and blog posts from Micro.blog and the old blog. Addresses stay as they are.
       Nothing here is cross-posted. New entries: Write.
     folder: content/notes
+    # always the shared upload folder, never a folder next to the entry
+    media_folder: /assets/uploads
+    public_folder: /uploads
     path: "{{year}}/{{slug}}"
     create: false
     delete: false
