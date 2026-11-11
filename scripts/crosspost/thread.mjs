@@ -1,4 +1,4 @@
-// Split a long text into a numbered thread: "… (1/3)", "… (2/3)", "… (3/3)".
+// Split a long text into a thread, at sentences and paragraphs (no numbering).
 // Images stay with the part of the text they stand in.
 
 import { markdownToPlain, graphemes, truncate } from "./text.mjs";
@@ -62,7 +62,7 @@ export function splitThread(text, { limit, measure = graphemes, reserve = 0, lin
     return [{ text: clean(text).trim(), images: imagesIn(text), withLink: false }];
   }
 
-  const NUM = 8; // room for " (12/34)"
+  const NUM = 0; // no "(1/3)" numbering: Bluesky and Mastodon show threads themselves
   const room = (i, isLast) => limit - NUM - ((linkAt === "start" && i === 0) || (linkAt === "end" && isLast) ? reserve : 0);
 
   // greedy packing; done twice so the last part knows it is the last
@@ -105,7 +105,7 @@ export function splitThread(text, { limit, measure = graphemes, reserve = 0, lin
   return parts.map((p, i) => {
     const body = clean(p).replace(/\n{3,}/g, "\n\n").trim();
     return {
-      text: n > 1 ? `${body} (${i + 1}/${n})` : body,
+      text: body,
       images: imagesIn(p),
       withLink: linkAt !== "none" && ((linkAt === "start" && i === 0) || (linkAt === "end" && i === n - 1)),
     };

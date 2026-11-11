@@ -94,7 +94,7 @@ collections:
             widget: boolean
             default: true
             hint: >-
-              Over 300 characters (Bluesky) or 500 (Mastodon): split into posts numbered (1/3), (2/3) …
+              Over 300 characters (Bluesky) or 500 (Mastodon): split into a thread of several posts.
               Each image goes with the part it stands in, max. 4 per post.
               Off: one post, cut off, with link.
           - label: Short text instead

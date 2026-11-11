@@ -159,7 +159,7 @@ Cloudflare → your domain → *Security → Bots → Block AI bots* once the do
 - Old posts are never cross-posted: only entries from the last 3 days with a cross-posting block are sent,
   and nothing dated before 30 Oct 2026, 10:00 (the day the old blog posts were moved), whatever else is set.
   Entries with `no_crosspost: true` are never sent.
-- Long texts go out as a numbered thread, (1/3) (2/3) …, split at sentences and paragraphs:
+- Long texts go out as a thread, split at sentences and paragraphs (no numbering, the apps show it):
   300 characters per post on Bluesky, 500 on Mastodon. Each image goes with the part it stands in.
   A short text or an own thread in the CMS replaces this.
 

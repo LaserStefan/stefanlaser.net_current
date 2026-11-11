@@ -138,7 +138,7 @@ function excerpt(body, max = 400) {
 
 /**
  * Posts for one platform: [{ text, links, withLink, images: [{src, alt}] }].
- * Order: own thread > short text > the text itself (as a numbered thread if it is long).
+ * Order: own thread > short text > the text itself (as a thread if it is long).
  */
 function compose(post, { limit, platform }) {
   const { fm, cp } = post;
@@ -175,7 +175,7 @@ function compose(post, { limit, platform }) {
     return [{ text: truncate(p.text, limit - (withLink ? reserve : 0)), links: p.links, withLink, images: imgs.slice(0, 4) }];
   }
 
-  // 3. the text itself; long texts become a numbered thread unless switched off
+  // 3. the text itself; long texts become a thread unless switched off
   const src = plainWithImages(post.parsed.body.split("<!--more-->").join(""));
   const text = fm.title ? `${fm.title}\n\n${src.text}` : src.text;
   const opts = { limit, measure: measureFor(src.links), reserve, linkAt };

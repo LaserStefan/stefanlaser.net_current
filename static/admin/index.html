@@ -78,7 +78,7 @@
           .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
           .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
           .replace(/^#{1,6}\s+/gm, "").replace(/^>\s?/gm, "").replace(/(\*\*|__|\*|_|`)/g, "");
-        const parts = (n, limit) => (n <= limit ? "1 post" : `~${Math.ceil(n / (limit - 12))} posts`);
+        const parts = (n, limit) => (n <= limit ? "1 post" : `~${Math.ceil(n / (limit - 8))} posts`);
         function update() {
           const field = document.querySelector('.field[data-key-path="body"]');
           if (!field) return;

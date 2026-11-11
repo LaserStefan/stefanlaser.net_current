@@ -70,19 +70,19 @@ test("short text stays one post without numbering", () => {
   assert.equal(parts[0].withLink, false);
 });
 
-test("long text becomes a numbered thread within the limit, link in the last part", () => {
+test("long text becomes a thread within the limit, link in the last part", () => {
   const sentence = "This sentence is about infrastructures and their many quiet failures in everyday life. ";
   const text = sentence.repeat(12).trim();
   const parts = splitThread(text, { limit: 300, reserve: 40 });
   assert.ok(parts.length >= 4);
   parts.forEach((p, i) => {
-    assert.ok(p.text.endsWith(`(${i + 1}/${parts.length})`), p.text);
+    assert.ok(!/\(\d+\/\d+\)$/.test(p.text), p.text); // no numbering
     assert.ok([...p.text].length <= 300 - (p.withLink ? 40 : 0), `${[...p.text].length}`);
   });
   assert.equal(parts.at(-1).withLink, true);
   assert.equal(parts.filter((p) => p.withLink).length, 1);
   // nothing lost
-  const joined = parts.map((p) => p.text.replace(/ \(\d+\/\d+\)$/, "")).join(" ");
+  const joined = parts.map((p) => p.text).join(" ");
   assert.equal(joined.replace(/\s+/g, " "), text.replace(/\s+/g, " "));
 });
 
