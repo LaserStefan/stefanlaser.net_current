@@ -23,8 +23,9 @@ function units(text) {
   const out = [];
   for (const para of text.split(/(\n\n+)/)) {
     if (/^\n+$/.test(para)) { out.push(para); continue; }
-    // a sentence ends with . ! ? … followed by a space; keeps the space with the sentence
-    const parts = para.match(/[^.!?…]+(?:[.!?…]+(?:["”’)\]]*)\s+|[.!?…]*["”’)\]]*$)|[.!?…]+\s*/g) || [para];
+    // a sentence ends with . ! ? … (plus closing quotes or brackets) followed by a space.
+    // Splitting only there keeps every character: dots and question marks inside links stay put.
+    const parts = para.split(/(?<=[.!?…]["”’)\]]*\s+)/);
     out.push(...parts.filter((p) => p.length));
   }
   return out;

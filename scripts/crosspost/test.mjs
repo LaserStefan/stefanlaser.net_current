@@ -118,3 +118,16 @@ test("quotes get quotation marks for social media", () => {
   assert.equal(markdownToPlain("Graeber wrote:\n\n> Bullshit jobs\n> are real.\n\nIndeed.").text, "Graeber wrote:\n\n“Bullshit jobs\nare real.”\n\nIndeed.");
   assert.equal(markdownToPlain("> “Already quoted”").text, "“Already quoted”");
 });
+
+test("links survive splitting: dots and question marks inside a URL are not sentence ends", () => {
+  const url = "https://www.youtube.com/watch?v=o0WZj5yD7CI";
+  const text = "Silke van Dyk spricht im Erschöpfungspodcast. ".repeat(6) + url + "\n\nKritische Sozialforschung goes Infrastructure Studies. ".repeat(3);
+  const parts = splitThread(text, { limit: 300, reserve: 60 });
+  const all = parts.map((p) => p.text).join(" ");
+  assert.ok(all.includes(url), all);
+  const withUrl = parts.find((p) => p.text.includes(url));
+  const f = blueskyFacets(withUrl.text, [], (u) => u).filter((x) => x.features[0].uri);
+  assert.equal(f[0].features[0].uri, url);
+  // nothing lost at all
+  assert.equal(all.replace(/\s+/g, " ").trim(), text.replace(/\s+/g, " ").trim());
+});
