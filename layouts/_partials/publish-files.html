@@ -1,0 +1,5 @@
+{{- /* Files uploaded through the CMS that are not images (PDFs, documents …) are published
+     as they are, under /uploads/…, so they can be linked and shared. Images are handled by img.html. */ -}}
+{{- range resources.Match "uploads/**" -}}
+  {{- if ne .MediaType.MainType "image" }}{{ $_ := .RelPermalink }}{{ end -}}
+{{- end -}}

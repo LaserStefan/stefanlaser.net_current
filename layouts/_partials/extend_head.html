@@ -1,6 +1,7 @@
 {{- $d := hugo.Data.site.design -}}
 {{- partialCached "favicon.html" . "favicon" -}}
 {{- partialCached "redirects.html" . "redirects" -}}
+{{- partialCached "publish-files.html" . "publish-files" -}}
 <style>
 :root {
   --accent: {{ $d.accent | default "#5e8b72" | safeCSS }};
